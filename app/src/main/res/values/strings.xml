@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name" translatable="false">SRMS</string>
+    <string name="app_desc">An app for a result management system that will assist in delivering outcomes with an effective system. In addition, we want to bring parents, instructors, and students together in one location.</string>
+    <string name="onboardingExitButton">Get Started</string>
+</resources>

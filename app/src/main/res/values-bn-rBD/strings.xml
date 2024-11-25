@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SRMS</string>
+    <string name="app_desc">একটি ফলাফল ব্যবস্থাপনা সিস্টেমের জন্য একটি অ্যাপ যা একটি কার্যকর সিস্টেমের সাথে ফলাফল প্রদানে সহায়তা করবে। উপরন্তু, আমরা এই অ্যাপের মাধ্যমে অভিভাবক, শিক্ষক এবং ছাত্রদের এক জায়গায় নিয়ে আসতে চেয়েছি।</string>
+    <string name="onboardingExitButton">শুরু করুন</string>
+</resources>
