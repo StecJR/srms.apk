@@ -12,18 +12,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SRMS"
         tools:targetApi="31">
-        <activity
-            android:name=".activity.OnboardingActivity"
-            android:exported="false" />
+
+        <meta-data
+            android:name="com.stec.srms.FOSS"
+            android:value="true" />
+        <meta-data
+            android:name="com.stec.srms.License"
+            android:value="BSD 3-Clause" />
+        <meta-data
+            android:name="com.stec.srms.SourceCode"
+            android:value="https://github.com/StecJR/srms.apk" />
+
         <activity
             android:name=".activity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.OnboardingActivity"
             android:exported="false" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

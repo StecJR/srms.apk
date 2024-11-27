@@ -13,13 +13,13 @@ android {
         versionCode = 1
         versionName = "0.0.0-alpha1"
         vectorDrawables.useSupportLibrary = true
-        
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

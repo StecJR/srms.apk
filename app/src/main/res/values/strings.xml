@@ -2,4 +2,7 @@
     <string name="app_name" translatable="false">SRMS</string>
     <string name="app_desc">An app for a result management system that will assist in delivering outcomes with an effective system. In addition, we want to bring parents, instructors, and students together in one location.</string>
     <string name="onboardingExitButton">Get Started</string>
+    <string name="app_license" translatable="false">BSD 3-Clause</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
