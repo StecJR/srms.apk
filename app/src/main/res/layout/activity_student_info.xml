@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".activity.StudentInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="30dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/studentInfoResultButton"
+                style="@style/CustomStyle.Button"
+                android:text="Result" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/studentInfoLogoutButton"
+                style="@style/CustomStyle.Button"
+                android:text="Logout" />
+        </LinearLayout>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="30dp"
+            android:src="@drawable/profile"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/CircleImageShape" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="20dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Student Info"
+            android:textColor="@color/wheat"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/rounded_shape"
+            android:backgroundTint="@color/blue_darker"
+            android:padding="10dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Name"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Jakir Hossain"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Date of Birth"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="9 February 2030"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Gender"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Male"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Program"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="B.Sc in CSE"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Session"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="2021-2022"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Contact"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="01518111222"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Email"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="stec.jrhossain@gmail.com"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Address"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="96-A Dhaka, Bangladesh"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+            </TableRow>
+
+        </TableLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Guardian Info"
+            android:textColor="@color/wheat"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_shape"
+            android:backgroundTint="@color/blue_darker"
+            android:padding="10dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Name"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Jakir Hossain"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Relation"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Brother"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Contact"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="01995588444"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="Email"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="center"
+                    android:text="jakirhossain@jrhossain.com"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="RtlCompat" />
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+</ScrollView>

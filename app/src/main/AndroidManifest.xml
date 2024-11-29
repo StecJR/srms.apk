@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SRMS"
         tools:targetApi="31">
+        <activity
+            android:name=".activity.StudentMarksheetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.StudentResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.StudentInfoActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.stec.srms.FOSS"
@@ -34,6 +43,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

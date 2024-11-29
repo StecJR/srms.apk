@@ -30,44 +30,19 @@
 
     <EditText
         android:id="@+id/loginGuardianIdInput"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        android:layout_weight="1"
-        android:background="@drawable/input_field"
-        android:ems="10"
         android:hint="Guardian ID"
-        android:inputType="text"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="18dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/blue_lite" />
+        style="@style/CustomStyle.Input.Text"/>
 
     <EditText
         android:id="@+id/loginGuardianPwInput"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        android:layout_weight="1"
-        android:background="@drawable/input_field"
-        android:drawableEnd="@drawable/eye_password_hide"
-        android:drawablePadding="10dp"
-        android:drawableTint="@color/yellow_dark"
-        android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="18dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/blue_lite"
-        android:textSize="20sp" />
+        style="@style/CustomStyle.Input.Password" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginGuardianButton"
-        style="@style/CustomButtonStyle"
+        style="@style/CustomStyle.Button"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:text="Login" />

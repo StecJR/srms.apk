@@ -12,7 +12,6 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="60dp"
-        android:layout_weight="1"
         android:src="@drawable/srms_logo" />
 
     <TextView
@@ -21,7 +20,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="50dp"
-        android:layout_weight="1"
         android:fontFamily="@font/montserrat"
         android:text="Admin Login"
         android:textSize="34sp"
@@ -30,45 +28,20 @@
 
     <EditText
         android:id="@+id/loginAdminIdInput"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        android:layout_weight="1"
-        android:background="@drawable/input_field"
-        android:ems="10"
         android:hint="Admin username"
-        android:inputType="text"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="18dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/blue_lite" />
+        style="@style/CustomStyle.Input.Text" />
 
     <EditText
         android:id="@+id/loginAdminPwInput"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        android:layout_weight="1"
-        android:background="@drawable/input_field"
-        android:drawableEnd="@drawable/eye_password_hide"
-        android:drawablePadding="10dp"
-        android:drawableTint="@color/yellow_dark"
-        android:ems="10"
         android:hint="Admin password"
-        android:inputType="textPassword"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="18dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/blue_lite"
-        android:textSize="20sp" />
+        style="@style/CustomStyle.Input.Password" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginAdminButton"
-        style="@style/CustomButtonStyle"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:text="Login" />
+        android:text="Login"
+        style="@style/CustomStyle.Button" />
 </LinearLayout>
