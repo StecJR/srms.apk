@@ -34,7 +34,7 @@
                 android:id="@+id/studentInfoLogoutButton"
                 style="@style/CustomStyle.Button.Blue"
                 android:text="@string/logout"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
         </LinearLayout>
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -52,7 +52,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginVertical="20dp"
             android:fontFamily="@font/montserrat"
-            android:text="@string/student_info"
+            android:text="@string/teacher_info"
             android:textSize="32sp"
             android:textStyle="bold" />
 
@@ -69,7 +69,7 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Registration" />
+                    android:text="Id" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -95,19 +95,6 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Date of Birth" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="9 February 2030" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:text="Gender" />
 
                 <TextView
@@ -121,25 +108,12 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Program" />
+                    android:text="Department" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="B.Sc in CSE" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Session" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="2021-2022" />
+                    android:text="CSE" />
             </TableRow>
 
             <TableRow
@@ -168,92 +142,9 @@
                     android:text="stec.jrhossain@gmail.com" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Address" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="96-A Dhaka, Bangladesh" />
-            </TableRow>
-        </TableLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/montserrat"
-            android:text="@string/guardian_info"
-            android:textSize="32sp"
-            android:textStyle="bold" />
-
-        <TableLayout
-            style="@style/CustomStyle.Table.Simple"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/rounded_shape"
-            android:padding="10dp"
-            android:layout_marginBottom="30dp">
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Name" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="Jakir Hossain" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Relation" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="Brother" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Contact" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="01518111222" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Email" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="stec.jrhossain@gmail.com" />
-            </TableRow>
 
         </TableLayout>
+
     </LinearLayout>
+
 </ScrollView>

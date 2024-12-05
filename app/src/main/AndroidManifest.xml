@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <application
         android:allowBackup="true"
@@ -11,17 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SRMS"
-        tools:targetApi="31">
-        <activity
-            android:name=".activity.StudentMarksheetActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.StudentResultActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.StudentInfoActivity"
-            android:exported="false" />
+        tools:targetApi="31" >
 
+        <!-- App metadata -->
         <meta-data
             android:name="com.stec.srms.FOSS"
             android:value="true" />
@@ -32,21 +24,51 @@
             android:name="com.stec.srms.SourceCode"
             android:value="https://github.com/StecJR/srms.apk" />
 
-        <activity
-            android:name=".activity.LoginActivity"
-            android:exported="false" />
+        <!-- Basic activities -->
         <activity
             android:name=".activity.OnboardingActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.LoginActivity"
+            android:exported="false" />
+
+        <!-- Student related activities -->
+        <activity
+            android:name=".activity.StudentInfoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.StudentResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.StudentMarksheetActivity"
+            android:exported="false" />
+
+        <!-- Teacher related activities -->
+        <activity
+            android:name=".activity.FacultyInfoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.FacultyResultActivity"
+            android:exported="false" />
+
+        <!-- Guardian related activities -->
+        <activity
+            android:name=".activity.GuardianInfoActivity"
+            android:exported="true" />
+
+        <!-- Admin related activities -->
+        <activity
+            android:name=".activity.AdminDashboardActivity"
+            android:exported="true" />
+
+        <!-- Main activity -->
+        <activity
             android:name=".activity.MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

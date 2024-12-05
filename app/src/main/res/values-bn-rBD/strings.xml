@@ -2,4 +2,21 @@
 <resources>
     <string name="app_desc">একটি ফলাফল ব্যবস্থাপনা সিস্টেমের জন্য একটি অ্যাপ যা একটি কার্যকর সিস্টেমের সাথে ফলাফল প্রদানে সহায়তা করবে। উপরন্তু, আমরা এই অ্যাপের মাধ্যমে অভিভাবক, শিক্ষক এবং ছাত্রদের এক জায়গায় নিয়ে আসতে চেয়েছি।</string>
     <string name="onboardingExitButton">শুরু করুন</string>
+    <string name="student">শিক্ষার্থী</string>
+    <string name="faculty">শিক্ষক</string>
+    <string name="guardian">অভিভাবক</string>
+    <string name="admin">অ্যাডমিন</string>
+    <string name="admin_login">অ্যাডমিন লগইন</string>
+    <string name="admin_username">অ্যাডমিন নাম</string>
+    <string name="admin_password">অ্যাডমিন পাসওয়ার্ড</string>
+    <string name="login">লগইন</string>
+    <string name="guardian_login">অভিভাবক লগইন</string>
+    <string name="create_new_account">নতুন অ্যাকাউন্ট তৈরি করুন</string>
+    <string name="faculty_login">শিক্ষক লগইন</string>
+    <string name="faculty_id">শিক্ষকের আইডি</string>
+    <string name="student_login">শিক্ষার্থী লগইন</string>
+    <string name="student_id">শিক্ষার্থীর আইডি</string>
+    <string name="guardian_id">অভিভাবকের আইডি</string>
+    <string name="password">পাসওয়ার্ড</string>
+    <string name="forget_password">পাসওয়ার্ড ভুলে গেছেন?</string>
 </resources>

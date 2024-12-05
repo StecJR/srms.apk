@@ -3,6 +3,30 @@
     <string name="app_desc">An app for a result management system that will assist in delivering outcomes with an effective system. In addition, we want to bring parents, instructors, and students together in one location.</string>
     <string name="onboardingExitButton">Get Started</string>
     <string name="app_license" translatable="false">BSD 3-Clause</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="student">Student</string>
+    <string name="faculty">Faculty</string>
+    <string name="guardian">Guardian</string>
+    <string name="admin">Admin</string>
+    <string name="admin_login">Admin Login</string>
+    <string name="admin_username">Admin username</string>
+    <string name="admin_password">Admin password</string>
+    <string name="login">Login</string>
+    <string name="guardian_login">Guardian Login</string>
+    <string name="guardian_id">Guardian ID</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forget password?</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="faculty_login">Faculty Login</string>
+    <string name="faculty_id">Faculty ID</string>
+    <string name="student_login">Student Login</string>
+    <string name="student_id">Student ID</string>
+    <string name="result">Result</string>
+    <string name="logout">Logout</string>
+    <string name="student_info">Student Info</string>
+    <string name="guardian_info">Guardian Info</string>
+    <string name="print">Print</string>
+    <string name="teacher_info">Teacher Info</string>
+    <string name="search">Search</string>
+    <string name="search_result">Search Result</string>
+    <string name="info">Info</string>
 </resources>

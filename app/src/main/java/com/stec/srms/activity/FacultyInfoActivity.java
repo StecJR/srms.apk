@@ -9,17 +9,18 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import com.stec.srms.R;
 
-public class StudentInfoActivity extends AppCompatActivity {
+public class FacultyInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_student_info);
+        setContentView(R.layout.activity_faculty_info);
 
-        AppCompatButton studentInfoResultButton = findViewById(R.id.teacherInfoResultButton);
-        studentInfoResultButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, StudentResultActivity.class));
+        AppCompatButton teacherInfoResultButton = findViewById(R.id.teacherInfoResultButton);
+        teacherInfoResultButton.setOnClickListener(v -> {
+            startActivity(new Intent(this, FacultyResultActivity.class));
         });
+
     }
 }

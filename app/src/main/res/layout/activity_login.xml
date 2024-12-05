@@ -16,11 +16,6 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/loginBottomNav"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/bottom_nav"
-        android:paddingHorizontal="20dp"
         app:menu="@menu/menu_login_bottom_nav"
-        app:itemTextColor="@color/black"/>
+        style="@style/CustomStyle.BottomNav" />
 </LinearLayout>

@@ -1,63 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:scrollbars="none"
-    tools:context=".activity.StudentMarksheetActivity">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.FacultyResultActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginVertical="30dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/search_result"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
+
+        <Spinner
+            android:id="@+id/teacherResultDepartmentSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="50dp"
-            android:fontFamily="@font/montserrat"
-            android:text="1st Year 1st Semester"
-            android:textAlignment="center"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/input_field_night"
+            android:layout_marginHorizontal="10dp"/>
+
+        <Spinner
+            android:id="@+id/teacherResultSessionSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <Spinner
+            android:id="@+id/teacherResultExamSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:spinnerMode="dropdown"
+            android:padding="10dp"/>
+
+        <Spinner
+            android:id="@+id/teacherResultCourseSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:spinnerMode="dropdown"
+            android:padding="10dp"/>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/CustomStyle.Button.Blue"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="@string/search"
+        android:textAllCaps="false" />
+
+    <ScrollView
+        style="@style/CustomStyle.Table.Simple"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/rounded_shape"
+        android:paddingVertical="10dp"
+        android:scrollbars="none">
 
         <TableLayout
-            style="@style/CustomStyle.Table.Simple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/rounded_shape"
-            android:padding="10dp">
+            android:layout_marginHorizontal="10dp">
 
             <TableRow
                 style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Code"
-                    android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat"
-                    android:text="Course"
-                    android:textAlignment="center"
-                    android:textSize="18sp"
+                    android:text="Student ID"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:fontFamily="@font/montserrat"
-                    android:text="GPA"
+                    android:text="Mark"
                     android:textAlignment="center"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -66,7 +116,7 @@
                     android:fontFamily="@font/montserrat"
                     android:text="Grade"
                     android:textAlignment="center"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </TableRow>
 
@@ -76,62 +126,24 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="1101"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
-                    android:text="Fundamentals of computer And Computing"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:text="30000001"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="3.50"
+                    android:text="75"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_width="60dp"
-                    android:text="A-"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="12dp">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="1102"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_weight="1"
-                    android:text="Data Structure And Algorithm"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_width="60dp"
-                    android:text="3.75"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow
@@ -140,30 +152,24 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="1103"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
-                    android:text="Electric  Devices And Circuits"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:text="30000002"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="3.50"
+                    android:text="75"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="A-"
+                    android:text="A"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow
@@ -172,30 +178,24 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="1104"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
-                    android:text="Linear Algebra"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:text="30000003"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="3.25"
+                    android:text="75"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="B+"
+                    android:text="A"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow
@@ -204,30 +204,24 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="1105"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
-                    android:text="Chemistry"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:text="30000004"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="3.25"
+                    android:text="75"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="B+"
+                    android:text="A"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow
@@ -236,30 +230,24 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="1106"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
-                    android:text="Government And Public Administration"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:text="30000005"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="3.00"
+                    android:text="75"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="B"
+                    android:text="A"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow
@@ -268,30 +256,24 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="1111"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
-                    android:text="Fundamentals of computer And Computing Lab"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:text="30000006"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="4.00"
+                    android:text="75"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="A+"
+                    android:text="A"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow
@@ -300,30 +282,24 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="1112"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
-                    android:text="Data Structure And Algorithm Lab"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:text="30000007"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="4.00"
+                    android:text="75"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="A+"
+                    android:text="A"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow
@@ -332,41 +308,104 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="1113"
+                    android:layout_weight="1"
+                    android:text="30000008"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="75"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="A"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="12dp">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
-                    android:text="Electric  Devices And Circuits Lab"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:text="30000009"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="4.00"
+                    android:text="75"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
-                    android:text="A+"
+                    android:text="A"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </TableRow>
 
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="12dp">
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_weight="1"
+                    android:text="30000010"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="75"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="A"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="12dp">
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_weight="1"
+                    android:text="30000011"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="75"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="A"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </TableRow>
 
         </TableLayout>
-
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/CustomStyle.Button.Blue"
-            android:layout_gravity="center"
-            android:layout_marginVertical="30dp"
-            android:text="@string/print"
-            android:textAllCaps="false"/>
-
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

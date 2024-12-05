@@ -37,6 +37,7 @@ public class SessionManager {
 
     public void createSession(String userId, String userType, int expiryDay) {
         sharedPreference.edit()
+                .putString("sessionUserDept", userId)
                 .putString("sessionUserId", userId)
                 .putString("sessionUserType", userType)
                 .putLong("sessionExpiryDate", new Date().getTime() + (expiryDay * 86400000L) - 1)
@@ -44,6 +45,7 @@ public class SessionManager {
     }
     public void deleteSession() {
         sharedPreference.edit()
+                .remove("sessionUserDept")
                 .remove("sessionUserId")
                 .remove("sessionUserType")
                 .remove("sessionExpiryDate")
@@ -58,6 +60,9 @@ public class SessionManager {
         return true;
     }
 
+    public String getUserDept() {
+        return sharedPreference.getString("sessionUserDept", "");
+    }
     public String getUserId() {
         return sharedPreference.getString("sessionUserId", "");
     }

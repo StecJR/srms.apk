@@ -26,11 +26,13 @@ public class LoginStudentFragment extends Fragment {
         Context context = requireContext();
         EditText loginStudentIdInput, loginStudentPwInput;
         AppCompatButton loginStudentButton, loginStudentForgetPwButton, loginStudentCreateAccountButton;
+
         loginStudentIdInput = view.findViewById(R.id.loginStudentIdInput);
         loginStudentPwInput = view.findViewById(R.id.loginStudentPwInput);
         loginStudentButton = view.findViewById(R.id.loginStudentButton);
         loginStudentForgetPwButton = view.findViewById(R.id.loginStudentForgetPwButton);
         loginStudentCreateAccountButton = view.findViewById(R.id.loginStudentCreateAccountButton);
+
         loginStudentButton.setOnClickListener(v -> {
             // All checkings
             startActivity(new Intent(context, StudentInfoActivity.class));

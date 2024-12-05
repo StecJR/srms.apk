@@ -3,17 +3,17 @@
     <item
         android:id="@+id/loginNavStudent"
         android:icon="@drawable/student"
-        android:title="Student" />
+        android:title="@string/student" />
     <item
         android:id="@+id/loginNavTeacher"
-        android:icon="@drawable/teacher"
-        android:title="Teacher" />
+        android:icon="@drawable/faculty"
+        android:title="@string/faculty" />
     <item
         android:id="@+id/loginNavGuardian"
         android:icon="@drawable/guardian"
-        android:title="Guardian" />
+        android:title="@string/guardian" />
     <item
         android:id="@+id/loginNavAdmin"
         android:icon="@drawable/admin"
-        android:title="Admin" />
+        android:title="@string/admin" />
 </menu>

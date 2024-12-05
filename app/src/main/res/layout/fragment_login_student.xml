@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,7 +12,6 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="60dp"
-        android:layout_weight="1"
         android:src="@drawable/srms_logo" />
 
     <TextView
@@ -21,46 +20,44 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="50dp"
-        android:layout_weight="1"
         android:fontFamily="@font/montserrat"
-        android:text="Student Login"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        android:textColor="@color/wheat" />
+        android:text="@string/student_login"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/loginStudentIdInput"
+        style="@style/CustomStyle.Input.Text"
         android:layout_marginTop="30dp"
-        android:hint="Registration number"
-        style="@style/CustomStyle.Input.Text"/>
+        android:autofillHints="name"
+        android:hint="@string/student_id" />
 
     <EditText
         android:id="@+id/loginStudentPwInput"
+        style="@style/CustomStyle.Input.Password"
         android:layout_marginTop="30dp"
-        android:hint="Password"
-        style="@style/CustomStyle.Input.Password"/>
+        android:autofillHints="password"
+        android:hint="@string/password" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginStudentButton"
-        style="@style/CustomStyle.Button"
+        style="@style/CustomStyle.Button.Blue"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:text="Login" />
+        android:text="@string/login" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginStudentForgetPwButton"
+        style="@style/CustomStyle.Button.TextOnly"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:background="@null"
-        android:backgroundTint="@null"
-        android:text="Forget password?" />
+        android:text="@string/forget_password"
+        android:textSize="17sp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginStudentCreateAccountButton"
+        style="@style/CustomStyle.Button.TextOnly"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:backgroundTint="@null"
-        android:text="Create new account" />
+        android:text="@string/create_new_account"
+        android:textSize="17sp" />
 </LinearLayout>

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         } else if (sessionManager.isValidSession()) {
             // Show the activity according to the user type
-            setContentView(R.layout.activity_main);
+            // setContentView(R.layout.activity_main);
             Log.d("MainActivity", "User type is: " + sessionManager.getUserType());
         } else {
             startActivity(new Intent(this, LoginActivity.class));

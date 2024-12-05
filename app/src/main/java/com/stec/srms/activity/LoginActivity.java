@@ -12,7 +12,7 @@ import com.stec.srms.R;
 import com.stec.srms.fragment.LoginAdminFragment;
 import com.stec.srms.fragment.LoginGuardianFragment;
 import com.stec.srms.fragment.LoginStudentFragment;
-import com.stec.srms.fragment.LoginTeacherFragment;
+import com.stec.srms.fragment.LoginFacultyFragment;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         loginBottomNav.setItemIconTintList(null);
 
         LoginStudentFragment loginStudentFragment = new LoginStudentFragment();
-        LoginTeacherFragment loginTeacherFragment = new LoginTeacherFragment();
+        LoginFacultyFragment loginFacultyFragment = new LoginFacultyFragment();
         LoginGuardianFragment loginGuardianFragment = new LoginGuardianFragment();
         LoginAdminFragment loginAdminFragment = new LoginAdminFragment();
         loadFragment(loginStudentFragment);
@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
                 loadFragment(loginStudentFragment);
             }
             else if (item.getItemId() == R.id.loginNavTeacher) {
-                loadFragment(loginTeacherFragment);
+                loadFragment(loginFacultyFragment);
             }
             else if (item.getItemId() == R.id.loginNavGuardian) {
                 loadFragment(loginGuardianFragment);

@@ -19,12 +19,6 @@
             android:paddingHorizontal="20dp"
             android:paddingVertical="30dp">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/teacherInfoResultButton"
-                style="@style/CustomStyle.Button.Blue"
-                android:text="@string/result"
-                android:textAllCaps="false" />
-
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -34,7 +28,7 @@
                 android:id="@+id/studentInfoLogoutButton"
                 style="@style/CustomStyle.Button.Blue"
                 android:text="@string/logout"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
         </LinearLayout>
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -42,8 +36,8 @@
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginVertical="20dp"
-            android:scaleType="centerCrop"
             android:src="@drawable/profile"
+            android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/CircleImageShape" />
 
         <TextView
@@ -56,131 +50,52 @@
             android:textSize="32sp"
             android:textStyle="bold" />
 
-        <TableLayout
+        <LinearLayout
             style="@style/CustomStyle.Table.Simple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/rounded_shape"
-            android:padding="10dp">
+            android:padding="20dp">
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Registration" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="3000001" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Name" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Jakir Hossain"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="Jakir Hossain" />
-            </TableRow>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="B.Sc in CSE"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/GuardianStudentInfoButton"
+                style="@style/CustomStyle.Button"
+                android:layout_width="80dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/info"
+                android:textAllCaps="false" />
 
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Date of Birth" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="9 February 2030" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Gender" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="Male" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Program" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="B.Sc in CSE" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Session" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="2021-2022" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Contact" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="01518111222" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Email" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="stec.jrhossain@gmail.com" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Address" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:text="96-A Dhaka, Bangladesh" />
-            </TableRow>
-        </TableLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/GuardianStudentResultButton"
+                style="@style/CustomStyle.Button"
+                android:layout_width="80dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/result"
+                android:textAllCaps="false" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
