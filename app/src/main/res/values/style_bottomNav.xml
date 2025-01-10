@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="CustomStyle.BottomNav.Base">
-        <item name="android:layout_width">350dp</item>
+    <style name="CustomStyle.BottomNav.Base" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:layout_marginHorizontal">10dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">100dp</item>
-        <item name="android:paddingHorizontal">20dp</item>
+        <item name="android:paddingHorizontal">30dp</item>
         <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:inputType">text</item>
     </style>
 </resources>

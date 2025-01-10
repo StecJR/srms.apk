@@ -7,20 +7,21 @@
         <item name="android:paddingHorizontal">15dp</item>
         <item name="android:paddingVertical">18dp</item>
     </style>
+
     <style name="CustomStyle.Input.Text.Base" parent="CustomStyle.Input.Base">
         <item name="android:inputType">text</item>
     </style>
+
     <style name="CustomStyle.Input.Password.Base" parent="CustomStyle.Input.Base">
         <item name="android:inputType">textPassword</item>
         <item name="android:drawableEnd">@drawable/eye_password_hide</item>
-        <item name="android:drawablePadding">5dp</item>
     </style>
 
     <style name="CustomStyle.Input.Spinner.Base" parent="Widget.AppCompat.Spinner.DropDown">
-        <item name="android:layout_width">280dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:paddingHorizontal">15dp</item>
-        <item name="android:paddingVertical">18dp</item>
+        <item name="android:spinnerMode">dropdown</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:fadeScrollbars">true</item>
     </style>
 </resources>

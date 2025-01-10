@@ -8,49 +8,53 @@
         <!-- Splash screen styles -->
         <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/wheat</item>
         <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@drawable/srms_logo_mini</item>
-        <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">2500</item>
     </style>
     <style name="Theme.SRMS" parent="Base.Theme.SRMS" />
 
     <!-- Button:Blue style -->
     <style name="CustomStyle.Button.Blue" parent="CustomStyle.Button.Blue.Base">
-        <item name="android:background">@drawable/button</item>
+        <item name="android:background">@drawable/button_night</item>
         <item name="android:textColor">@color/black</item>
     </style>
     <style name="CustomStyle.Button" parent="CustomStyle.Button.Blue" />
+    <style name="CustomStyle.Button.LongWidth" parent="CustomStyle.Button.LongWidth.Base">
+        <item name="android:backgroundTint">@color/black_grey</item>
+    </style>
 
     <!-- Input:Text style -->
     <style name="CustomStyle.Input.Text" parent="CustomStyle.Input.Text.Base">
-        <item name="android:background">@drawable/input_field</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textColorHint">@color/blue_lite</item>
-        <item name="android:backgroundTint">@color/yellow_dark</item>
+        <item name="android:background">@drawable/input_field_night</item>
+        <item name="android:textColor">@color/wheat</item>
+        <item name="android:textColorHint">@color/wheat</item>
     </style>
     <!-- Input:Password style -->
     <style name="CustomStyle.Input.Password" parent="CustomStyle.Input.Password.Base">
-        <item name="android:background">@drawable/input_field</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textColorHint">@color/blue_lite</item>
-        <item name="android:backgroundTint">@color/yellow_dark</item>
+        <item name="android:background">@drawable/input_field_night</item>
+        <item name="android:textColor">@color/wheat</item>
+        <item name="android:textColorHint">@color/wheat</item>
         <item name="android:drawableTint">@color/yellow_lite</item>
     </style>
+    <!-- Input:Spinner style -->
+    <style name="CustomStyle.Input.Spinner" parent="CustomStyle.Input.Spinner.Base">
+        <item name="android:background">@drawable/spinner_night</item>
+        <item name="android:popupBackground">@color/blue_darker</item>
+    </style>
+
 
     <!-- Bottom navigation style -->
     <style name="CustomStyle.BottomNav" parent="CustomStyle.BottomNav.Base">
-        <item name="android:background">@drawable/bottom_nav</item>
-        <item name="itemTextColor">@color/black</item>
+        <item name="android:background">@drawable/bottom_nav_night</item>
+        <item name="itemTextColor">@color/wheat</item>
     </style>
 
+    <!-- Table style -->
+    <style name="CustomStyle.Table.Simple" parent="Widget.Material3.TabLayout">
+        <item name="android:backgroundTint">@color/black_grey</item>
+    </style>
 
-
-
-
-
-
-
+    <!-- Circle image shape style -->
     <style name="CircleImageShape" parent="Widget.MaterialComponents.ShapeableImageView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">10%</item>
     </style>
-
 </resources>

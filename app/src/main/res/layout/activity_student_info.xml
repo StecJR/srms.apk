@@ -20,7 +20,7 @@
             android:paddingVertical="30dp">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/teacherInfoResultButton"
+                android:id="@+id/studentInfoResultButton"
                 style="@style/CustomStyle.Button.Blue"
                 android:text="@string/result"
                 android:textAllCaps="false" />
@@ -31,17 +31,17 @@
                 android:layout_weight="1" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/studentInfoLogoutButton"
+                android:id="@+id/guardianInfoLogoutButton"
                 style="@style/CustomStyle.Button.Blue"
                 android:text="@string/logout"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
         </LinearLayout>
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/studentInfoProfileImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="20dp"
             android:scaleType="centerCrop"
             android:src="@drawable/profile"
             app:shapeAppearanceOverlay="@style/CircleImageShape" />
@@ -50,22 +50,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="20dp"
-            android:fontFamily="@font/montserrat"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="@string/student_info"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_28" />
 
         <TableLayout
+            android:id="@+id/studentInfoStudentTable"
             style="@style/CustomStyle.Table.Simple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="20dp"
             android:background="@drawable/rounded_shape"
             android:padding="10dp">
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -73,12 +73,11 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:text="3000001" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -86,12 +85,11 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:text="Jakir Hossain" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -99,12 +97,11 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:text="9 February 2030" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -112,12 +109,11 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:text="Male" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -125,12 +121,11 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:text="B.Sc in CSE" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -138,12 +133,11 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:text="2021-2022" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -151,12 +145,11 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:text="01518111222" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -164,12 +157,11 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:text="stec.jrhossain@gmail.com" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -177,7 +169,7 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:text="96-A Dhaka, Bangladesh" />
             </TableRow>
         </TableLayout>
@@ -188,22 +180,21 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/montserrat_bold"
             android:text="@string/guardian_info"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_28" />
 
         <TableLayout
+            android:id="@+id/studentInfoGuardianTable"
             style="@style/CustomStyle.Table.Simple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/rounded_shape"
-            android:padding="10dp"
-            android:layout_marginBottom="30dp">
+            android:padding="10dp">
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -211,12 +202,11 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="50dp"
                     android:text="Jakir Hossain" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -224,12 +214,11 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="50dp"
                     android:text="Brother" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -237,12 +226,11 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="50dp"
                     android:text="01518111222" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -250,10 +238,9 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="50dp"
                     android:text="stec.jrhossain@gmail.com" />
             </TableRow>
-
         </TableLayout>
     </LinearLayout>
 </ScrollView>

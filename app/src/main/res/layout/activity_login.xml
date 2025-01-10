@@ -11,11 +11,10 @@
         android:id="@+id/loginFrame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-    </FrameLayout>
+        android:layout_weight="1" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/loginBottomNav"
-        app:menu="@menu/menu_login_bottom_nav"
-        style="@style/CustomStyle.BottomNav" />
+        style="@style/CustomStyle.BottomNav"
+        app:menu="@menu/menu_login_bottom_nav" />
 </LinearLayout>

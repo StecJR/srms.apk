@@ -20,7 +20,7 @@ public class StudentResultActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_student_result);
 
-        TableLayout table = findViewById(R.id.table);
+        TableLayout table = findViewById(R.id.studentResultTable);
         table.setOnClickListener(view -> {
             startActivity(new Intent(this, StudentMarksheetActivity.class));
         });

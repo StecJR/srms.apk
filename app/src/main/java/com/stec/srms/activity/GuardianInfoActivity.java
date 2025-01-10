@@ -26,7 +26,9 @@ public class GuardianInfoActivity extends AppCompatActivity {
         GuardianStudentResultButton = findViewById(R.id.GuardianStudentResultButton);
 
         GuardianStudentInfoButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, StudentInfoActivity.class));
+            Intent intent = new Intent(this, StudentInfoActivity.class);
+            intent.putExtra("hideTopButtons", true);
+            startActivity(intent);
         });
         GuardianStudentResultButton.setOnClickListener(v -> {
             startActivity(new Intent(this, StudentResultActivity.class));

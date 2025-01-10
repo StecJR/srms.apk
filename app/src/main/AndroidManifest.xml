@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SRMS"
-        tools:targetApi="31" >
+        tools:targetApi="31">
 
         <!-- App metadata -->
         <meta-data
@@ -34,6 +34,9 @@
 
         <!-- Student related activities -->
         <activity
+            android:name=".activity.StudentSignupActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.StudentInfoActivity"
             android:exported="true" />
         <activity
@@ -43,7 +46,10 @@
             android:name=".activity.StudentMarksheetActivity"
             android:exported="false" />
 
-        <!-- Teacher related activities -->
+        <!-- Faculty related activities -->
+        <activity
+            android:name=".activity.FacultySignupActivity"
+            android:exported="true" />
         <activity
             android:name=".activity.FacultyInfoActivity"
             android:exported="true" />
@@ -53,6 +59,9 @@
 
         <!-- Guardian related activities -->
         <activity
+            android:name=".activity.GuardianSignupActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.GuardianInfoActivity"
             android:exported="true" />
 
@@ -60,11 +69,14 @@
         <activity
             android:name=".activity.AdminDashboardActivity"
             android:exported="true" />
+        <activity
+            android:name=".activity.AdminDatabaseManagerActivity"
+            android:exported="false" />
 
         <!-- Main activity -->
         <activity
             android:name=".activity.MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

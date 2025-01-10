@@ -8,52 +8,48 @@
     tools:context=".activity.StudentResultActivity">
 
     <ImageView
+        android:id="@+id/studentResultImage"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/profile_img"
         app:srcCompat="@drawable/graph_image" />
 
     <TableLayout
-        android:id="@+id/table"
+        android:id="@+id/studentResultTable"
         style="@style/CustomStyle.Table.Simple"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="30dp"
         android:background="@drawable/rounded_shape"
         android:padding="10dp">
 
-        <TableRow
-            style="@style/CustomStyle.Table.Simple.SimpleRow">
+        <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_weight="1"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="Exam"
                 android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/text_18" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="GPA"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="CGPA"
                 android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/text_18" />
         </TableRow>
 
         <TableRow
@@ -64,22 +60,19 @@
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_weight="1"
                 android:text="1st Year 1st Semester"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.95"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.95"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -90,22 +83,19 @@
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_weight="1"
                 android:text="1st Year 2nd Semester"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.15"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.55"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -116,22 +106,19 @@
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_weight="1"
                 android:text="2nd Year 1st Semester"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.45"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.50"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -142,22 +129,19 @@
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_weight="1"
                 android:text="2nd Year 2nd Semester"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.75"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.67"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -167,23 +151,20 @@
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_weight="1"
-                android:text="1st Year 1st Semester"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:text="3rd Year 1st Semester"
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.95"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.95"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -193,23 +174,20 @@
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_weight="1"
-                android:text="1st Year 2nd Semester"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:text="3rd Year 2nd Semester"
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.15"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.55"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -219,23 +197,20 @@
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_weight="1"
-                android:text="2nd Year 1st Semester"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:text="4th Year 1st Semester"
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.45"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.50"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -245,23 +220,20 @@
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_weight="1"
-                android:text="2nd Year 2nd Semester"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:text="4th Year 2nd Semester"
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.75"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
 
             <TextView
                 style="@style/CustomStyle.Table.Simple.SimpleRowText"
                 android:layout_width="60dp"
                 android:text="3.67"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textAlignment="center" />
         </TableRow>
     </TableLayout>
 </LinearLayout>

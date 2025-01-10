@@ -16,29 +16,33 @@ import android.widget.EditText;
 
 import com.stec.srms.R;
 import com.stec.srms.activity.FacultyInfoActivity;
+import com.stec.srms.activity.FacultySignupActivity;
+import com.stec.srms.activity.StudentSignupActivity;
 
 public class LoginFacultyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login_faculty, container, false);
         Context context = requireContext();
-        EditText loginTeacherIdInput, loginTeacherPwInput;
-        AppCompatButton loginTeacherButton, loginTeacherForgetPwButton, loginTeacherCreateAccountButton;
+        EditText loginFacultyIdInput, loginFacultyPwInput;
+        AppCompatButton loginFacultyLoginButton, loginFacultyForgetPwButton, loginFacultyCreateAccountButton;
 
-        loginTeacherIdInput = view.findViewById(R.id.loginTeacherIdInput);
-        loginTeacherPwInput = view.findViewById(R.id.loginTeacherPwInput);
-        loginTeacherButton = view.findViewById(R.id.loginTeacherButton);
-        loginTeacherForgetPwButton = view.findViewById(R.id.loginTeacherForgetPwButton);
-        loginTeacherCreateAccountButton = view.findViewById(R.id.loginTeacherCreateAccountButton);
+        loginFacultyIdInput = view.findViewById(R.id.loginFacultyIdInput);
+        loginFacultyPwInput = view.findViewById(R.id.loginFacultyPwInput);
+        loginFacultyLoginButton = view.findViewById(R.id.loginFacultyButton);
+        loginFacultyForgetPwButton = view.findViewById(R.id.loginFacultyForgetPwButton);
+        loginFacultyCreateAccountButton = view.findViewById(R.id.loginFacultyCreateAccountButton);
 
-        loginTeacherButton.setOnClickListener(v -> {
+        loginFacultyLoginButton.setOnClickListener(v -> {
             // All checkings
             startActivity(new Intent(context, FacultyInfoActivity.class));
             requireActivity().finish();
         });
+        loginFacultyCreateAccountButton.setOnClickListener(v -> {
+            startActivity(new Intent(context, FacultySignupActivity.class));
+        });
 
-        makePasswordShowable(loginTeacherPwInput, context);
-
+        makePasswordShowable(loginFacultyPwInput, context);
         return view;
     }
 }

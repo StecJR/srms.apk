@@ -17,7 +17,7 @@ public class FacultyInfoActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_faculty_info);
 
-        AppCompatButton teacherInfoResultButton = findViewById(R.id.teacherInfoResultButton);
+        AppCompatButton teacherInfoResultButton = findViewById(R.id.facultyInfoResultButton);
         teacherInfoResultButton.setOnClickListener(v -> {
             startActivity(new Intent(this, FacultyResultActivity.class));
         });

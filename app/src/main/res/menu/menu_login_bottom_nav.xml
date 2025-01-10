@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/loginNavStudent"
+        android:id="@+id/loginBottomNavStudent"
         android:icon="@drawable/student"
         android:title="@string/student" />
     <item
-        android:id="@+id/loginNavTeacher"
+        android:id="@+id/loginBottomNavFaculty"
         android:icon="@drawable/faculty"
         android:title="@string/faculty" />
     <item
-        android:id="@+id/loginNavGuardian"
+        android:id="@+id/loginBottomNavGuardian"
         android:icon="@drawable/guardian"
         android:title="@string/guardian" />
     <item
-        android:id="@+id/loginNavAdmin"
+        android:id="@+id/loginBottomNavAdmin"
         android:icon="@drawable/admin"
         android:title="@string/admin" />
 </menu>

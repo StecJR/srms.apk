@@ -15,7 +15,6 @@ public class OnboardingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-
         setContentView(R.layout.activity_onboarding);
 
         AppCompatButton onboardingExitButton = findViewById(R.id.onboardingExitButton);

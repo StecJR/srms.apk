@@ -3,12 +3,11 @@
     <style name="Base.Theme.SRMS" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">20sp</item>
-        <item name="fontFamily">@font/nunito</item>
+        <item name="android:textSize">@dimen/text_18</item>
+        <item name="android:fontFamily">@font/nunito</item>
         <!-- Splash screen styles -->
         <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/black_grey</item>
         <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@drawable/srms_logo_mini</item>
-        <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">2500</item>
     </style>
     <style name="Theme.SRMS" parent="Base.Theme.SRMS" />
 
@@ -18,6 +17,9 @@
         <item name="android:textColor">@color/black</item>
     </style>
     <style name="CustomStyle.Button" parent="CustomStyle.Button.Blue" />
+    <style name="CustomStyle.Button.LongWidth" parent="CustomStyle.Button.LongWidth.Base">
+        <item name="android:backgroundTint">@color/black_grey</item>
+    </style>
 
     <!-- Input:Text style -->
     <style name="CustomStyle.Input.Text" parent="CustomStyle.Input.Text.Base">
@@ -32,11 +34,10 @@
         <item name="android:textColorHint">@color/wheat</item>
         <item name="android:drawableTint">@color/yellow_lite</item>
     </style>
-    <!-- Input:Text style -->
+    <!-- Input:Spinner style -->
     <style name="CustomStyle.Input.Spinner" parent="CustomStyle.Input.Spinner.Base">
-        <item name="android:background">@drawable/input_field_night</item>
-        <item name="android:textColor">@color/wheat</item>
-        <item name="android:textColorHint">@color/wheat</item>
+        <item name="android:background">@drawable/spinner_night</item>
+        <item name="android:popupBackground">@color/blue_darker</item>
     </style>
 
     <!-- Bottom navigation style -->
@@ -45,10 +46,14 @@
         <item name="itemTextColor">@color/wheat</item>
     </style>
 
+    <!-- Table style -->
     <style name="CustomStyle.Table.Simple" parent="Widget.Material3.TabLayout">
         <item name="android:backgroundTint">@color/black_grey</item>
     </style>
 
-
-
+    <!-- Circle image shape style -->
+    <style name="CircleImageShape" parent="Widget.MaterialComponents.ShapeableImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15%</item>
+    </style>
 </resources>

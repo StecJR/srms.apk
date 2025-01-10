@@ -23,20 +23,19 @@ public class LoginAdminFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login_admin, container, false);
         Context context = requireContext();
         EditText loginAdminIdInput, loginAdminPwInput;
-        AppCompatButton loginAdminButton;
+        AppCompatButton loginAdminLoginButton;
 
         loginAdminIdInput = view.findViewById(R.id.loginAdminIdInput);
         loginAdminPwInput = view.findViewById(R.id.loginAdminPwInput);
-        loginAdminButton = view.findViewById(R.id.loginAdminButton);
+        loginAdminLoginButton = view.findViewById(R.id.loginAdminLoginButton);
 
-        loginAdminButton.setOnClickListener(v -> {
+        loginAdminLoginButton.setOnClickListener(v -> {
             // All checkings
             startActivity(new Intent(context, AdminDashboardActivity.class));
             requireActivity().finish();
         });
 
         makePasswordShowable(loginAdminPwInput, context);
-
         return view;
     }
 }

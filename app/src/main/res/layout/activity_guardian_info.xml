@@ -25,36 +25,36 @@
                 android:layout_weight="1" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/studentInfoLogoutButton"
+                android:id="@+id/guardianInfoLogoutButton"
                 style="@style/CustomStyle.Button.Blue"
                 android:text="@string/logout"
                 android:textAllCaps="false" />
         </LinearLayout>
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/guardianInfoProfileImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="20dp"
-            android:src="@drawable/profile"
             android:scaleType="centerCrop"
+            android:src="@drawable/profile"
             app:shapeAppearanceOverlay="@style/CircleImageShape" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="20dp"
-            android:fontFamily="@font/montserrat"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="@string/student_info"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_28" />
 
         <LinearLayout
             style="@style/CustomStyle.Table.Simple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="20dp"
             android:background="@drawable/rounded_shape"
             android:padding="20dp">
 
@@ -68,22 +68,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Jakir Hossain"
-                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="B.Sc in CSE"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/text_16" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/GuardianStudentInfoButton"
                 style="@style/CustomStyle.Button"
-                android:layout_width="80dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:layout_width="70dp"
+                android:paddingHorizontal="10dp"
                 android:text="@string/info"
                 android:textAllCaps="false" />
 
@@ -91,8 +89,7 @@
                 android:id="@+id/GuardianStudentResultButton"
                 style="@style/CustomStyle.Button"
                 android:layout_width="80dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingHorizontal="10dp"
                 android:text="@string/result"
                 android:textAllCaps="false" />
         </LinearLayout>
@@ -103,22 +100,20 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/montserrat_bold"
             android:text="@string/guardian_info"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_28" />
 
         <TableLayout
             style="@style/CustomStyle.Table.Simple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/rounded_shape"
-            android:padding="10dp"
-            android:layout_marginBottom="30dp">
+            android:padding="10dp">
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -130,8 +125,7 @@
                     android:text="Jakir Hossain" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -143,8 +137,7 @@
                     android:text="Brother" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
@@ -156,8 +149,7 @@
                     android:text="01518111222" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"

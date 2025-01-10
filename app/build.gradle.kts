@@ -15,7 +15,20 @@ android {
         vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        /*ndk {
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+        }*/
     }
+
+    /*signingConfigs {
+        create("release") {
+            storeFile = file("keystore.jks")
+            storePassword = "store_password"
+            keyAlias = "key_alias"
+            keyPassword = "key_password"
+        }
+    }*/
 
     buildTypes {
         release {
@@ -36,6 +49,24 @@ android {
 
     buildFeatures {
         viewBinding = true
+    }
+
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+        }
+    }
+
+    applicationVariants.all {
+        outputs.all {
+            val appName = "srms"
+            val versionName = android.defaultConfig.versionName
+            val arch = filters.find { it.filterType == "ABI" }?.identifier ?: "universal"
+            val newFileName = "${appName}_v${versionName}_${arch}.apk"
+            (this as com.android.build.gradle.internal.api.ApkVariantOutputImpl).outputFileName = newFileName
+        }
     }
 
     lint {

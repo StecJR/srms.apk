@@ -29,4 +29,14 @@
     <string name="search">Search</string>
     <string name="search_result">Search Result</string>
     <string name="info">Info</string>
+    <string name="verify_users">Verify Users</string>
+    <string name="faculty_info">Faculty Info</string>
+    <string name="database_manager">Database Manager</string>
+    <string name="app_logo" translatable="false">app logo</string>
+    <string name="profile_img" translatable="false">profile image</string>
+    <string name="student_signup">Student Signup</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="faculty_signup">Faculty Signup</string>
+    <string name="guardian_signup">Guardian Signup</string>
+    <string name="department">Department</string>
 </resources>

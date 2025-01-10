@@ -22,10 +22,10 @@ public class FacultyResultActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_faculty_result);
 
-        Spinner departmentSpinner = findViewById(R.id.teacherResultDepartmentSpinner);
-        Spinner sessionSpinner = findViewById(R.id.teacherResultSessionSpinner);
-        Spinner examSpinner = findViewById(R.id.teacherResultExamSpinner);
-        Spinner courseSpinner = findViewById(R.id.teacherResultCourseSpinner);
+        Spinner departmentSpinner = findViewById(R.id.departmentSpinner);
+        Spinner sessionSpinner = findViewById(R.id.sessionSpinner);
+        Spinner examSpinner = findViewById(R.id.examSpinner);
+        Spinner courseSpinner = findViewById(R.id.courseSpinner);
 
         ArrayList<String> departments = new ArrayList<>();
         departments.add("Department");

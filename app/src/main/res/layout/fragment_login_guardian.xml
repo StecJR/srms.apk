@@ -11,6 +11,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="60dp"
+        android:contentDescription="@string/app_logo"
         android:src="@drawable/srms_logo" />
 
     <TextView
@@ -18,12 +19,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="50dp"
-        android:fontFamily="@font/montserrat"
+        android:layout_marginBottom="60dp"
+        android:fontFamily="@font/montserrat_bold"
         android:text="@string/guardian_login"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textSize="@dimen/text_28" />
 
+    <Spinner
+        android:id="@+id/departmentSpinner"
+        style="@style/CustomStyle.Input.Spinner"
+        android:layout_width="280dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/input_field_night"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="18dp" />
+    
     <EditText
         android:id="@+id/loginGuardianIdInput"
         style="@style/CustomStyle.Input.Text"
@@ -39,25 +48,27 @@
         android:hint="@string/password" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginGuardianButton"
+        android:id="@+id/loginGuardianLoginButton"
         style="@style/CustomStyle.Button.Blue"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:text="@string/login" />
+        android:text="@string/login"
+        android:textAllCaps="false" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginGuardianForgetPwButton"
         style="@style/CustomStyle.Button.TextOnly"
         android:layout_width="match_parent"
+        android:layout_height="42dp"
         android:layout_marginTop="30dp"
         android:text="@string/forget_password"
-        android:textSize="17sp" />
+        android:textSize="@dimen/text_16" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginGuardianCreateAccountButton"
         style="@style/CustomStyle.Button.TextOnly"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:text="@string/create_new_account"
-        android:textSize="17sp" />
+        android:textSize="@dimen/text_16" />
 </LinearLayout>

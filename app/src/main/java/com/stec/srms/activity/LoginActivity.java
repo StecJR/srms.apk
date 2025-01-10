@@ -1,7 +1,6 @@
 package com.stec.srms.activity;
 
 import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,11 +9,15 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.stec.srms.R;
 import com.stec.srms.fragment.LoginAdminFragment;
+import com.stec.srms.fragment.LoginFacultyFragment;
 import com.stec.srms.fragment.LoginGuardianFragment;
 import com.stec.srms.fragment.LoginStudentFragment;
-import com.stec.srms.fragment.LoginFacultyFragment;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
+    private final Map<Integer, Fragment> loginFragments = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,31 +25,26 @@ public class LoginActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        FrameLayout loginFrame = findViewById(R.id.loginFrame);
         BottomNavigationView loginBottomNav = findViewById(R.id.loginBottomNav);
         loginBottomNav.setItemIconTintList(null);
-
-        LoginStudentFragment loginStudentFragment = new LoginStudentFragment();
-        LoginFacultyFragment loginFacultyFragment = new LoginFacultyFragment();
-        LoginGuardianFragment loginGuardianFragment = new LoginGuardianFragment();
-        LoginAdminFragment loginAdminFragment = new LoginAdminFragment();
-        loadFragment(loginStudentFragment);
+        initializeLoginFragments();
+        loadFragment(loginFragments.get(R.id.loginBottomNavStudent));
 
         loginBottomNav.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.loginNavStudent) {
-                loadFragment(loginStudentFragment);
+            Fragment selectedFragment = loginFragments.get(item.getItemId());
+            if (selectedFragment == null) {
+                return false;
             }
-            else if (item.getItemId() == R.id.loginNavTeacher) {
-                loadFragment(loginFacultyFragment);
-            }
-            else if (item.getItemId() == R.id.loginNavGuardian) {
-                loadFragment(loginGuardianFragment);
-            }
-            else if (item.getItemId() == R.id.loginNavAdmin) {
-                loadFragment(loginAdminFragment);
-            }
+            loadFragment(selectedFragment);
             return true;
         });
+    }
+
+    private void initializeLoginFragments() {
+        loginFragments.put(R.id.loginBottomNavStudent, new LoginStudentFragment());
+        loginFragments.put(R.id.loginBottomNavFaculty, new LoginFacultyFragment());
+        loginFragments.put(R.id.loginBottomNavGuardian, new LoginGuardianFragment());
+        loginFragments.put(R.id.loginBottomNavAdmin, new LoginAdminFragment());
     }
 
     private void loadFragment(Fragment fragment) {
