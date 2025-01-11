@@ -23,20 +23,10 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/guardian_login"
         android:textSize="@dimen/text_28" />
-
-    <Spinner
-        android:id="@+id/departmentSpinner"
-        style="@style/CustomStyle.Input.Spinner"
-        android:layout_width="280dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/input_field_night"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="18dp" />
     
     <EditText
         android:id="@+id/loginGuardianIdInput"
         style="@style/CustomStyle.Input.Text"
-        android:layout_marginTop="30dp"
         android:autofillHints="name"
         android:hint="@string/guardian_id" />
 

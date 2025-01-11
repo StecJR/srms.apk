@@ -1,6 +1,7 @@
 package com.stec.srms.activity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -8,6 +9,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.stec.srms.R;
+import com.stec.srms.database.Database;
 import com.stec.srms.util.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        Database database = Database.getInstance(getApplicationContext());
+        database.getWritableDatabase();
         sessionManager = SessionManager.instance(this);
 
         if (sessionManager.isFirstTime()) {

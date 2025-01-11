@@ -48,10 +48,5 @@
             style="@style/CustomStyle.Button.LongWidth"
             android:text="@string/guardian_info" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/adminDashboardDBManagerButton"
-            style="@style/CustomStyle.Button.LongWidth"
-            android:text="@string/database_manager" />
-
     </LinearLayout>
 </ScrollView>

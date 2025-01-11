@@ -29,9 +29,7 @@
         style="@style/CustomStyle.Input.Spinner"
         android:layout_width="280dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/input_field_night"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="18dp" />
+        android:background="@drawable/input_field_night" />
 
     <EditText
         android:id="@+id/loginStudentIdInput"
