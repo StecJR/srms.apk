@@ -33,8 +33,7 @@ public class DeptSelectorAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        // return departments.get(position).deptId;
-        return position;
+        return departments.get(position).deptId;
     }
 
     @Override

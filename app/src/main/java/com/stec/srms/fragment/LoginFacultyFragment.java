@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +18,16 @@ import android.widget.EditText;
 import com.stec.srms.R;
 import com.stec.srms.activity.FacultyInfoActivity;
 import com.stec.srms.activity.FacultySignupActivity;
-import com.stec.srms.activity.StudentSignupActivity;
+import com.stec.srms.database.FacultyDBHandler;
+import com.stec.srms.util.Toast;
 
 public class LoginFacultyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login_faculty, container, false);
         Context context = requireContext();
+        FragmentActivity activity = requireActivity();
+        FacultyDBHandler facultyDBHandler = FacultyDBHandler.getInstance(context);
         EditText loginFacultyIdInput, loginFacultyPwInput;
         AppCompatButton loginFacultyLoginButton, loginFacultyForgetPwButton, loginFacultyCreateAccountButton;
 
@@ -34,9 +38,23 @@ public class LoginFacultyFragment extends Fragment {
         loginFacultyCreateAccountButton = view.findViewById(R.id.loginFacultyCreateAccountButton);
 
         loginFacultyLoginButton.setOnClickListener(v -> {
-            // All checkings
+            String facultyId = loginFacultyIdInput.getText().toString().trim();
+            String facultyPw = loginFacultyPwInput.getText().toString().trim();
+            boolean isValid = !facultyId.isBlank() &&
+                    !facultyPw.isBlank() &&
+                    facultyDBHandler.isValidFaculty(facultyId, facultyPw);
+            if (!isValid) {
+                Toast.credentialError(context);
+                return;
+            }
+            // Save session info
+
             startActivity(new Intent(context, FacultyInfoActivity.class));
             requireActivity().finish();
+        });
+        loginFacultyForgetPwButton.setOnClickListener(v -> {
+            // startActivity(new Intent(context, StudentInfoActivity.class));
+            // activity.finish();
         });
         loginFacultyCreateAccountButton.setOnClickListener(v -> {
             startActivity(new Intent(context, FacultySignupActivity.class));

@@ -4,25 +4,25 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class StudentDBHandler extends Database {
-    private static StudentDBHandler studentDBHandlerInstance;
+public class GuardianDBHandler extends Database {
+    private static GuardianDBHandler guardianDBHandlerInstance;
 
-    public StudentDBHandler(Context context) {
+    public GuardianDBHandler(Context context) {
         super(context);
     }
-    public static synchronized StudentDBHandler getInstance(Context context) {
-        if (studentDBHandlerInstance == null) {
-            studentDBHandlerInstance = new StudentDBHandler(context.getApplicationContext());
+    public static synchronized GuardianDBHandler getInstance(Context context) {
+        if (guardianDBHandlerInstance == null) {
+            guardianDBHandlerInstance = new GuardianDBHandler(context.getApplicationContext());
         }
-        return studentDBHandlerInstance;
+        return guardianDBHandlerInstance;
     }
 
-    public boolean isValidStudent(int deptId, String studentId, String studentPw) {
+    public boolean isValidGuardian(String guardianId, String guardianPw) {
         boolean isValid = false;
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
-            String query = "SELECT * FROM students_" + deptId + " WHERE studentId = " + studentId +" AND password = '" + studentPw + "' LIMIT 1";
+            String query = "SELECT * FROM guardians WHERE guardianId = " + guardianId +" AND password = '" + guardianPw + "' LIMIT 1";
             db = this.getReadableDatabase();
             cursor = db.rawQuery(query, null);
             if (cursor.moveToFirst()) isValid = true;

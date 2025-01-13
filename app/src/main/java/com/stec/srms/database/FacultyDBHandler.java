@@ -4,25 +4,25 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class StudentDBHandler extends Database {
-    private static StudentDBHandler studentDBHandlerInstance;
+public class FacultyDBHandler extends Database {
+    private static FacultyDBHandler facultyDBHandlerInstance;
 
-    public StudentDBHandler(Context context) {
+    public FacultyDBHandler(Context context) {
         super(context);
     }
-    public static synchronized StudentDBHandler getInstance(Context context) {
-        if (studentDBHandlerInstance == null) {
-            studentDBHandlerInstance = new StudentDBHandler(context.getApplicationContext());
+    public static synchronized FacultyDBHandler getInstance(Context context) {
+        if (facultyDBHandlerInstance == null) {
+            facultyDBHandlerInstance = new FacultyDBHandler(context.getApplicationContext());
         }
-        return studentDBHandlerInstance;
+        return facultyDBHandlerInstance;
     }
 
-    public boolean isValidStudent(int deptId, String studentId, String studentPw) {
+    public boolean isValidFaculty(String facultyId, String facultyPw) {
         boolean isValid = false;
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
-            String query = "SELECT * FROM students_" + deptId + " WHERE studentId = " + studentId +" AND password = '" + studentPw + "' LIMIT 1";
+            String query = "SELECT * FROM faculties WHERE facultyId = " + facultyId +" AND password = '" + facultyPw + "' LIMIT 1";
             db = this.getReadableDatabase();
             cursor = db.rawQuery(query, null);
             if (cursor.moveToFirst()) isValid = true;
@@ -35,3 +35,4 @@ public class StudentDBHandler extends Database {
         return isValid;
     }
 }
+

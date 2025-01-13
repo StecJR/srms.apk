@@ -21,7 +21,7 @@ import com.stec.srms.activity.StudentInfoActivity;
 import com.stec.srms.activity.StudentSignupActivity;
 import com.stec.srms.adapter.DeptSelectorAdapter;
 import com.stec.srms.database.StudentDBHandler;
-import com.stec.srms.model.DeptInfo;
+import com.stec.srms.util.Toast;
 
 public class LoginStudentFragment extends Fragment {
     @Override
@@ -46,7 +46,19 @@ public class LoginStudentFragment extends Fragment {
         departmentSpinner.setSelection(0);
 
         loginStudentLoginButton.setOnClickListener(v -> {
-            // All checkings
+            int deptId = (int) departmentSpinner.getSelectedItemId();
+            String studentId = loginStudentIdInput.getText().toString().trim();
+            String studentPw = loginStudentPwInput.getText().toString().trim();
+            boolean isValid = deptId != 0 &&
+                    !studentId.isBlank() &&
+                    !studentPw.isBlank() &&
+                    studentDBHandler.isValidStudent(deptId, studentId, studentPw);
+            if (!isValid) {
+                Toast.credentialError(context);
+                return;
+            }
+            // Save session info
+
             startActivity(new Intent(context, StudentInfoActivity.class));
             activity.finish();
         });

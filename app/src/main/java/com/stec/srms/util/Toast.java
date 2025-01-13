@@ -9,6 +9,11 @@ import android.widget.TextView;
 import com.stec.srms.R;
 
 public class Toast {
+    public static void credentialError(Context context) {
+        android.widget.Toast.makeText(context, "Wrong credentials", android.widget.Toast.LENGTH_LONG).show();
+    }
+
+
     public static void errorMessage(Context context, String message) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View layout = inflater.inflate(R.layout.toast_error, null);
@@ -20,7 +25,6 @@ public class Toast {
         toast.setView(layout);
         toast.show();
     }
-
     /**
      * Custom toast to show success message.
      *

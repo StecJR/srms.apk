@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +17,17 @@ import android.widget.EditText;
 
 import com.stec.srms.R;
 import com.stec.srms.activity.AdminDashboardActivity;
+import com.stec.srms.database.AdminDBHandler;
+import com.stec.srms.database.GuardianDBHandler;
+import com.stec.srms.util.Toast;
 
 public class LoginAdminFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login_admin, container, false);
         Context context = requireContext();
+        FragmentActivity activity = requireActivity();
+        AdminDBHandler adminDBHandler = AdminDBHandler.getInstance(context);
         EditText loginAdminIdInput, loginAdminPwInput;
         AppCompatButton loginAdminLoginButton;
 
@@ -30,7 +36,17 @@ public class LoginAdminFragment extends Fragment {
         loginAdminLoginButton = view.findViewById(R.id.loginAdminLoginButton);
 
         loginAdminLoginButton.setOnClickListener(v -> {
-            // All checkings
+            String adminName = loginAdminIdInput.getText().toString().trim();
+            String adminPw = loginAdminPwInput.getText().toString().trim();
+            boolean isValid = !adminName.isBlank() &&
+                    !adminPw.isBlank() &&
+                    adminDBHandler.isValidAdmin(adminName, adminPw);
+            if (!isValid) {
+                Toast.credentialError(context);
+                return;
+            }
+            // Save session info
+
             startActivity(new Intent(context, AdminDashboardActivity.class));
             requireActivity().finish();
         });
