@@ -36,7 +36,7 @@
     </style>
     <!-- Input:Spinner style -->
     <style name="CustomStyle.Input.Spinner" parent="CustomStyle.Input.Spinner.Base">
-        <item name="android:background">@drawable/spinner_night</item>
+        <item name="android:background">@drawable/input_field_night</item>
         <item name="android:popupBackground">@color/blue_darker</item>
     </style>
 

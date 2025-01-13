@@ -26,13 +26,13 @@
             android:id="@+id/departmentSpinner"
             style="@style/CustomStyle.Input.Spinner"
             android:layout_marginHorizontal="10dp"
-            android:padding="10dp" />
+            android:paddingHorizontal="5dp" />
 
         <Spinner
             android:id="@+id/sessionSpinner"
             style="@style/CustomStyle.Input.Spinner"
             android:layout_marginHorizontal="10dp"
-            android:padding="10dp" />
+            android:paddingHorizontal="5dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -42,16 +42,16 @@
         android:orientation="horizontal">
 
         <Spinner
-            android:id="@+id/examSpinner"
+            android:id="@+id/semesterSpinner"
             style="@style/CustomStyle.Input.Spinner"
             android:layout_marginHorizontal="10dp"
-            android:padding="10dp" />
+            android:paddingHorizontal="5dp" />
 
         <Spinner
             android:id="@+id/courseSpinner"
             style="@style/CustomStyle.Input.Spinner"
             android:layout_marginHorizontal="10dp"
-            android:padding="10dp" />
+            android:paddingHorizontal="5dp" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton

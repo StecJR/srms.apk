@@ -1,239 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:scrollbars="none"
     tools:context=".activity.StudentResultActivity">
 
-    <ImageView
-        android:id="@+id/studentResultImage"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:contentDescription="@string/profile_img"
-        app:srcCompat="@drawable/graph_image" />
-
-    <TableLayout
-        android:id="@+id/studentResultTable"
-        style="@style/CustomStyle.Table.Simple"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="30dp"
-        android:background="@drawable/rounded_shape"
-        android:padding="10dp">
+        android:orientation="vertical">
 
-        <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+        <ImageView
+            android:id="@+id/studentResultImage"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:contentDescription="@string/profile_img"
+            app:srcCompat="@drawable/graph_image" />
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="Exam"
-                android:textAlignment="center"
-                android:textSize="@dimen/text_18" />
+        <TableLayout
+            android:id="@+id/studentResultTable"
+            style="@style/CustomStyle.Table.Simple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="30dp"
+            android:background="@drawable/rounded_shape"
+            android:padding="10dp">
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="GPA"
-                android:textAlignment="center" />
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="CGPA"
-                android:textAlignment="center"
-                android:textSize="@dimen/text_18" />
-        </TableRow>
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Exam"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/text_18" />
 
-        <TableRow
-            style="@style/CustomStyle.Table.Simple.SimpleRow"
-            android:paddingVertical="12dp">
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="GPA"
+                    android:textAlignment="center" />
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_weight="1"
-                android:text="1st Year 1st Semester"
-                android:textAlignment="center" />
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="CGPA"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/text_18" />
+            </TableRow>
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.95"
-                android:textAlignment="center" />
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="12dp">
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.95"
-                android:textAlignment="center" />
-        </TableRow>
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_weight="1"
+                    android:text="1st Year 1st Semester"
+                    android:textAlignment="center" />
 
-        <TableRow
-            style="@style/CustomStyle.Table.Simple.SimpleRow"
-            android:paddingVertical="12dp">
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.95"
+                    android:textAlignment="center" />
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_weight="1"
-                android:text="1st Year 2nd Semester"
-                android:textAlignment="center" />
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.95"
+                    android:textAlignment="center" />
+            </TableRow>
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.15"
-                android:textAlignment="center" />
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="12dp">
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.55"
-                android:textAlignment="center" />
-        </TableRow>
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_weight="1"
+                    android:text="1st Year 2nd Semester"
+                    android:textAlignment="center" />
 
-        <TableRow
-            style="@style/CustomStyle.Table.Simple.SimpleRow"
-            android:paddingVertical="12dp">
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.15"
+                    android:textAlignment="center" />
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_weight="1"
-                android:text="2nd Year 1st Semester"
-                android:textAlignment="center" />
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.55"
+                    android:textAlignment="center" />
+            </TableRow>
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.45"
-                android:textAlignment="center" />
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="12dp">
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.50"
-                android:textAlignment="center" />
-        </TableRow>
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_weight="1"
+                    android:text="2nd Year 1st Semester"
+                    android:textAlignment="center" />
 
-        <TableRow
-            style="@style/CustomStyle.Table.Simple.SimpleRow"
-            android:paddingVertical="12dp">
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.45"
+                    android:textAlignment="center" />
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_weight="1"
-                android:text="2nd Year 2nd Semester"
-                android:textAlignment="center" />
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.50"
+                    android:textAlignment="center" />
+            </TableRow>
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.75"
-                android:textAlignment="center" />
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="12dp">
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.67"
-                android:textAlignment="center" />
-        </TableRow>
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_weight="1"
+                    android:text="2nd Year 2nd Semester"
+                    android:textAlignment="center" />
 
-        <TableRow
-            style="@style/CustomStyle.Table.Simple.SimpleRow"
-            android:paddingVertical="12dp">
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.75"
+                    android:textAlignment="center" />
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_weight="1"
-                android:text="3rd Year 1st Semester"
-                android:textAlignment="center" />
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.67"
+                    android:textAlignment="center" />
+            </TableRow>
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.95"
-                android:textAlignment="center" />
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="12dp">
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.95"
-                android:textAlignment="center" />
-        </TableRow>
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_weight="1"
+                    android:text="3rd Year 1st Semester"
+                    android:textAlignment="center" />
 
-        <TableRow
-            style="@style/CustomStyle.Table.Simple.SimpleRow"
-            android:paddingVertical="12dp">
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.95"
+                    android:textAlignment="center" />
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_weight="1"
-                android:text="3rd Year 2nd Semester"
-                android:textAlignment="center" />
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.95"
+                    android:textAlignment="center" />
+            </TableRow>
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.15"
-                android:textAlignment="center" />
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="12dp">
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.55"
-                android:textAlignment="center" />
-        </TableRow>
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_weight="1"
+                    android:text="3rd Year 2nd Semester"
+                    android:textAlignment="center" />
 
-        <TableRow
-            style="@style/CustomStyle.Table.Simple.SimpleRow"
-            android:paddingVertical="12dp">
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.15"
+                    android:textAlignment="center" />
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_weight="1"
-                android:text="4th Year 1st Semester"
-                android:textAlignment="center" />
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.55"
+                    android:textAlignment="center" />
+            </TableRow>
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.45"
-                android:textAlignment="center" />
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="12dp">
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.50"
-                android:textAlignment="center" />
-        </TableRow>
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_weight="1"
+                    android:text="4th Year 1st Semester"
+                    android:textAlignment="center" />
 
-        <TableRow
-            style="@style/CustomStyle.Table.Simple.SimpleRow"
-            android:paddingVertical="12dp">
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.45"
+                    android:textAlignment="center" />
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_weight="1"
-                android:text="4th Year 2nd Semester"
-                android:textAlignment="center" />
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.50"
+                    android:textAlignment="center" />
+            </TableRow>
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.75"
-                android:textAlignment="center" />
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="12dp">
 
-            <TextView
-                style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                android:layout_width="60dp"
-                android:text="3.67"
-                android:textAlignment="center" />
-        </TableRow>
-    </TableLayout>
-</LinearLayout>
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_weight="1"
+                    android:text="4th Year 2nd Semester"
+                    android:textAlignment="center" />
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.75"
+                    android:textAlignment="center" />
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="60dp"
+                    android:text="3.67"
+                    android:textAlignment="center" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+</ScrollView>

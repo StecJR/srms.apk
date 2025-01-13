@@ -11,6 +11,11 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.stec.srms.R;
+import com.stec.srms.adapter.CourseSelectorAdapter;
+import com.stec.srms.adapter.DeptSelectorAdapter;
+import com.stec.srms.adapter.SemesterSelectorAdapter;
+import com.stec.srms.adapter.SessionSelectorAdapter;
+import com.stec.srms.database.FacultyDBHandler;
 
 import java.util.ArrayList;
 
@@ -22,100 +27,25 @@ public class FacultyResultActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_faculty_result);
 
-        Spinner departmentSpinner = findViewById(R.id.departmentSpinner);
-        Spinner sessionSpinner = findViewById(R.id.sessionSpinner);
-        Spinner examSpinner = findViewById(R.id.examSpinner);
-        Spinner courseSpinner = findViewById(R.id.courseSpinner);
+        FacultyDBHandler facultyDBHandler = FacultyDBHandler.getInstance(this);
+        Spinner departmentSpinner, sessionSpinner, semesterSpinner, courseSpinner;
 
-        ArrayList<String> departments = new ArrayList<>();
-        departments.add("Department");
-        departments.add("CSE");
-        departments.add("EEE");
-        departments.add("Textile");
-        departments.add("FAD");
-        ArrayAdapter<String> departmentAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, departments) {
-            @Override
-            public View getDropDownView(int position, View view, ViewGroup parent) {
-                if (position == 0) {
-                    TextView hiddenView = new TextView(getContext());
-                    hiddenView.setVisibility(View.GONE);
-                    return hiddenView;
-                } else {
-                    return super.getDropDownView(position, view, parent);
-                }
-            }
-        };
-        departmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        departmentSpinner.setAdapter(departmentAdapter);
+        departmentSpinner = findViewById(R.id.departmentSpinner);
+        sessionSpinner = findViewById(R.id.sessionSpinner);
+        semesterSpinner = findViewById(R.id.semesterSpinner);
+        courseSpinner = findViewById(R.id.courseSpinner);
+
+        DeptSelectorAdapter deptSelectorAdapter = new DeptSelectorAdapter(this, facultyDBHandler.getDepartments());
+        departmentSpinner.setAdapter(deptSelectorAdapter);
         departmentSpinner.setSelection(0);
-
-        ArrayList<String> sessions = new ArrayList<>();
-        sessions.add("Session");
-        sessions.add("2021-2022");
-        sessions.add("2022-2023");
-        sessions.add("2023-2024");
-        ArrayAdapter<String> sessionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, sessions) {
-            @Override
-            public View getDropDownView(int position, View view, ViewGroup parent) {
-                if (position == 0) {
-                    TextView hiddenView = new TextView(getContext());
-                    hiddenView.setVisibility(View.GONE);
-                    return hiddenView;
-                } else {
-                    return super.getDropDownView(position, view, parent);
-                }
-            }
-        };
-        sessionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        sessionSpinner.setAdapter(sessionAdapter);
+        SessionSelectorAdapter sessionSelectorAdapter = new SessionSelectorAdapter(this, facultyDBHandler.getSessions());
+        sessionSpinner.setAdapter(sessionSelectorAdapter);
         sessionSpinner.setSelection(0);
-
-        ArrayList<String> exams = new ArrayList<>();
-        exams.add("Exam");
-        exams.add("1st Year 1st Semester");
-        exams.add("1st Year 2nd Semester");
-        exams.add("2nd Year 1st Semester");
-        exams.add("2nd Year 2nd Semester");
-        exams.add("3rd Year 1st Semester");
-        exams.add("3rd Year 2nd Semester");
-        exams.add("4th Year 1st Semester");
-        exams.add("4th Year 2nd Semester");
-        ArrayAdapter<String> examAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, exams) {
-            @Override
-            public View getDropDownView(int position, View view, ViewGroup parent) {
-                if (position == 0) {
-                    TextView hiddenView = new TextView(getContext());
-                    hiddenView.setVisibility(View.GONE);
-                    return hiddenView;
-                } else {
-                    return super.getDropDownView(position, view, parent);
-                }
-            }
-        };
-        examAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        examSpinner.setAdapter(examAdapter);
-        examSpinner.setSelection(0);
-
-        ArrayList<String> courses = new ArrayList<>();
-        courses.add("Course");
-        courses.add("EDC");
-        courses.add("DSA");
-        courses.add("DEPT");
-        courses.add("PTA");
-        ArrayAdapter<String> courseAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, courses) {
-            @Override
-            public View getDropDownView(int position, View view, ViewGroup parent) {
-                if (position == 0) {
-                    TextView hiddenView = new TextView(getContext());
-                    hiddenView.setVisibility(View.GONE);
-                    return hiddenView;
-                } else {
-                    return super.getDropDownView(position, view, parent);
-                }
-            }
-        };
-        courseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        courseSpinner.setAdapter(courseAdapter);
+        SemesterSelectorAdapter semesterSelectorAdapter = new SemesterSelectorAdapter(this, facultyDBHandler.getSemesters());
+        semesterSpinner.setAdapter(semesterSelectorAdapter);
+        semesterSpinner.setSelection(0);
+        CourseSelectorAdapter courseSelectorAdapter = new CourseSelectorAdapter(this, facultyDBHandler.getCourses());
+        courseSpinner.setAdapter(courseSelectorAdapter);
         courseSpinner.setSelection(0);
     }
 }

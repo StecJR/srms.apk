@@ -8,32 +8,32 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.stec.srms.R;
-import com.stec.srms.model.DeptInfo;
+import com.stec.srms.model.SessionInfo;
 
 import java.util.ArrayList;
 
-public class DeptSelectorAdapter extends BaseAdapter {
+public class SessionSelectorAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<DeptInfo> departments;
+    private ArrayList<SessionInfo> sessions;
 
-    public DeptSelectorAdapter(Context context, ArrayList<DeptInfo> departments) {
+    public SessionSelectorAdapter(Context context, ArrayList<SessionInfo> sessions) {
         this.context = context;
-        this.departments = departments;
+        this.sessions = sessions;
     }
 
     @Override
     public int getCount() {
-        return departments.size();
+        return sessions.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return departments.get(position);
+        return sessions.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return departments.get(position).deptId;
+        return sessions.get(position).sessionId;
     }
 
     @Override
@@ -41,9 +41,10 @@ public class DeptSelectorAdapter extends BaseAdapter {
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.adapter_basic_selector, parent, false);
         }
-        DeptInfo deptInfo = departments.get(position);
+        SessionInfo sessionInfo = sessions.get(position);
         TextView basicAdapterTextView = view.findViewById(R.id.basicAdapterTextView);
-        basicAdapterTextView.setText(deptInfo.shortDesc);
+        basicAdapterTextView.setText(sessionInfo.desc);
         return view;
     }
 }
+

@@ -1,64 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
     tools:context=".fragment.LoginGuardianFragment">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"
-        android:contentDescription="@string/app_logo"
-        android:src="@drawable/srms_logo" />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="60dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="@string/guardian_login"
-        android:textSize="@dimen/text_28" />
-    
-    <EditText
-        android:id="@+id/loginGuardianIdInput"
-        style="@style/CustomStyle.Input.Text"
-        android:autofillHints="name"
-        android:hint="@string/guardian_id" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/loginGuardianPwInput"
-        style="@style/CustomStyle.Input.Password"
-        android:layout_marginTop="30dp"
-        android:autofillHints="password"
-        android:hint="@string/password" />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:contentDescription="@string/app_logo"
+            android:src="@drawable/srms_logo" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginGuardianLoginButton"
-        style="@style/CustomStyle.Button.Blue"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="@string/login"
-        android:textAllCaps="false" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="60dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/guardian_login"
+            android:textSize="@dimen/text_28" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginGuardianForgetPwButton"
-        style="@style/CustomStyle.Button.TextOnly"
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/forget_password"
-        android:textSize="@dimen/text_16" />
+        <EditText
+            android:id="@+id/loginGuardianIdInput"
+            style="@style/CustomStyle.Input.Text"
+            android:autofillHints="name"
+            android:hint="@string/guardian_id" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginGuardianCreateAccountButton"
-        style="@style/CustomStyle.Button.TextOnly"
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:text="@string/create_new_account"
-        android:textSize="@dimen/text_16" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/loginGuardianPwInput"
+            style="@style/CustomStyle.Input.Password"
+            android:layout_marginTop="30dp"
+            android:autofillHints="password"
+            android:hint="@string/password" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginGuardianLoginButton"
+            style="@style/CustomStyle.Button.Blue"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="@string/login"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginGuardianForgetPwButton"
+            style="@style/CustomStyle.Button.TextOnly"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/forget_password"
+            android:textSize="@dimen/text_16" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginGuardianCreateAccountButton"
+            style="@style/CustomStyle.Button.TextOnly"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:text="@string/create_new_account"
+            android:textSize="@dimen/text_16" />
+    </LinearLayout>
+</ScrollView>

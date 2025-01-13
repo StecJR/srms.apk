@@ -33,7 +33,7 @@
             android:id="@+id/departmentSpinner"
             style="@style/CustomStyle.Input.Spinner"
             android:layout_width="280dp"
-            android:padding="5dp"
+            android:padding="8dp"
             android:layout_gravity="center_horizontal" />
 
         <EditText
