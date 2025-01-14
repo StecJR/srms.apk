@@ -1,0 +1,11 @@
+package com.stec.srms.model;
+
+public class StudentSession {
+    int deptId;
+    String studentId;
+
+    public StudentSession(int deptId, String studentId) {
+        this.deptId = deptId;
+        this.studentId = studentId;
+    }
+}

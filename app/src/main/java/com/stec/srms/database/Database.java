@@ -116,13 +116,13 @@ public class Database extends SQLiteOpenHelper {
         StringBuilder query;
         // Account types table
         query = new StringBuilder("INSERT INTO account_types VALUES")
-                .append(" (1, 'Admin'),")
-                .append(" (2, 'Student'),")
-                .append(" (3, 'Faculty'),")
-                .append(" (4, 'Guardian'),")
-                .append(" (5, 'Pending Student'),")
-                .append(" (6, 'Pending Faculty'),")
-                .append(" (7, 'Pending Guardian');");
+                .append(" (1, 'admin'),")
+                .append(" (2, 'student'),")
+                .append(" (3, 'faculty'),")
+                .append(" (4, 'guardian'),")
+                .append(" (5, 'pendingStudent'),")
+                .append(" (6, 'pendingFaculty'),")
+                .append(" (7, 'pendingGuardian');");
         db.execSQL(query.toString());
         // Department type table
         query = new StringBuilder("INSERT INTO dept_info VALUES")
@@ -310,6 +310,66 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(query.toString());
     }
 
+    public AccountType getAccountType(int id) {
+        AccountType accountType = new AccountType();
+        if (accountTypes != null) {
+            for (AccountType item : accountTypes) {
+                if (item.accountId == id) {
+                    return item;
+                }
+            }
+        }
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = this.getReadableDatabase();
+            String query = "SELECT * FROM account_types WHERE accountId = '" + id + "' LIMIT 1";
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                    accountType.accountId = cursor.getInt(cursor.getColumnIndexOrThrow("accountId"));
+                    accountType.accountType = cursor.getString(cursor.getColumnIndexOrThrow("accountType"));
+                    return accountType;
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return accountType;
+    }
+    public AccountType getAccountType(String type) {
+        AccountType accountType = new AccountType();
+        if (accountTypes != null) {
+            for (AccountType item : accountTypes) {
+                if (item.accountType.equals(type)) {
+                    return item;
+                }
+            }
+        }
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = this.getReadableDatabase();
+            String query = "SELECT * FROM account_types WHERE accountType = '" + type + "' LIMIT 1";
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                    accountType.accountId = cursor.getInt(cursor.getColumnIndexOrThrow("accountId"));
+                    accountType.accountType = cursor.getString(cursor.getColumnIndexOrThrow("accountType"));
+                    return accountType;
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return accountType;
+    }
     public ArrayList<AccountType> getAccountTypes() {
         if (accountTypes != null) return accountTypes;
         SQLiteDatabase db = null;

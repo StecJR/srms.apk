@@ -19,7 +19,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
         AppCompatButton onboardingExitButton = findViewById(R.id.onboardingExitButton);
         onboardingExitButton.setOnClickListener(v -> {
-            SessionManager.instance(this).turnOffFirstTime();
+            SessionManager.getInstance(getApplicationContext()).turnOffFirstTime();
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });

@@ -1,14 +1,12 @@
 package com.stec.srms.activity;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.stec.srms.R;
 import com.stec.srms.database.Database;
 import com.stec.srms.util.SessionManager;
 
@@ -20,15 +18,15 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         Database database = Database.getInstance(getApplicationContext());
         database.getWritableDatabase();
-        sessionManager = SessionManager.instance(this);
+        sessionManager = SessionManager.getInstance(getApplicationContext());
 
         if (sessionManager.isFirstTime()) {
             startActivity(new Intent(this, OnboardingActivity.class));
             finish();
-        } else if (sessionManager.isValidSession()) {
+        } else if (!sessionManager.validSession().isEmpty()) {
             // Show the activity according to the user type
             // setContentView(R.layout.activity_main);
-            Log.d("MainActivity", "User type is: " + sessionManager.getUserType());
+            Log.d("MainActivity", "User type is: " + sessionManager.getAccountType());
         } else {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
