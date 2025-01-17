@@ -1,10 +1,10 @@
 package com.stec.srms.model;
 
 public class FacultyInfo {
-    public Integer facultyId;
+    public int facultyId;
     public String name;
     public String gender;
-    public Integer deptId;
+    public int deptId;
     public String contact;
     public String email;
     public String address;
@@ -14,16 +14,30 @@ public class FacultyInfo {
         StringBuilder query = new StringBuilder("CREATE TABLE faculties")
                 .append(" (")
                 .append("facultyId INTEGER PRIMARY KEY AUTOINCREMENT, ")
-                .append("name TEXT NOT NULL, ")
-                .append("gender TEXT NOT NULL, ")
-                .append("deptId INTEGER NOT NULL, ")
-                .append("contact TEXT NOT NULL, ")
-                .append("email TEXT NOT NULL UNIQUE, ")
-                .append("address TEXT NOT NULL, ")
-                .append("password TEXT NOT NULL, ")
+                .append("name TEXT, ")
+                .append("gender TEXT, ")
+                .append("deptId INTEGER, ")
+                .append("contact TEXT, ")
+                .append("email TEXT UNIQUE, ")
+                .append("address TEXT, ")
+                .append("password TEXT, ")
 
                 .append("FOREIGN KEY (deptId) REFERENCES dept_info(deptId)")
-                .append(")");
+                .append(");");
         return query.toString();
+    }
+
+    public FacultyInfo() {
+    }
+
+    public FacultyInfo(int facultyId, String name, String gender, int deptId, String contact, String email, String address, String password) {
+        this.facultyId = facultyId;
+        this.name = name;
+        this.gender = gender;
+        this.deptId = deptId;
+        this.contact = contact;
+        this.email = email;
+        this.address = address;
+        this.password = password;
     }
 }

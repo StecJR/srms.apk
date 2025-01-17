@@ -7,11 +7,17 @@ public class AdminInfo {
     public static String getQuery() {
         StringBuilder query = new StringBuilder("CREATE TABLE admin_info")
                 .append(" (")
-                .append("adminName TEXT, ")
-                .append("adminPw TEXT NOT NULL, ")
-
-                .append("PRIMARY KEY (adminName)")
-                .append(")");
+                .append("adminName TEXT PRIMARY KEY, ")
+                .append("adminPw TEXT")
+                .append(");");
         return query.toString();
+    }
+
+    public AdminInfo() {
+    }
+
+    public AdminInfo(String adminName, String adminPw) {
+        this.adminName = adminName;
+        this.adminPw = adminPw;
     }
 }

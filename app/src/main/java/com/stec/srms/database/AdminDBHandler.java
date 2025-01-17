@@ -10,6 +10,7 @@ public class AdminDBHandler extends Database {
     public AdminDBHandler(Context context) {
         super(context);
     }
+
     public static synchronized AdminDBHandler getInstance(Context context) {
         if (adminDBHandlerInstance == null) {
             adminDBHandlerInstance = new AdminDBHandler(context.getApplicationContext());
@@ -22,7 +23,7 @@ public class AdminDBHandler extends Database {
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
-            String query = "SELECT * FROM admin_info WHERE adminName = '" + adminName +"' AND adminPw = '" + adminPw + "' LIMIT 1";
+            String query = "SELECT * FROM admin_info WHERE adminName = '" + adminName + "' AND adminPw = '" + adminPw + "' LIMIT 1";
             db = this.getReadableDatabase();
             cursor = db.rawQuery(query, null);
             if (cursor.moveToFirst()) isValid = true;

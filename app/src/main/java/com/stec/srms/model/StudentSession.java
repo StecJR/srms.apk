@@ -1,8 +1,8 @@
 package com.stec.srms.model;
 
 public class StudentSession {
-    int deptId;
-    int studentId;
+    public int deptId;
+    public int studentId;
 
     public StudentSession(int deptId, int studentId) {
         this.deptId = deptId;

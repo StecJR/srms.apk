@@ -1,12 +1,12 @@
 package com.stec.srms.model;
 
 public class ResultsSummary {
-    public Integer studentId;
-    public Integer semesterId;
+    public int studentId;
+    public int semesterId;
     public double gpa;
     public double cgpa;
 
-    public static String getQuery(Integer sessionId, Integer deptId) {
+    public static String getQuery(int sessionId, int deptId) {
         StringBuilder query = new StringBuilder("CREATE TABLE results_summary_" + sessionId + "_" + deptId)
                 .append(" (")
                 .append("studentId INTEGER, ")
@@ -17,7 +17,17 @@ public class ResultsSummary {
                 .append("PRIMARY KEY (studentId, semesterId), ")
                 .append("FOREIGN KEY (studentId) REFERENCES students_" + deptId + "(studentId), ")
                 .append("FOREIGN KEY (semesterId) REFERENCES semester_info(semesterId)")
-                .append(")");
+                .append(");");
         return query.toString();
+    }
+
+    public ResultsSummary() {
+    }
+
+    public ResultsSummary(int studentId, int semesterId, double gpa, double cgpa) {
+        this.studentId = studentId;
+        this.semesterId = semesterId;
+        this.gpa = gpa;
+        this.cgpa = cgpa;
     }
 }

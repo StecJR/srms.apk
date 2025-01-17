@@ -12,6 +12,7 @@ import com.stec.srms.fragment.LoginAdminFragment;
 import com.stec.srms.fragment.LoginFacultyFragment;
 import com.stec.srms.fragment.LoginGuardianFragment;
 import com.stec.srms.fragment.LoginStudentFragment;
+import com.stec.srms.util.SessionManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,12 +25,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
+        SessionManager sessionManager = SessionManager.getInstance(this);
+        sessionManager.deleteAllSessions();
 
         BottomNavigationView loginBottomNav = findViewById(R.id.loginBottomNav);
         loginBottomNav.setItemIconTintList(null);
         initializeLoginFragments();
         loadFragment(loginFragments.get(R.id.loginBottomNavStudent));
-
         loginBottomNav.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = loginFragments.get(item.getItemId());
             if (selectedFragment == null) {

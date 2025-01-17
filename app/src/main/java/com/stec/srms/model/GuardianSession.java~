@@ -2,12 +2,12 @@ package com.stec.srms.model;
 
 public class GuardianSession {
     public int guardianId;
-    public int studentId;
     public int deptId;
+    public int studentId;
 
-    public GuardianSession(int guardianId, int studentId, int deptId) {
+    public GuardianSession(int guardianId, int deptId, int studentId) {
         this.guardianId = guardianId;
-        this.studentId = studentId;
         this.deptId = deptId;
+        this.studentId = studentId;
     }
 }

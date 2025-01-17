@@ -1,11 +1,7 @@
 package com.stec.srms.activity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +12,6 @@ import com.stec.srms.adapter.DeptSelectorAdapter;
 import com.stec.srms.adapter.SemesterSelectorAdapter;
 import com.stec.srms.adapter.SessionSelectorAdapter;
 import com.stec.srms.database.FacultyDBHandler;
-
-import java.util.ArrayList;
 
 public class FacultyResultActivity extends AppCompatActivity {
 

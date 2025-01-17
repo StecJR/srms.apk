@@ -5,20 +5,18 @@ import static com.stec.srms.util.Util.makePasswordShowable;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+
 import com.stec.srms.R;
 import com.stec.srms.activity.AdminDashboardActivity;
 import com.stec.srms.database.AdminDBHandler;
-import com.stec.srms.database.GuardianDBHandler;
 import com.stec.srms.util.Toast;
 
 public class LoginAdminFragment extends Fragment {

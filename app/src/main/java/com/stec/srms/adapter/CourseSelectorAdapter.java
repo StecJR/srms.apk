@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.stec.srms.R;
 import com.stec.srms.model.CourseInfo;
-import com.stec.srms.model.DeptInfo;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
 package com.stec.srms.model;
 
 public class DeptInfo {
-    public Integer deptId;
+    public int deptId;
     public String shortDesc;
     public String longDesc;
 
@@ -9,9 +9,18 @@ public class DeptInfo {
         StringBuilder query = new StringBuilder("CREATE TABLE dept_info")
                 .append(" (")
                 .append("deptId INTEGER PRIMARY KEY AUTOINCREMENT, ")
-                .append("shortDesc TEXT NOT NULL, ")
-                .append("longDesc TEXT NOT NULL")
-                .append(")");
+                .append("shortDesc TEXT, ")
+                .append("longDesc TEXT")
+                .append(");");
         return query.toString();
+    }
+
+    public DeptInfo() {
+    }
+
+    public DeptInfo(int deptId, String shortDesc, String longDesc) {
+        this.deptId = deptId;
+        this.shortDesc = shortDesc;
+        this.longDesc = longDesc;
     }
 }

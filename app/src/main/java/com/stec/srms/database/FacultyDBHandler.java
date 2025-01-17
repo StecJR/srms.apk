@@ -10,6 +10,7 @@ public class FacultyDBHandler extends Database {
     public FacultyDBHandler(Context context) {
         super(context);
     }
+
     public static synchronized FacultyDBHandler getInstance(Context context) {
         if (facultyDBHandlerInstance == null) {
             facultyDBHandlerInstance = new FacultyDBHandler(context.getApplicationContext());
@@ -22,7 +23,7 @@ public class FacultyDBHandler extends Database {
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
-            String query = "SELECT * FROM faculties WHERE facultyId = " + facultyId +" AND password = '" + facultyPw + "' LIMIT 1";
+            String query = "SELECT * FROM faculties WHERE facultyId = " + facultyId + " AND password = '" + facultyPw + "' LIMIT 1";
             db = this.getReadableDatabase();
             cursor = db.rawQuery(query, null);
             if (cursor.moveToFirst()) isValid = true;

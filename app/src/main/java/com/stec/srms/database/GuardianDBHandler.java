@@ -10,6 +10,7 @@ public class GuardianDBHandler extends Database {
     public GuardianDBHandler(Context context) {
         super(context);
     }
+
     public static synchronized GuardianDBHandler getInstance(Context context) {
         if (guardianDBHandlerInstance == null) {
             guardianDBHandlerInstance = new GuardianDBHandler(context.getApplicationContext());
@@ -22,7 +23,7 @@ public class GuardianDBHandler extends Database {
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
-            String query = "SELECT * FROM guardians WHERE guardianId = " + guardianId +" AND password = '" + guardianPw + "' LIMIT 1";
+            String query = "SELECT * FROM guardians WHERE guardianId = " + guardianId + " AND password = '" + guardianPw + "' LIMIT 1";
             db = this.getReadableDatabase();
             cursor = db.rawQuery(query, null);
             if (cursor.moveToFirst()) isValid = true;

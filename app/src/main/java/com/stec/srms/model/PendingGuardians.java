@@ -1,27 +1,40 @@
 package com.stec.srms.model;
 
 public class PendingGuardians {
-    public Integer userId;
+    public int userId;
     public String name;
     public String contact;
     public String email;
-    public Integer studentId;
-    public Integer deptId;
+    public int studentId;
+    public int deptId;
     public String password;
 
     public static String getQuery() {
         StringBuilder query = new StringBuilder("CREATE TABLE pending_guardians")
                 .append(" (")
                 .append("userId INTEGER PRIMARY KEY AUTOINCREMENT, ")
-                .append("name TEXT NOT NULL, ")
-                .append("contact TEXT NOT NULL, ")
-                .append("email TEXT NOT NULL UNIQUE, ")
-                .append("studentId INTEGER NOT NULL, ")
-                .append("deptId INTEGER NOT NULL, ")
-                .append("password TEXT NOT NULL, ")
+                .append("name TEXT, ")
+                .append("contact TEXT, ")
+                .append("email TEXT UNIQUE, ")
+                .append("studentId INTEGER, ")
+                .append("deptId INTEGER, ")
+                .append("password TEXT, ")
 
                 .append("FOREIGN KEY (deptId) REFERENCES dept_info(deptId)")
-                .append(")");
+                .append(");");
         return query.toString();
+    }
+
+    public PendingGuardians() {
+    }
+
+    public PendingGuardians(int userId, String name, String contact, String email, int studentId, int deptId, String password) {
+        this.userId = userId;
+        this.name = name;
+        this.contact = contact;
+        this.email = email;
+        this.studentId = studentId;
+        this.deptId = deptId;
+        this.password = password;
     }
 }

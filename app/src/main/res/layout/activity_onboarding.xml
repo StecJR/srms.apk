@@ -44,9 +44,11 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/onboardingExitButton"
             style="@style/CustomStyle.Button.Blue"
+            android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:background="@drawable/button"
+            android:paddingHorizontal="10dp"
             android:text="@string/onboardingExitButton" />
 
     </LinearLayout>

@@ -1,26 +1,27 @@
 package com.stec.srms.fragment;
 
 import static com.stec.srms.util.Util.makePasswordShowable;
+import static com.stec.srms.util.Util.stringToInt;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+
 import com.stec.srms.R;
 import com.stec.srms.activity.StudentInfoActivity;
 import com.stec.srms.activity.StudentSignupActivity;
 import com.stec.srms.adapter.DeptSelectorAdapter;
 import com.stec.srms.database.StudentDBHandler;
+import com.stec.srms.util.SessionManager;
 import com.stec.srms.util.Toast;
 
 public class LoginStudentFragment extends Fragment {
@@ -52,13 +53,14 @@ public class LoginStudentFragment extends Fragment {
             boolean isValid = deptId != 0 &&
                     !studentId.isBlank() &&
                     !studentPw.isBlank() &&
-                    studentDBHandler.isValidStudent(deptId, studentId, studentPw);
+                    studentDBHandler.isValidStudent(deptId, stringToInt(studentId, -1), studentPw);
             if (!isValid) {
                 Toast.credentialError(context);
                 return;
             }
             // Save session info
-
+            SessionManager sessionManager = SessionManager.getInstance(context);
+            sessionManager.createStudentSession(deptId, stringToInt(studentId, -1), 15);
             startActivity(new Intent(context, StudentInfoActivity.class));
             activity.finish();
         });

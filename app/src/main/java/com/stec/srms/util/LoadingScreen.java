@@ -6,6 +6,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.stec.srms.R;
 
 import java.util.Objects;
@@ -13,15 +15,13 @@ import java.util.Objects;
 public class LoadingScreen {
     private static Dialog loadingDialog;
 
-    public static void start(Context context, String message) {
-        if (loadingDialog != null && loadingDialog.isShowing()) {
-            return;
-        }
+    public static void start(@NonNull Context context, @NonNull String message) {
+        if (loadingDialog != null && loadingDialog.isShowing()) return;
 
         loadingDialog = new Dialog(context);
         loadingDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         loadingDialog.setContentView(R.layout.loading);
-        loadingDialog.setCancelable(true);
+        loadingDialog.setCancelable(false);
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.copyFrom(Objects.requireNonNull(loadingDialog.getWindow()).getAttributes());
