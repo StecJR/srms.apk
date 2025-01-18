@@ -28,8 +28,8 @@ public class StudentInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_info);
         Intent intent = getIntent();
         boolean hideTopButtons = intent.getBooleanExtra("hideTopButtons", false);
-        StudentDBHandler studentDBHandler = StudentDBHandler.getInstance(getApplicationContext());
-        SessionManager sessionManager = SessionManager.getInstance(getApplicationContext());
+        StudentDBHandler studentDBHandler = StudentDBHandler.getInstance(this);
+        SessionManager sessionManager = SessionManager.getInstance(this);
 
         // Verify or goto login page
         String accountType = sessionManager.validSession();
@@ -92,6 +92,10 @@ public class StudentInfoActivity extends AppCompatActivity {
         studentInfoLogoutButton = findViewById(R.id.guardianInfoLogoutButton);
 
         if (hideTopButtons) {
+            TextView studentInfoGuardianInfoTitle = findViewById(R.id.studentInfoGuardianInfoTitle);
+            TableLayout studentInfoGuardianInfoTable = findViewById(R.id.studentInfoGuardianInfoTable);
+            studentInfoGuardianInfoTitle.setVisibility(View.GONE);
+            studentInfoGuardianInfoTable.setVisibility(View.GONE);
             studentInfoResultButton.setVisibility(View.INVISIBLE);
             studentInfoLogoutButton.setVisibility(View.INVISIBLE);
             return;

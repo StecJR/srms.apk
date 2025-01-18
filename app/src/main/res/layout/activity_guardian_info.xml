@@ -65,12 +65,14 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/guardianInfoStudentName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Jakir Hossain"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/guardianInfoStudentDept"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="B.Sc in CSE"
@@ -113,52 +115,60 @@
             android:background="@drawable/rounded_shape"
             android:padding="10dp">
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Name" />
+                    android:text="@string/name" />
 
                 <TextView
+                    android:id="@+id/guardianInfoName"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="Jakir Hossain" />
+                    android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Relation" />
+                    android:text="@string/relation" />
 
                 <TextView
+                    android:id="@+id/guardianInfoRelation"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="Brother" />
+                    android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Contact" />
+                    android:text="@string/contact" />
 
                 <TextView
+                    android:id="@+id/guardianInfoContact"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="01518111222" />
+                    android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Email" />
+                    android:text="@string/email" />
 
                 <TextView
+                    android:id="@+id/guardianInfoEmail"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="stec.jrhossain@gmail.com" />
+                    android:layout_weight="1" />
             </TableRow>
 
         </TableLayout>

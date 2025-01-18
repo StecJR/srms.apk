@@ -15,8 +15,10 @@ import androidx.core.content.ContextCompat;
 import com.stec.srms.R;
 
 public class Util {
+    private static Drawable eyeShow, eyeHide;
+
     public static int stringToInt(String value, int defaultValue) {
-        if (value == null || value.trim().isEmpty()) return defaultValue;
+        if (value == null || value.trim().isBlank()) return defaultValue;
         try {
             return Integer.parseInt(value.trim());
         } catch (NumberFormatException e) {
@@ -41,14 +43,13 @@ public class Util {
                 editText.getCompoundDrawables()[3]
         );
     }
-
     private static boolean isTouchWithinDrawableBounds(EditText editText, MotionEvent event) {
         Drawable drawable = editText.getCompoundDrawables()[2];
         return drawable != null && event.getRawX() >= (editText.getRight() - drawable.getBounds().width() - 50);
     }
-
-    private static void togglePasswordVisibility(EditText editText, Drawable eyeShow, Drawable eyeHide) {
+    private static void togglePasswordVisibility(EditText editText) {
         Typeface typeFace = editText.getTypeface();
+        int cursorPosition = editText.getSelectionStart();
         if (editText.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
             editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
             setCompoundDrawable(editText, eyeShow);
@@ -56,21 +57,20 @@ public class Util {
             editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             setCompoundDrawable(editText, eyeHide);
         }
+        editText.setSelection(cursorPosition);
         editText.setTypeface(typeFace);
-        editText.setSelection(editText.getText().length());
     }
-
     @SuppressLint("ClickableViewAccessibility")
-    public static void makePasswordShowable(@NonNull EditText editText, @NonNull Context context) {
-        Drawable eyeShow, eyeHide;
-        eyeShow = ContextCompat.getDrawable(context, R.drawable.eye_password_show);
-        eyeHide = ContextCompat.getDrawable(context, R.drawable.eye_password_hide);
-
+    public static void addPasswordVisibilityToggler(@NonNull EditText editText, @NonNull Context context) {
+        if (eyeShow == null || eyeHide == null) {
+            eyeShow = ContextCompat.getDrawable(context, R.drawable.eye_password_show);
+            eyeHide = ContextCompat.getDrawable(context, R.drawable.eye_password_hide);
+        }
         setCompoundDrawable(editText, eyeHide);
         editText.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 if (isTouchWithinDrawableBounds(editText, event)) {
-                    togglePasswordVisibility(editText, eyeShow, eyeHide);
+                    togglePasswordVisibility(editText);
                     return true;
                 }
             }

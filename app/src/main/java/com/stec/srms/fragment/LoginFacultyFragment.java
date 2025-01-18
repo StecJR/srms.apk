@@ -1,6 +1,6 @@
 package com.stec.srms.fragment;
 
-import static com.stec.srms.util.Util.makePasswordShowable;
+import static com.stec.srms.util.Util.addPasswordVisibilityToggler;
 
 import android.content.Context;
 import android.content.Intent;
@@ -59,7 +59,7 @@ public class LoginFacultyFragment extends Fragment {
             startActivity(new Intent(context, FacultySignupActivity.class));
         });
 
-        makePasswordShowable(loginFacultyPwInput, context);
+        addPasswordVisibilityToggler(loginFacultyPwInput, context);
         return view;
     }
 }

@@ -467,6 +467,7 @@ public class Database extends SQLiteOpenHelper {
 
     // Verify: users
     public boolean isValidStudent(int deptId, int studentId) {
+        if (studentId == -1) return false;
         boolean isValid = false;
         SQLiteDatabase db = null;
         Cursor cursor = null;
@@ -485,6 +486,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public boolean isValidStudent(int deptId, int studentId, String studentPw) {
+        if (studentId == -1) return false;
         boolean isValid = false;
         SQLiteDatabase db = null;
         Cursor cursor = null;
@@ -503,6 +505,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public boolean isValidGuardian(int guardianId) {
+        if (guardianId == -1) return false;
         boolean isValid = false;
         SQLiteDatabase db = null;
         Cursor cursor = null;
@@ -521,6 +524,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public boolean isValidGuardian(int guardianId, String guardianPw) {
+        if (guardianId == -1) return false;
         boolean isValid = false;
         SQLiteDatabase db = null;
         Cursor cursor = null;

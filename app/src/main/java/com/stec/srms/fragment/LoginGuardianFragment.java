@@ -1,6 +1,7 @@
 package com.stec.srms.fragment;
 
-import static com.stec.srms.util.Util.makePasswordShowable;
+import static com.stec.srms.util.Util.addPasswordVisibilityToggler;
+import static com.stec.srms.util.Util.stringToInt;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +18,9 @@ import androidx.fragment.app.FragmentActivity;
 import com.stec.srms.R;
 import com.stec.srms.activity.GuardianInfoActivity;
 import com.stec.srms.activity.GuardianSignupActivity;
-import com.stec.srms.database.GuardianDBHandler;
+import com.stec.srms.database.StudentDBHandler;
+import com.stec.srms.model.GuardianInfo;
+import com.stec.srms.util.SessionManager;
 import com.stec.srms.util.Toast;
 
 public class LoginGuardianFragment extends Fragment {
@@ -26,7 +29,7 @@ public class LoginGuardianFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login_guardian, container, false);
         Context context = requireContext();
         FragmentActivity activity = requireActivity();
-        GuardianDBHandler guardianDBHandler = GuardianDBHandler.getInstance(context);
+        StudentDBHandler guardianDBHandler = StudentDBHandler.getInstance(context);
         EditText loginGuardianIdInput, loginGuardianPwInput;
         AppCompatButton loginGuardianLoginButton, loginGuardianForgetPwButton, loginGuardianCreateAccountButton;
 
@@ -37,9 +40,9 @@ public class LoginGuardianFragment extends Fragment {
         loginGuardianCreateAccountButton = view.findViewById(R.id.loginGuardianCreateAccountButton);
 
         loginGuardianLoginButton.setOnClickListener(v -> {
-            String guardianId = loginGuardianIdInput.getText().toString().trim();
+            int guardianId = stringToInt(loginGuardianIdInput.getText().toString().trim(), -1);
             String guardianPw = loginGuardianPwInput.getText().toString().trim();
-            boolean isValid = !guardianId.isBlank() &&
+            boolean isValid = guardianId != -1 &&
                     !guardianPw.isBlank() &&
                     guardianDBHandler.isValidGuardian(guardianId, guardianPw);
             if (!isValid) {
@@ -47,7 +50,9 @@ public class LoginGuardianFragment extends Fragment {
                 return;
             }
             // Save session info
-
+            GuardianInfo guardianInfo = guardianDBHandler.getGuardianinfo(guardianId);
+            SessionManager sessionManager = SessionManager.getInstance(context);
+            sessionManager.createGuardianSession(guardianInfo.guardianId, guardianInfo.deptId, guardianInfo.studentId, 15);
             startActivity(new Intent(context, GuardianInfoActivity.class));
             requireActivity().finish();
         });
@@ -59,7 +64,7 @@ public class LoginGuardianFragment extends Fragment {
             startActivity(new Intent(context, GuardianSignupActivity.class));
         });
 
-        makePasswordShowable(loginGuardianPwInput, context);
+        addPasswordVisibilityToggler(loginGuardianPwInput, context);
         return view;
     }
 }
