@@ -10,4 +10,4 @@ and students together in one location.
 See full change log from [here](https://github.com/StecJR/srms.apk/blob/main/CHANGELOG.md).
 
 ## 📜 License
-This repo is licensed under the [BSD 3-Clause](https://github.com/StecJR/srms.apk/blob/main/LICENSE) © 2024 · [Jakir Hossain](https://github.com/StecJR)
+This repo is licensed under the [BSD 3-Clause](https://github.com/StecJR/srms.apk/blob/main/LICENSE) © 2025 · [Jakir Hossain](https://github.com/StecJR)

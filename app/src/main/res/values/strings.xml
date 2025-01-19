@@ -24,7 +24,7 @@
     <string name="logout">Logout</string>
     <string name="student_info">Student Info</string>
     <string name="guardian_info">Guardian Info</string>
-    <string name="print">Print</string>
+    <string name="save">Save</string>
     <string name="teacher_info">Teacher Info</string>
     <string name="search">Search</string>
     <string name="search_result">Search Result</string>

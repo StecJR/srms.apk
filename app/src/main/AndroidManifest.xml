@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        android:minSdkVersion="29" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -35,32 +41,32 @@
         <!-- Student related activities -->
         <activity
             android:name=".activity.StudentSignupActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".activity.StudentInfoActivity"
             android:exported="true" />
         <activity
             android:name=".activity.StudentResultActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
-            android:name=".activity.StudentMarksheetActivity"
+            android:name=".activity.StudentMarkSheetActivity"
             android:exported="false" />
 
         <!-- Faculty related activities -->
         <activity
             android:name=".activity.FacultySignupActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".activity.FacultyInfoActivity"
             android:exported="true" />
         <activity
             android:name=".activity.FacultyResultActivity"
-            android:exported="false" />
+            android:exported="true" />
 
         <!-- Guardian related activities -->
         <activity
             android:name=".activity.GuardianSignupActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".activity.GuardianInfoActivity"
             android:exported="true" />
@@ -69,9 +75,6 @@
         <activity
             android:name=".activity.AdminDashboardActivity"
             android:exported="true" />
-        <activity
-            android:name=".activity.AdminDatabaseManagerActivity"
-            android:exported="false" />
 
         <!-- Main activity -->
         <activity

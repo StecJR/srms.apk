@@ -83,6 +83,10 @@ dependencies {
     implementation(libs.navigation.ui)
     implementation(libs.security.crypto)
     implementation(libs.javax.annotation.api)
+
+    implementation(libs.openpdf)
+    implementation(libs.androidawt)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

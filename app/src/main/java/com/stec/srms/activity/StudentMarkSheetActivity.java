@@ -14,16 +14,19 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.stec.srms.R;
 import com.stec.srms.database.StudentDBHandler;
 import com.stec.srms.model.AdminInfo;
+import com.stec.srms.model.MarkSheetData;
 import com.stec.srms.model.Results;
 import com.stec.srms.model.SemesterInfo;
 import com.stec.srms.model.StudentInfo;
 import com.stec.srms.model.StudentSession;
 import com.stec.srms.util.SessionManager;
+import com.stec.srms.util.Toast;
 import com.stec.srms.util.Util;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
-public class StudentMarksheetActivity extends AppCompatActivity {
+public class StudentMarkSheetActivity extends AppCompatActivity {
     ContextThemeWrapper tableRowStyle, tableRowTextStyle;
 
     private String getGrade(double gpa) {
@@ -39,39 +42,41 @@ public class StudentMarksheetActivity extends AppCompatActivity {
         else return "F";
     }
 
-    private void createTableRow(TableLayout tableLayout, int courseCode, String courseDesc, double gpa) {
-        TableRow tableRow;
-        TableRow.LayoutParams weightParam, widthParam;
-        TextView codeTextView, courseTextView, gpaTextView, gradeTextView;
+    private void createMarkSheetTable(TableLayout tableLayout, ArrayList<MarkSheetData> markSheet) {
+        for (MarkSheetData markSheetData : markSheet) {
+            TableRow tableRow;
+            TableRow.LayoutParams weightParam, widthParam;
+            TextView codeTextView, courseTextView, gpaTextView, gradeTextView;
 
-        weightParam = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
-        widthParam = new TableRow.LayoutParams(Util.dpToPx(this, 50), TableRow.LayoutParams.WRAP_CONTENT);
-        tableRow = new TableRow(tableRowStyle);
+            weightParam = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
+            widthParam = new TableRow.LayoutParams(Util.dpToPx(this, 50), TableRow.LayoutParams.WRAP_CONTENT);
+            tableRow = new TableRow(tableRowStyle);
 
-        codeTextView = new TextView(tableRowTextStyle);
-        codeTextView.setText(String.valueOf(courseCode));
-        codeTextView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
-        tableRow.addView(codeTextView);
+            codeTextView = new TextView(tableRowTextStyle);
+            codeTextView.setText(markSheetData.courseCode);
+            codeTextView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
+            tableRow.addView(codeTextView);
 
-        courseTextView = new TextView(tableRowTextStyle);
-        courseTextView.setLayoutParams(weightParam);
-        courseTextView.setText(courseDesc);
-        courseTextView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
-        tableRow.addView(courseTextView);
+            courseTextView = new TextView(tableRowTextStyle);
+            courseTextView.setLayoutParams(weightParam);
+            courseTextView.setText(markSheetData.courseDesc);
+            courseTextView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
+            tableRow.addView(courseTextView);
 
-        gpaTextView = new TextView(tableRowTextStyle);
-        gpaTextView.setLayoutParams(widthParam);
-        gpaTextView.setText(String.format("%.2f", gpa));
-        gpaTextView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
-        tableRow.addView(gpaTextView);
+            gpaTextView = new TextView(tableRowTextStyle);
+            gpaTextView.setLayoutParams(widthParam);
+            gpaTextView.setText(markSheetData.gpa);
+            gpaTextView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
+            tableRow.addView(gpaTextView);
 
-        gradeTextView = new TextView(tableRowTextStyle);
-        gradeTextView.setLayoutParams(widthParam);
-        gradeTextView.setText(getGrade(gpa));
-        gradeTextView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
-        tableRow.addView(gradeTextView);
+            gradeTextView = new TextView(tableRowTextStyle);
+            gradeTextView.setLayoutParams(widthParam);
+            gradeTextView.setText(markSheetData.grade);
+            gradeTextView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
+            tableRow.addView(gradeTextView);
 
-        tableLayout.addView(tableRow);
+            tableLayout.addView(tableRow);
+        }
     }
 
     @Override
@@ -125,12 +130,31 @@ public class StudentMarksheetActivity extends AppCompatActivity {
         SemesterInfo semesterInfo = studentDBHandler.getSemester(semesterId);
         title.setText(semesterInfo.longDesc);
 
+        ArrayList<MarkSheetData> markSheet = new ArrayList<>();
         for (Results result : results) {
-            createTableRow(table, result.courseCode, studentDBHandler.getCourse(result.courseCode).longDesc, result.gpa);
+            markSheet.add(new MarkSheetData(
+                    String.valueOf(result.courseCode),
+                    studentDBHandler.getCourse(result.courseCode).longDesc,
+                    String.valueOf(result.mark),
+                    String.format(Locale.getDefault(), "%.2f", result.gpa),
+                    getGrade(result.gpa)
+            ));
         }
 
-        AppCompatButton studentMarksheetPrintButton = findViewById(R.id.studentMarksheetPrintButton);
-        studentMarksheetPrintButton.setOnClickListener(v -> {
+        createMarkSheetTable(table, markSheet);
+
+        AppCompatButton studentMarkSheetPrintButton = findViewById(R.id.studentMarkSheetPrintButton);
+        studentMarkSheetPrintButton.setOnClickListener(v -> {
+            if (!Util.checkStoragePermission(this)) {
+                Util.requestStoragePermission(this);
+                if (!Util.checkStoragePermission(this)) {
+                    Toast.generalError(this, "Storage permission is required to save mark sheet");
+                    return;
+                }
+            }
+            Util.saveMarkSheetAsPDF(this, semesterInfo.longDesc, studentInfo, markSheet);
+            Toast.generalSuccess(this, "Mark sheet saved successfully");
         });
+
     }
 }

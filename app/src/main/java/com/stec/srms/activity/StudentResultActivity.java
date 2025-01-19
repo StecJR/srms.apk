@@ -53,7 +53,7 @@ public class StudentResultActivity extends AppCompatActivity {
         tableRow.addView(cgpaTextView);
 
         tableRow.setOnClickListener(view -> {
-            Intent intent = new Intent(this, StudentMarksheetActivity.class);
+            Intent intent = new Intent(this, StudentMarkSheetActivity.class);
             intent.putExtra("semesterId", semesterId);
             startActivity(intent);
         });

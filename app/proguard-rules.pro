@@ -21,3 +21,7 @@
 #-renamesourcefileattribute SourceFile
 -dontwarn javax.annotation.Nullable
 -dontwarn javax.annotation.concurrent.GuardedBy
+
+# Suppress warnings in androidawt library
+-dontwarn org.bouncycastle.**
+-dontwarn java.lang.invoke.**
