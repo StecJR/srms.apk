@@ -21,8 +21,11 @@ import com.stec.srms.activity.StudentInfoActivity;
 import com.stec.srms.activity.StudentSignupActivity;
 import com.stec.srms.adapter.DeptSelectorAdapter;
 import com.stec.srms.database.StudentDBHandler;
+import com.stec.srms.model.DeptInfo;
 import com.stec.srms.util.SessionManager;
 import com.stec.srms.util.Toast;
+
+import java.util.ArrayList;
 
 public class LoginStudentFragment extends Fragment {
     @Override
@@ -42,17 +45,23 @@ public class LoginStudentFragment extends Fragment {
         loginStudentForgetPwButton = view.findViewById(R.id.loginStudentForgetPwButton);
         loginStudentCreateAccountButton = view.findViewById(R.id.loginStudentCreateAccountButton);
 
-        DeptSelectorAdapter deptSelectorAdapter = new DeptSelectorAdapter(context, studentDBHandler.getDepartments());
+        ArrayList<DeptInfo> departments = new ArrayList<>(studentDBHandler.getDepartments());
+        if (departments.get(0).deptId != 0) {
+            departments.add(0, new DeptInfo(0, "Department", ""));
+        }
+        DeptSelectorAdapter deptSelectorAdapter = new DeptSelectorAdapter(context, departments);
         departmentSpinner.setAdapter(deptSelectorAdapter);
         departmentSpinner.setSelection(0);
 
         loginStudentLoginButton.setOnClickListener(v -> {
             int deptId = (int) departmentSpinner.getSelectedItemId();
+            if (deptId == 0) {
+                Toast.generalError(context, "Select your department");
+                return;
+            }
             String studentId = loginStudentIdInput.getText().toString().trim();
             String studentPw = loginStudentPwInput.getText().toString().trim();
-            boolean isValid = deptId != 0 &&
-                    !studentId.isBlank() &&
-                    !studentPw.isBlank() &&
+            boolean isValid = !studentId.isBlank() && !studentPw.isBlank() &&
                     studentDBHandler.isValidStudent(deptId, stringToInt(studentId, -1), studentPw);
             if (!isValid) {
                 Toast.credentialError(context);
