@@ -404,6 +404,117 @@ public class Database extends SQLiteOpenHelper {
         return courses;
     }
 
+    public ArrayList<CourseInfo> getDepartmentCourses(int deptId) {
+        ArrayList<CourseInfo> deptCourses = new ArrayList<>();
+        if (courses != null) {
+            for (CourseInfo item : courses) {
+                if (item.deptId == deptId) deptCourses.add(item);
+            }
+            return deptCourses;
+        };
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = this.getReadableDatabase();
+            String query = "SELECT * FROM course_info WHERE deptId = " + deptId + ";";
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    CourseInfo course = new CourseInfo();
+                    course.deptId = cursor.getInt(cursor.getColumnIndexOrThrow("deptId"));
+                    course.semesterId = cursor.getInt(cursor.getColumnIndexOrThrow("semesterId"));
+                    course.courseCode = cursor.getInt(cursor.getColumnIndexOrThrow("courseCode"));
+                    course.credit = cursor.getDouble(cursor.getColumnIndexOrThrow("credit"));
+                    course.shortDesc = cursor.getString(cursor.getColumnIndexOrThrow("shortDesc"));
+                    course.longDesc = cursor.getString(cursor.getColumnIndexOrThrow("longDesc"));
+                    deptCourses.add(course);
+                } while (cursor.moveToNext());
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return deptCourses;
+    }
+
+    public ArrayList<CourseInfo> getSemesterCourses(int semesterId) {
+        ArrayList<CourseInfo> semesterCourses = new ArrayList<>();
+        if (courses != null) {
+            for (CourseInfo item : courses) {
+                if (item.semesterId == semesterId) semesterCourses.add(item);
+            }
+            return semesterCourses;
+        };
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = this.getReadableDatabase();
+            String query = "SELECT * FROM course_info WHERE semesterId = " + semesterId + ";";
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    CourseInfo course = new CourseInfo();
+                    course.deptId = cursor.getInt(cursor.getColumnIndexOrThrow("deptId"));
+                    course.semesterId = cursor.getInt(cursor.getColumnIndexOrThrow("semesterId"));
+                    course.courseCode = cursor.getInt(cursor.getColumnIndexOrThrow("courseCode"));
+                    course.credit = cursor.getDouble(cursor.getColumnIndexOrThrow("credit"));
+                    course.shortDesc = cursor.getString(cursor.getColumnIndexOrThrow("shortDesc"));
+                    course.longDesc = cursor.getString(cursor.getColumnIndexOrThrow("longDesc"));
+                    semesterCourses.add(course);
+                } while (cursor.moveToNext());
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return semesterCourses;
+    }
+
+    public ArrayList<CourseInfo> getSemesterCourses(int deptId, int semesterId) {
+        ArrayList<CourseInfo> semesterCourses = new ArrayList<>();
+        if (courses != null) {
+            for (CourseInfo item : courses) {
+                if (item.deptId == deptId && item.semesterId == semesterId) semesterCourses.add(item);
+            }
+            return semesterCourses;
+        };
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = this.getReadableDatabase();
+            String query = "SELECT * FROM course_info WHERE deptId = " + deptId + " AND semesterId = " + semesterId + ";";
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    CourseInfo course = new CourseInfo();
+                    course.deptId = cursor.getInt(cursor.getColumnIndexOrThrow("deptId"));
+                    course.semesterId = cursor.getInt(cursor.getColumnIndexOrThrow("semesterId"));
+                    course.courseCode = cursor.getInt(cursor.getColumnIndexOrThrow("courseCode"));
+                    course.credit = cursor.getDouble(cursor.getColumnIndexOrThrow("credit"));
+                    course.shortDesc = cursor.getString(cursor.getColumnIndexOrThrow("shortDesc"));
+                    course.longDesc = cursor.getString(cursor.getColumnIndexOrThrow("longDesc"));
+                    semesterCourses.add(course);
+                } while (cursor.moveToNext());
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return semesterCourses;
+    }
+
     public SemesterInfo getSemester(int semesterId) {
         if (semesters != null) {
             for (SemesterInfo item : semesters) {

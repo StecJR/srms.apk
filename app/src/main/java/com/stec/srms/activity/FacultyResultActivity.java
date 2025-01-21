@@ -1,6 +1,8 @@
 package com.stec.srms.activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
@@ -20,6 +22,19 @@ import com.stec.srms.model.SessionInfo;
 import java.util.ArrayList;
 
 public class FacultyResultActivity extends AppCompatActivity {
+    Spinner courseSpinner;
+    CourseSelectorAdapter courseSelectorAdapter;
+
+    public void setCoursesWithHint(ArrayList<CourseInfo> courses) {
+        ArrayList<CourseInfo> newCourses = new ArrayList<>(courses);
+        if (newCourses.isEmpty() || newCourses.get(0).courseCode != 0) {
+            newCourses.add(0, new CourseInfo(0, 0, 0, 0.0, "Course", ""));
+        }
+        courseSelectorAdapter = new CourseSelectorAdapter(this, newCourses);
+        courseSpinner.setAdapter(courseSelectorAdapter);
+        courseSpinner.setSelection(0);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +42,7 @@ public class FacultyResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_faculty_result);
 
         FacultyDBHandler facultyDBHandler = FacultyDBHandler.getInstance(this);
-        Spinner departmentSpinner, sessionSpinner, semesterSpinner, courseSpinner;
+        Spinner departmentSpinner, sessionSpinner, semesterSpinner;
 
         departmentSpinner = findViewById(R.id.departmentSpinner);
         sessionSpinner = findViewById(R.id.sessionSpinner);
@@ -55,12 +70,31 @@ public class FacultyResultActivity extends AppCompatActivity {
         SemesterSelectorAdapter semesterSelectorAdapter = new SemesterSelectorAdapter(this, semesters);
         semesterSpinner.setAdapter(semesterSelectorAdapter);
         semesterSpinner.setSelection(0);
-        ArrayList<CourseInfo> courses = new ArrayList<>(facultyDBHandler.getCourses());
-        if (courses.get(0).courseCode != 0) {
-            courses.add(0, new CourseInfo(0, 0, 0, 0.0, "Course", ""));
-        }
-        CourseSelectorAdapter courseSelectorAdapter = new CourseSelectorAdapter(this, courses);
-        courseSpinner.setAdapter(courseSelectorAdapter);
-        courseSpinner.setSelection(0);
+        setCoursesWithHint(facultyDBHandler.getCourses());
+
+        departmentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (id != 0 && semesterSpinner.getSelectedItemId() != 0) {
+                    setCoursesWithHint(facultyDBHandler.getSemesterCourses((int) id, (int) semesterSpinner.getSelectedItemId()));
+                } else if (id != 0) {
+                    setCoursesWithHint(facultyDBHandler.getDepartmentCourses((int) id));
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+        semesterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (id != 0 && departmentSpinner.getSelectedItemId() != 0) {
+                    setCoursesWithHint(facultyDBHandler.getSemesterCourses((int) departmentSpinner.getSelectedItemId(), (int) id));
+                } else if (id != 0) {
+                    setCoursesWithHint(facultyDBHandler.getSemesterCourses((int) id));
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
     }
 }
