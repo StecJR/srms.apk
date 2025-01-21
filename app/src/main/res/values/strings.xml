@@ -51,4 +51,6 @@
     <string name="exam">Exam</string>
     <string name="gpa">GPA</string>
     <string name="cgpa">CGPA</string>
+    <string name="mark">Mark</string>
+    <string name="grade">Grade</string>
 </resources>

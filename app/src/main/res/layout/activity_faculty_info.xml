@@ -57,7 +57,6 @@
             android:textSize="@dimen/text_28" />
 
         <TableLayout
-            android:id="@+id/facultyInfoFacultyTable"
             style="@style/CustomStyle.Table.Simple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,76 +65,88 @@
             android:background="@drawable/rounded_shape"
             android:padding="10dp">
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Id" />
+                    android:text="@string/faculty_id" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="3000001" />
+                    android:text="3000001"
+                    android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Name" />
+                    android:text="@string/name" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="Jakir Hossain" />
+                    android:text="Jakir Hossain"
+                    android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Gender" />
+                    android:text="@string/gender" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="Male" />
+                    android:text="Male"
+                    android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Department" />
+                    android:text="@string/department" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="CSE" />
+                    android:text="CSE"
+                    android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Contact" />
+                    android:text="@string/contact" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="01518111222" />
+                    android:text="01518111222"
+                    android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="Email" />
+                    android:text="@string/email" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="stec.jrhossain@gmail.com" />
+                    android:text="stec.jrhossain@gmail.com"
+                    android:layout_weight="1" />
             </TableRow>
 
 

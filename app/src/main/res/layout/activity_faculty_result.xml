@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginVertical="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/search_result"
         android:textSize="24sp"
@@ -66,8 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginVertical="20dp"
         android:background="@drawable/rounded_shape"
         android:paddingVertical="10dp"
         android:scrollbars="none">
@@ -83,314 +83,256 @@
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Student ID"
+                    android:text="@string/student_id"
                     android:textAlignment="textStart"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/text_18" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Mark"
+                    android:text="@string/mark"
                     android:textAlignment="center"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/text_18" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Grade"
+                    android:text="@string/grade"
                     android:textAlignment="center"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/text_18" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="12dp">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:text="30000001"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:textAlignment="textStart" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="75"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="12dp">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:text="30000002"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:textAlignment="textStart" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="75"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="12dp">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:text="30000003"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:textAlignment="textStart" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="75"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="12dp">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:text="30000004"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:textAlignment="textStart" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="75"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="12dp">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:text="30000005"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:textAlignment="textStart" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="75"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="12dp">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:text="30000006"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:textAlignment="textStart" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="75"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="12dp">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:text="30000007"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:textAlignment="textStart" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="75"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="12dp">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:text="30000008"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:textAlignment="textStart" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="75"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="12dp">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:text="30000009"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:textAlignment="textStart" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="75"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="12dp">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:text="30000010"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:textAlignment="textStart" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="75"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
             </TableRow>
 
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="12dp">
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:text="30000011"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp" />
+                    android:textAlignment="textStart" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="75"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:text="A"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textAlignment="center" />
             </TableRow>
 
         </TableLayout>
