@@ -29,19 +29,6 @@ import java.util.Locale;
 public class StudentMarkSheetActivity extends AppCompatActivity {
     ContextThemeWrapper tableRowStyle, tableRowTextStyle;
 
-    private String getGrade(double gpa) {
-        if (gpa >= 4.0) return "A+";
-        else if (gpa >= 3.75) return "A";
-        else if (gpa >= 3.5) return "A-";
-        else if (gpa >= 3.25) return "B+";
-        else if (gpa >= 3.0) return "B";
-        else if (gpa >= 2.75) return "B-";
-        else if (gpa >= 2.5) return "C+";
-        else if (gpa >= 2.25) return "C";
-        else if (gpa >= 2.0) return "C-";
-        else return "F";
-    }
-
     private void createMarkSheetTable(TableLayout tableLayout, ArrayList<MarkSheetData> markSheet) {
         for (MarkSheetData markSheetData : markSheet) {
             TableRow tableRow;
@@ -137,7 +124,7 @@ public class StudentMarkSheetActivity extends AppCompatActivity {
                     studentDBHandler.getCourse(result.courseCode).longDesc,
                     String.valueOf(result.mark),
                     String.format(Locale.getDefault(), "%.2f", result.gpa),
-                    getGrade(result.gpa)
+                    Util.getGrade(result.gpa)
             ));
         }
 

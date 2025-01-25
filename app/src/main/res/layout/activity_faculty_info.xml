@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
-    tools:context=".activity.StudentInfoActivity">
+    tools:context=".activity.FacultyInfoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:layout_weight="1" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/guardianInfoLogoutButton"
+                android:id="@+id/facultyInfoLogoutButton"
                 style="@style/CustomStyle.Button.Blue"
                 android:text="@string/logout"
                 android:textAllCaps="false" />
@@ -73,9 +73,9 @@
                     android:text="@string/faculty_id" />
 
                 <TextView
+                    android:id="@+id/facultyInfoFacultyId"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="3000001"
                     android:layout_weight="1" />
             </TableRow>
 
@@ -87,9 +87,9 @@
                     android:text="@string/name" />
 
                 <TextView
+                    android:id="@+id/facultyInfoName"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="Jakir Hossain"
                     android:layout_weight="1" />
             </TableRow>
 
@@ -101,9 +101,9 @@
                     android:text="@string/gender" />
 
                 <TextView
+                    android:id="@+id/facultyInfoGender"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="Male"
                     android:layout_weight="1" />
             </TableRow>
 
@@ -115,9 +115,9 @@
                     android:text="@string/department" />
 
                 <TextView
+                    android:id="@+id/facultyInfoDept"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="CSE"
                     android:layout_weight="1" />
             </TableRow>
 
@@ -129,9 +129,9 @@
                     android:text="@string/contact" />
 
                 <TextView
+                    android:id="@+id/facultyInfoContact"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="01518111222"
                     android:layout_weight="1" />
             </TableRow>
 
@@ -143,9 +143,9 @@
                     android:text="@string/email" />
 
                 <TextView
+                    android:id="@+id/facultyInfoEmail"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
-                    android:text="stec.jrhossain@gmail.com"
                     android:layout_weight="1" />
             </TableRow>
 

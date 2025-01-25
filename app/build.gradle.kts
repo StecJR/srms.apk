@@ -13,22 +13,11 @@ android {
         versionCode = 1
         versionName = "0.0.0-alpha1"
         vectorDrawables.useSupportLibrary = true
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
         /*ndk {
             abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
         }*/
     }
-
-    /*signingConfigs {
-        create("release") {
-            storeFile = file("keystore.jks")
-            storePassword = "store_password"
-            keyAlias = "key_alias"
-            keyPassword = "key_password"
-        }
-    }*/
 
     buildTypes {
         release {
@@ -55,7 +44,7 @@ android {
         abi {
             isEnable = true
             reset()
-            include("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+            include("armeabi-v7a", "arm64-v8a", "x86", "x86_64", "mips64")
         }
     }
 
@@ -65,7 +54,8 @@ android {
             val versionName = android.defaultConfig.versionName
             val arch = filters.find { it.filterType == "ABI" }?.identifier ?: "universal"
             val newFileName = "${appName}_v${versionName}_${arch}.apk"
-            (this as com.android.build.gradle.internal.api.ApkVariantOutputImpl).outputFileName = newFileName
+            (this as com.android.build.gradle.internal.api.ApkVariantOutputImpl).outputFileName =
+                newFileName
         }
     }
 

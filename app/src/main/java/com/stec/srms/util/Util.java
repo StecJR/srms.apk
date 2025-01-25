@@ -74,6 +74,30 @@ public class Util {
     private static final int PERMISSION_REQUEST_CODE = 100;
     private static Drawable eyeShow, eyeHide;
 
+    public static double getGpa(int mark) {
+        if (mark >= 80) return 4.0;
+        else if (mark >= 75) return 3.75;
+        else if (mark >= 70) return 3.5;
+        else if (mark >= 65) return 3.25;
+        else if (mark >= 60) return 3.0;
+        else if (mark >= 55) return 2.75;
+        else if (mark >= 50) return 2.5;
+        else if (mark >= 45) return 2.25;
+        else if (mark >= 40) return 2.0;
+        else return 0.0;
+    }
+    public static String getGrade(double gpa) {
+        if (gpa >= 4.0) return "A+";
+        else if (gpa >= 3.75) return "A";
+        else if (gpa >= 3.5) return "A-";
+        else if (gpa >= 3.25) return "B+";
+        else if (gpa >= 3.0) return "B";
+        else if (gpa >= 2.75) return "B-";
+        else if (gpa >= 2.5) return "C+";
+        else if (gpa >= 2.25) return "C";
+        else if (gpa >= 2.0) return "C-";
+        else return "F";
+    }
     public static int stringToInt(String value, int defaultValue) {
         if (value == null || value.trim().isBlank()) return defaultValue;
         try {
@@ -82,7 +106,6 @@ public class Util {
             return defaultValue;
         }
     }
-
     public static int dpToPx(@NonNull Context context, int dp) {
         return (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,

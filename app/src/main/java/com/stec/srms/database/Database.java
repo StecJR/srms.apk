@@ -144,7 +144,6 @@ public class Database extends SQLiteOpenHelper {
                 accountType = new AccountType();
                 accountType.accountId = cursor.getInt(cursor.getColumnIndexOrThrow("accountId"));
                 accountType.accountType = cursor.getString(cursor.getColumnIndexOrThrow("accountType"));
-                return accountType;
             }
         } finally {
             if (cursor != null) {
@@ -174,7 +173,6 @@ public class Database extends SQLiteOpenHelper {
                 accountType = new AccountType();
                 accountType.accountId = cursor.getInt(cursor.getColumnIndexOrThrow("accountId"));
                 accountType.accountType = cursor.getString(cursor.getColumnIndexOrThrow("accountType"));
-                return accountType;
             }
         } finally {
             if (cursor != null) {
@@ -653,6 +651,60 @@ public class Database extends SQLiteOpenHelper {
         return isValid;
     }
 
+    public boolean isValidFaculty(int facultyId) {
+        if (facultyId == -1) return false;
+        boolean isValid = false;
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            String query = "SELECT * FROM faculties WHERE facultyId = " + facultyId + " LIMIT 1;";
+            db = this.getReadableDatabase();
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) isValid = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
+        return isValid;
+    }
+
+    public boolean isValidFaculty(int facultyId, String facultyPw) {
+        if (facultyId == -1) return false;
+        boolean isValid = false;
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            String query = "SELECT * FROM faculties WHERE facultyId = " + facultyId + " AND password = '" + facultyPw + "' LIMIT 1;";
+            db = this.getReadableDatabase();
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) isValid = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
+        return isValid;
+    }
+
+    public boolean isTableExists(String query) {
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = this.getReadableDatabase();
+            cursor = db.rawQuery(query, null);
+            return cursor.moveToFirst();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
+    }
+
     // Add: dummy data
     public void addDummyStaticData(@NonNull SQLiteDatabase db) {
         StringBuilder query;
@@ -708,6 +760,15 @@ public class Database extends SQLiteOpenHelper {
                 .append(" (1, 12, 1212, 1.5, 'DLD Lab', 'Digital Logic Design Lab'),")
                 .append(" (1, 12, 1213, 1.5, 'Phy Lab', 'Physics Lab'),")
 
+                .append(" (1, 21, 2101, 3.0, 'FP', 'Fundamentals of Programming'),")
+                .append(" (1, 21, 2102, 3.0, 'DLD', 'Digital Logic Design'),")
+                .append(" (1, 21, 2103, 3.0, 'Phy', 'Physics'),")
+                .append(" (1, 21, 2104, 3.0, 'MIDE', 'Methods of Integration, Differential Equations'),")
+                .append(" (1, 21, 2105, 2.0, 'Eng', 'Developing English Language Skills'),")
+                .append(" (1, 21, 2111, 3.0, 'FP Lab', 'Fundamentals of Programming Lab'),")
+                .append(" (1, 21, 2112, 1.5, 'DLD Lab', 'Digital Logic Design Lab'),")
+                .append(" (1, 21, 2113, 1.5, 'Phy Lab', 'Physics Lab'),")
+
                 .append(" (2, 11, 1101, 2.0, 'FCC', 'Fundamentals of Computers and Computing'),")
                 .append(" (2, 11, 1102, 3.0, 'DM', 'Discrete Mathematics'),")
                 .append(" (2, 11, 1103, 3.0, 'EC', 'Electrical Circuits'),")
@@ -724,7 +785,17 @@ public class Database extends SQLiteOpenHelper {
                 .append(" (2, 12, 1205, 2.0, 'Eng', 'Developing English Language Skills'),")
                 .append(" (2, 12, 1211, 3.0, 'FP Lab', 'Fundamentals of Programming Lab'),")
                 .append(" (2, 12, 1212, 1.5, 'DLD Lab', 'Digital Logic Design Lab'),")
-                .append(" (2, 12, 1213, 1.5, 'Phy Lab', 'Physics Lab');");
+                .append(" (2, 12, 1213, 1.5, 'Phy Lab', 'Physics Lab');")
+
+                .append(" (2, 21, 2101, 3.0, 'FP', 'Fundamentals of Programming'),")
+                .append(" (2, 21, 2102, 3.0, 'DLD', 'Digital Logic Design'),")
+                .append(" (2, 21, 2103, 3.0, 'Phy', 'Physics'),")
+                .append(" (2, 21, 2104, 3.0, 'MIDE', 'Methods of Integration, Differential Equations'),")
+                .append(" (2, 21, 2105, 2.0, 'Eng', 'Developing English Language Skills'),")
+                .append(" (2, 21, 2111, 3.0, 'FP Lab', 'Fundamentals of Programming Lab'),")
+                .append(" (2, 21, 2112, 1.5, 'DLD Lab', 'Digital Logic Design Lab'),")
+                .append(" (2, 21, 2113, 1.5, 'Phy Lab', 'Physics Lab'),");
+
         db.execSQL(query.toString());
         // Admin info table
         query = new StringBuilder("INSERT INTO admin_info VALUES")
@@ -762,91 +833,91 @@ public class Database extends SQLiteOpenHelper {
         StringBuilder query;
         // CSE student results summary table
         query = new StringBuilder("INSERT INTO results_summary_22_1 VALUES")
-                .append(" (10000001, 11, 3.5, 3.5),")
-                .append(" (10000001, 12, 3.5, 3.5),")
-                .append(" (10000002, 11, 3.5, 3.5),")
-                .append(" (10000002, 12, 3.5, 3.5);");
+                .append(" (10000001, 11, 3.75),")
+                .append(" (10000001, 12, 3.75),")
+                .append(" (10000002, 11, 3.75),")
+                .append(" (10000002, 12, 3.75);");
         db.execSQL(query.toString());
         // EEE student results summary table
         query = new StringBuilder("INSERT INTO results_summary_22_2 VALUES")
-                .append(" (20000001, 11, 3.5, 3.5),")
-                .append(" (20000001, 12, 3.5, 3.5),")
-                .append(" (20000002, 11, 3.5, 3.5),")
-                .append(" (20000002, 12, 3.5, 3.5);");
+                .append(" (20000001, 11, 3.75),")
+                .append(" (20000001, 12, 3.75),")
+                .append(" (20000002, 11, 3.75),")
+                .append(" (20000002, 12, 3.75);");
         db.execSQL(query.toString());
 
         // CSE student results table
         query = new StringBuilder("INSERT INTO results_22_1 VALUES")
-                .append(" (10000001, 11, 1101, 76, 3.5),")
-                .append(" (10000001, 11, 1102, 76, 3.5),")
-                .append(" (10000001, 11, 1103, 76, 3.5),")
-                .append(" (10000001, 11, 1104, 76, 3.5),")
-                .append(" (10000001, 11, 1105, 76, 3.5),")
-                .append(" (10000001, 11, 1111, 76, 3.5),")
-                .append(" (10000001, 11, 1113, 76, 3.5),")
-                .append(" (10000001, 11, 1114, 76, 3.5),")
-                .append(" (10000002, 11, 1101, 76, 3.5),")
-                .append(" (10000002, 11, 1102, 76, 3.5),")
-                .append(" (10000002, 11, 1103, 76, 3.5),")
-                .append(" (10000002, 11, 1104, 76, 3.5),")
-                .append(" (10000002, 11, 1105, 76, 3.5),")
-                .append(" (10000002, 11, 1111, 76, 3.5),")
-                .append(" (10000002, 11, 1113, 76, 3.5),")
-                .append(" (10000002, 11, 1114, 76, 3.5),")
+                .append(" (10000001, 11, 1101, 76, 3.75),")
+                .append(" (10000001, 11, 1102, 76, 3.75),")
+                .append(" (10000001, 11, 1103, 76, 3.75),")
+                .append(" (10000001, 11, 1104, 76, 3.75),")
+                .append(" (10000001, 11, 1105, 76, 3.75),")
+                .append(" (10000001, 11, 1111, 76, 3.75),")
+                .append(" (10000001, 11, 1113, 76, 3.75),")
+                .append(" (10000001, 11, 1114, 76, 3.75),")
+                .append(" (10000002, 11, 1101, 76, 3.75),")
+                .append(" (10000002, 11, 1102, 76, 3.75),")
+                .append(" (10000002, 11, 1103, 76, 3.75),")
+                .append(" (10000002, 11, 1104, 76, 3.75),")
+                .append(" (10000002, 11, 1105, 76, 3.75),")
+                .append(" (10000002, 11, 1111, 76, 3.75),")
+                .append(" (10000002, 11, 1113, 76, 3.75),")
+                .append(" (10000002, 11, 1114, 76, 3.75),")
 
-                .append(" (10000001, 12, 1201, 76, 3.5),")
-                .append(" (10000001, 12, 1202, 76, 3.5),")
-                .append(" (10000001, 12, 1203, 76, 3.5),")
-                .append(" (10000001, 12, 1204, 76, 3.5),")
-                .append(" (10000001, 12, 1205, 76, 3.5),")
-                .append(" (10000001, 12, 1211, 76, 3.5),")
-                .append(" (10000001, 12, 1212, 76, 3.5),")
-                .append(" (10000001, 12, 1213, 76, 3.5),")
-                .append(" (10000002, 12, 1201, 76, 3.5),")
-                .append(" (10000002, 12, 1202, 76, 3.5),")
-                .append(" (10000002, 12, 1203, 76, 3.5),")
-                .append(" (10000002, 12, 1204, 76, 3.5),")
-                .append(" (10000002, 12, 1205, 76, 3.5),")
-                .append(" (10000002, 12, 1211, 76, 3.5),")
-                .append(" (10000002, 12, 1212, 76, 3.5),")
-                .append(" (10000002, 12, 1213, 76, 3.5);");
+                .append(" (10000001, 12, 1201, 76, 3.75),")
+                .append(" (10000001, 12, 1202, 76, 3.75),")
+                .append(" (10000001, 12, 1203, 76, 3.75),")
+                .append(" (10000001, 12, 1204, 76, 3.75),")
+                .append(" (10000001, 12, 1205, 76, 3.75),")
+                .append(" (10000001, 12, 1211, 76, 3.75),")
+                .append(" (10000001, 12, 1212, 76, 3.75),")
+                .append(" (10000001, 12, 1213, 76, 3.75),")
+                .append(" (10000002, 12, 1201, 76, 3.75),")
+                .append(" (10000002, 12, 1202, 76, 3.75),")
+                .append(" (10000002, 12, 1203, 76, 3.75),")
+                .append(" (10000002, 12, 1204, 76, 3.75),")
+                .append(" (10000002, 12, 1205, 76, 3.75),")
+                .append(" (10000002, 12, 1211, 76, 3.75),")
+                .append(" (10000002, 12, 1212, 76, 3.75),")
+                .append(" (10000002, 12, 1213, 76, 3.75);");
         db.execSQL(query.toString());
 
         // EEE student results table
         query = new StringBuilder("INSERT INTO results_22_2 VALUES")
-                .append(" (20000001, 11, 1101, 76, 3.5),")
-                .append(" (20000001, 11, 1102, 76, 3.5),")
-                .append(" (20000001, 11, 1103, 76, 3.5),")
-                .append(" (20000001, 11, 1104, 76, 3.5),")
-                .append(" (20000001, 11, 1105, 76, 3.5),")
-                .append(" (20000001, 11, 1111, 76, 3.5),")
-                .append(" (20000001, 11, 1113, 76, 3.5),")
-                .append(" (20000001, 11, 1114, 76, 3.5),")
-                .append(" (20000002, 11, 1101, 76, 3.5),")
-                .append(" (20000002, 11, 1102, 76, 3.5),")
-                .append(" (20000002, 11, 1103, 76, 3.5),")
-                .append(" (20000002, 11, 1104, 76, 3.5),")
-                .append(" (20000002, 11, 1105, 76, 3.5),")
-                .append(" (20000002, 11, 1111, 76, 3.5),")
-                .append(" (20000002, 11, 1113, 76, 3.5),")
-                .append(" (20000002, 11, 1114, 76, 3.5),")
+                .append(" (20000001, 11, 1101, 76, 3.75),")
+                .append(" (20000001, 11, 1102, 76, 3.75),")
+                .append(" (20000001, 11, 1103, 76, 3.75),")
+                .append(" (20000001, 11, 1104, 76, 3.75),")
+                .append(" (20000001, 11, 1105, 76, 3.75),")
+                .append(" (20000001, 11, 1111, 76, 3.75),")
+                .append(" (20000001, 11, 1113, 76, 3.75),")
+                .append(" (20000001, 11, 1114, 76, 3.75),")
+                .append(" (20000002, 11, 1101, 76, 3.75),")
+                .append(" (20000002, 11, 1102, 76, 3.75),")
+                .append(" (20000002, 11, 1103, 76, 3.75),")
+                .append(" (20000002, 11, 1104, 76, 3.75),")
+                .append(" (20000002, 11, 1105, 76, 3.75),")
+                .append(" (20000002, 11, 1111, 76, 3.75),")
+                .append(" (20000002, 11, 1113, 76, 3.75),")
+                .append(" (20000002, 11, 1114, 76, 3.75),")
 
-                .append(" (20000001, 12, 1201, 76, 3.5),")
-                .append(" (20000001, 12, 1202, 76, 3.5),")
-                .append(" (20000001, 12, 1203, 76, 3.5),")
-                .append(" (20000001, 12, 1204, 76, 3.5),")
-                .append(" (20000001, 12, 1205, 76, 3.5),")
-                .append(" (20000001, 12, 1211, 76, 3.5),")
-                .append(" (20000001, 12, 1212, 76, 3.5),")
-                .append(" (20000001, 12, 1213, 76, 3.5),")
-                .append(" (20000002, 12, 1201, 76, 3.5),")
-                .append(" (20000002, 12, 1202, 76, 3.5),")
-                .append(" (20000002, 12, 1203, 76, 3.5),")
-                .append(" (20000002, 12, 1204, 76, 3.5),")
-                .append(" (20000002, 12, 1205, 76, 3.5),")
-                .append(" (20000002, 12, 1211, 76, 3.5),")
-                .append(" (20000002, 12, 1212, 76, 3.5),")
-                .append(" (20000002, 12, 1213, 76, 3.5);");
+                .append(" (20000001, 12, 1201, 76, 3.75),")
+                .append(" (20000001, 12, 1202, 76, 3.75),")
+                .append(" (20000001, 12, 1203, 76, 3.75),")
+                .append(" (20000001, 12, 1204, 76, 3.75),")
+                .append(" (20000001, 12, 1205, 76, 3.75),")
+                .append(" (20000001, 12, 1211, 76, 3.75),")
+                .append(" (20000001, 12, 1212, 76, 3.75),")
+                .append(" (20000001, 12, 1213, 76, 3.75),")
+                .append(" (20000002, 12, 1201, 76, 3.75),")
+                .append(" (20000002, 12, 1202, 76, 3.75),")
+                .append(" (20000002, 12, 1203, 76, 3.75),")
+                .append(" (20000002, 12, 1204, 76, 3.75),")
+                .append(" (20000002, 12, 1205, 76, 3.75),")
+                .append(" (20000002, 12, 1211, 76, 3.75),")
+                .append(" (20000002, 12, 1212, 76, 3.75),")
+                .append(" (20000002, 12, 1213, 76, 3.75);");
         db.execSQL(query.toString());
     }
 

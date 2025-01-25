@@ -53,4 +53,5 @@
     <string name="cgpa">CGPA</string>
     <string name="mark">Mark</string>
     <string name="grade">Grade</string>
+    <string name="cancel">Cancel</string>
 </resources>

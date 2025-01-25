@@ -25,6 +25,76 @@ public class StudentDBHandler extends Database {
         return studentDBHandlerInstance;
     }
 
+    public ArrayList<StudentInfo> getStudents(int deptId) {
+        ArrayList<StudentInfo> students = new ArrayList<>();
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        StudentInfo info = null;
+        try {
+            String query = "SELECT * FROM students_" + deptId + ";";
+            db = this.getReadableDatabase();
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    info = new StudentInfo();
+                    info.studentId = cursor.getInt(cursor.getColumnIndexOrThrow("studentId"));
+                    info.name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                    info.birthDate = cursor.getString(cursor.getColumnIndexOrThrow("birthDate"));
+                    info.gender = cursor.getString(cursor.getColumnIndexOrThrow("gender"));
+                    info.deptId = cursor.getInt(cursor.getColumnIndexOrThrow("deptId"));
+                    info.sessionId = cursor.getInt(cursor.getColumnIndexOrThrow("sessionId"));
+                    info.contact = cursor.getString(cursor.getColumnIndexOrThrow("contact"));
+                    info.email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+                    info.address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
+                    info.guardianId = cursor.getInt(cursor.getColumnIndexOrThrow("guardianId"));
+                    info.password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+                    students.add(info);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
+        return students;
+    }
+
+    public ArrayList<StudentInfo> getStudents(int deptId, int sessionId) {
+        ArrayList<StudentInfo> students = new ArrayList<>();
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        StudentInfo info = null;
+        try {
+            String query = "SELECT * FROM students_" + deptId + " WHERE sessionId = " + sessionId + ";";
+            db = this.getReadableDatabase();
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    info = new StudentInfo();
+                    info.studentId = cursor.getInt(cursor.getColumnIndexOrThrow("studentId"));
+                    info.name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                    info.birthDate = cursor.getString(cursor.getColumnIndexOrThrow("birthDate"));
+                    info.gender = cursor.getString(cursor.getColumnIndexOrThrow("gender"));
+                    info.deptId = cursor.getInt(cursor.getColumnIndexOrThrow("deptId"));
+                    info.sessionId = cursor.getInt(cursor.getColumnIndexOrThrow("sessionId"));
+                    info.contact = cursor.getString(cursor.getColumnIndexOrThrow("contact"));
+                    info.email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+                    info.address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
+                    info.guardianId = cursor.getInt(cursor.getColumnIndexOrThrow("guardianId"));
+                    info.password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+                    students.add(info);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
+        return students;
+    }
+
     public StudentInfo getStudentinfo(int deptId, int studentId) {
         SQLiteDatabase db = null;
         Cursor cursor = null;
@@ -99,7 +169,6 @@ public class StudentDBHandler extends Database {
                     summary.studentId = cursor.getInt(cursor.getColumnIndexOrThrow("studentId"));
                     summary.semesterId = cursor.getInt(cursor.getColumnIndexOrThrow("semesterId"));
                     summary.gpa = cursor.getDouble(cursor.getColumnIndexOrThrow("gpa"));
-                    summary.cgpa = cursor.getDouble(cursor.getColumnIndexOrThrow("cgpa"));
                     summaries.add(summary);
                 } while (cursor.moveToNext());
             }

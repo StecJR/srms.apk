@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class StudentResultActivity extends AppCompatActivity {
     ContextThemeWrapper tableRowStyle, tableRowTextStyle;
 
-    private void createTableRow(TableLayout tableLayout, int semesterId, String semesterDesc, String gpa, String cgpa) {
+    private void createTableRow(TableLayout tableLayout, int semesterId, String semesterDesc, double gpa) {
         TableRow tableRow;
         TableRow.LayoutParams weightParam, widthParam;
         TextView examTextView, gpaTextView, cgpaTextView;
@@ -42,15 +42,9 @@ public class StudentResultActivity extends AppCompatActivity {
 
         gpaTextView = new TextView(tableRowTextStyle);
         gpaTextView.setLayoutParams(widthParam);
-        gpaTextView.setText(gpa);
+        gpaTextView.setText(String.valueOf(gpa));
         gpaTextView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
         tableRow.addView(gpaTextView);
-
-        cgpaTextView = new TextView(tableRowTextStyle);
-        cgpaTextView.setLayoutParams(widthParam);
-        cgpaTextView.setText(cgpa);
-        cgpaTextView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
-        tableRow.addView(cgpaTextView);
 
         tableRow.setOnClickListener(view -> {
             Intent intent = new Intent(this, StudentMarkSheetActivity.class);
@@ -69,8 +63,8 @@ public class StudentResultActivity extends AppCompatActivity {
         boolean hideTopButtons = intent.getBooleanExtra("hideTopButtons", false);
         tableRowStyle = new ContextThemeWrapper(this, R.style.CustomStyle_Table_Simple_SimpleRow);
         tableRowTextStyle = new ContextThemeWrapper(this, R.style.CustomStyle_Table_Simple_SimpleRowText);
-        StudentDBHandler studentDBHandler = StudentDBHandler.getInstance(getApplicationContext());
-        SessionManager sessionManager = SessionManager.getInstance(getApplicationContext());
+        StudentDBHandler studentDBHandler = StudentDBHandler.getInstance(this);
+        SessionManager sessionManager = SessionManager.getInstance(this);
 
         // Verify or goto login page
         String accountType = sessionManager.validSession();
@@ -108,7 +102,8 @@ public class StudentResultActivity extends AppCompatActivity {
                 studentInfo.sessionId, studentInfo.deptId, studentInfo.studentId);
 
         for (ResultsSummary summary : resultsSummaries) {
-            createTableRow(table, summary.semesterId, studentDBHandler.getSemester(summary.semesterId).longDesc, String.valueOf(summary.gpa), String.valueOf(summary.cgpa));
+            if (summary.gpa == 0.0) continue;
+            createTableRow(table, summary.semesterId, studentDBHandler.getSemester(summary.semesterId).longDesc, summary.gpa);
         }
     }
 }

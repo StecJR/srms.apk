@@ -33,7 +33,7 @@ public class CourseSelectorAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return courses.get(position).courseCode;
     }
 
     @Override

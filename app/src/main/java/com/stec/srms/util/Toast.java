@@ -17,6 +17,18 @@ public class Toast {
     public static void generalError(@NonNull Context context, String message) {
         android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
     }
+    public static void databaseError(@NonNull Context context, String message) {
+        android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
+    }
+    public static void generalWarning(@NonNull Context context, String message) {
+        android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
+    }
+    public static void generalInfo(@NonNull Context context, String message) {
+        android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
+    }
+    public static void databaseInfo(@NonNull Context context, String message) {
+        android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
+    }
     public static void generalSuccess(@NonNull Context context, String message) {
         android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
     }

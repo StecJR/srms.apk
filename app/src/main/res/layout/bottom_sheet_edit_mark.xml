@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/top_rounded_shape"
+    android:backgroundTint="@color/yellow_dark"
+    android:orientation="vertical"
+    android:paddingTop="30dp"
+    android:paddingBottom="50dp">
+
+    <EditText
+        android:id="@+id/bottomSheetEditMarkInput"
+        style="@style/CustomStyle.Input.Text"
+        android:layout_marginTop="10dp"
+        android:autofillHints="name"
+        android:hint="@string/mark" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:paddingHorizontal="20dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bottomSheetEditMarkCancelButton"
+            style="@style/CustomStyle.Button.Blue"
+            android:layout_gravity="center"
+            android:background="@drawable/button"
+            android:text="@string/cancel"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bottomSheetEditMarkSaveButton"
+            style="@style/CustomStyle.Button.Blue"
+            android:layout_gravity="center"
+            android:background="@drawable/button"
+            android:text="@string/save"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</LinearLayout>
