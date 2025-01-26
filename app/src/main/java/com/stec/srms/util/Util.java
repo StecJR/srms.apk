@@ -12,7 +12,6 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.widget.EditText;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -27,7 +26,6 @@ import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfPageEventHelper;
-import com.lowagie.text.pdf.PdfTable;
 import com.lowagie.text.pdf.PdfWriter;
 import com.stec.srms.R;
 import com.stec.srms.database.StudentDBHandler;
@@ -45,7 +43,6 @@ class FooterEvent extends PdfPageEventHelper {
     public FooterEvent() {
         this.footerFont = new Font(Font.COURIER, 10, Font.NORMAL, new Color(80, 100, 150, 150));
     }
-
     @Override
     public void onEndPage(PdfWriter writer, Document document) {
         PdfContentByte canvas = writer.getDirectContent();
@@ -102,11 +99,11 @@ public class Util {
         if (value == null || value.trim().isBlank()) return defaultValue;
         try {
             return Integer.parseInt(value.trim());
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             return defaultValue;
         }
     }
-    public static int dpToPx(@NonNull Context context, int dp) {
+    public static int dpToPx(Context context, int dp) {
         return (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 dp,
@@ -141,7 +138,7 @@ public class Util {
         editText.setTypeface(typeFace);
     }
     @SuppressLint("ClickableViewAccessibility")
-    public static void addPasswordVisibilityToggler(@NonNull EditText editText, @NonNull Context context) {
+    public static void togglePasswordVisibility(EditText editText, Context context) {
         if (eyeShow == null || eyeHide == null) {
             eyeShow = ContextCompat.getDrawable(context, R.drawable.eye_password_show);
             eyeHide = ContextCompat.getDrawable(context, R.drawable.eye_password_hide);
@@ -158,7 +155,7 @@ public class Util {
         });
     }
 
-    // Generate mark sheet PDF file and save it to the device download folder
+    // Generate and save mark sheet PDF
     public static boolean checkStoragePermission(Context context) {
         return ContextCompat.checkSelfPermission(
                 context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -175,12 +172,11 @@ public class Util {
         File downloadsDir, file;
         try {
             downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-            file = new File(downloadsDir, "" + studentInfo.studentId + "_" + semester + "_mark sheet.pdf");
+            file = new File(downloadsDir, studentInfo.studentId + "_" + semester + "_mark sheet.pdf");
         } catch (Exception e) {
             Toast.generalError(context, "Unable to save mark sheet");
             return;
         }
-
         try {
             StudentDBHandler studentDBHandler = StudentDBHandler.getInstance(context);
             Document document = new Document(PageSize.A4);
@@ -208,8 +204,6 @@ public class Util {
             table.setSpacingBefore(10);
             table.setSpacingAfter(10);
             table.setWidths(new float[]{1, 4, 1, 1, 1});
-            // table.setHorizontalAlignment(Element.ALIGN_CENTER);
-            // table.getDefaultCell().setPadding(5);
 
             PdfPCell codeCell, courseCell, markCell, gpaCell, gradeCell;
             codeCell = new PdfPCell(new Phrase("Code", subHeadingFont));
@@ -269,25 +263,9 @@ public class Util {
                 table.addCell(gpaCell);
                 table.addCell(gradeCell);
             }
-            /*
-            table.addCell("Course Code");
-            table.addCell("Course Description");
-            table.addCell("Mark");
-            table.addCell("GPA");
-            table.addCell("Grade");
-            for (MarkSheetData markSheetData : markSheet) {
-                table.addCell(markSheetData.courseCode);
-                table.addCell(markSheetData.courseDesc);
-                table.addCell(markSheetData.mark);
-                table.addCell(markSheetData.gpa);
-                table.addCell(markSheetData.grade);
-            }
-            */
             document.add(table);
-
             document.close();
         } catch (Exception e) {
-            e.printStackTrace();
             Toast.generalError(context, "Unable to save mark sheet");
         }
     }

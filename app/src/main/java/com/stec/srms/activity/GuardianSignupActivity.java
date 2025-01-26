@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.stec.srms.R;
 
 public class GuardianSignupActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

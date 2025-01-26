@@ -16,10 +16,9 @@ public class OnboardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_onboarding);
-
         AppCompatButton onboardingExitButton = findViewById(R.id.onboardingExitButton);
         onboardingExitButton.setOnClickListener(v -> {
-            SessionManager.getInstance(getApplicationContext()).turnOffFirstTime();
+            SessionManager.getInstance(this).turnOffFirstTime();
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });

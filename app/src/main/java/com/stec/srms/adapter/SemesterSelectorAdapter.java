@@ -13,8 +13,8 @@ import com.stec.srms.model.SemesterInfo;
 import java.util.ArrayList;
 
 public class SemesterSelectorAdapter extends BaseAdapter {
-    private Context context;
-    private ArrayList<SemesterInfo> semesters;
+    private final Context context;
+    private final ArrayList<SemesterInfo> semesters;
 
     public SemesterSelectorAdapter(Context context, ArrayList<SemesterInfo> semesters) {
         this.context = context;
@@ -25,17 +25,14 @@ public class SemesterSelectorAdapter extends BaseAdapter {
     public int getCount() {
         return semesters.size();
     }
-
     @Override
     public Object getItem(int position) {
         return semesters.get(position);
     }
-
     @Override
     public long getItemId(int position) {
         return semesters.get(position).semesterId;
     }
-
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         if (view == null) {

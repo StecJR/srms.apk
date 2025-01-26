@@ -1,6 +1,6 @@
 package com.stec.srms.fragment;
 
-import static com.stec.srms.util.Util.addPasswordVisibilityToggler;
+import static com.stec.srms.util.Util.togglePasswordVisibility;
 import static com.stec.srms.util.Util.stringToInt;
 
 import android.content.Context;
@@ -46,42 +46,35 @@ public class LoginStudentFragment extends Fragment {
         loginStudentCreateAccountButton = view.findViewById(R.id.loginStudentCreateAccountButton);
 
         ArrayList<DeptInfo> departments = new ArrayList<>(studentDBHandler.getDepartments());
-        if (departments.get(0).deptId != 0) {
-            departments.add(0, new DeptInfo(0, "Department", ""));
-        }
+        if (departments.get(0).deptId != -1) departments.add(0, new DeptInfo(-1, "Department", ""));
         DeptSelectorAdapter deptSelectorAdapter = new DeptSelectorAdapter(context, departments);
         departmentSpinner.setAdapter(deptSelectorAdapter);
         departmentSpinner.setSelection(0);
 
         loginStudentLoginButton.setOnClickListener(v -> {
             int deptId = (int) departmentSpinner.getSelectedItemId();
-            if (deptId == 0) {
+            if (deptId == -1) {
                 Toast.generalError(context, "Select your department");
                 return;
             }
             String studentId = loginStudentIdInput.getText().toString().trim();
             String studentPw = loginStudentPwInput.getText().toString().trim();
             boolean isValid = !studentId.isBlank() && !studentPw.isBlank() &&
-                    studentDBHandler.isValidStudent(deptId, stringToInt(studentId, -1), studentPw);
+                    studentDBHandler.isValidStudent(context, deptId, stringToInt(studentId, -1), studentPw);
             if (!isValid) {
                 Toast.credentialError(context);
                 return;
             }
-            // Save session info
+
             SessionManager sessionManager = SessionManager.getInstance(context);
             sessionManager.createStudentSession(deptId, stringToInt(studentId, -1), 15);
             startActivity(new Intent(context, StudentInfoActivity.class));
             activity.finish();
         });
-        loginStudentForgetPwButton.setOnClickListener(v -> {
-            // startActivity(new Intent(context, StudentInfoActivity.class));
-            // activity.finish();
-        });
-        loginStudentCreateAccountButton.setOnClickListener(v -> {
-            startActivity(new Intent(context, StudentSignupActivity.class));
-        });
+        loginStudentForgetPwButton.setOnClickListener(v -> {});
+        loginStudentCreateAccountButton.setOnClickListener(v -> startActivity(new Intent(context, StudentSignupActivity.class)));
 
-        addPasswordVisibilityToggler(loginStudentPwInput, context);
+        togglePasswordVisibility(loginStudentPwInput, context);
         return view;
     }
 }

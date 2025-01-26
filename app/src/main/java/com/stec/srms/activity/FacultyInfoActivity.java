@@ -80,9 +80,7 @@ public class FacultyInfoActivity extends AppCompatActivity {
         facultyInfoContact.setText(facultyInfo.contact);
         facultyInfoEmail.setText(facultyInfo.email);
 
-        facultyInfoResultButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, FacultyResultActivity.class));
-        });
+        facultyInfoResultButton.setOnClickListener(v -> startActivity(new Intent(this, FacultyResultActivity.class)));
         facultyInfoLogoutButton.setOnClickListener(v -> {
             sessionManager.deleteFacultySession();
             startActivity(new Intent(this, LoginActivity.class));

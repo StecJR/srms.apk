@@ -26,10 +26,10 @@ public class StudentInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_student_info);
-        Intent intent = getIntent();
-        boolean hideTopButtons = intent.getBooleanExtra("hideTopButtons", false);
         StudentDBHandler studentDBHandler = StudentDBHandler.getInstance(this);
         SessionManager sessionManager = SessionManager.getInstance(this);
+        Intent intent = getIntent();
+        boolean hideTopButtons = intent.getBooleanExtra("hideTopButtons", false);
 
         // Verify or goto login page
         String accountType = sessionManager.validSession();
@@ -55,7 +55,7 @@ public class StudentInfoActivity extends AppCompatActivity {
         // Handle invalid student session
         StudentSession studentSession = sessionManager.getStudentSession();
         if (studentSession == null ||
-                !studentDBHandler.isValidStudent(studentSession.deptId, studentSession.studentId)) {
+                !studentDBHandler.isValidStudent(this, studentSession.deptId, studentSession.studentId)) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
             return;
@@ -121,9 +121,7 @@ public class StudentInfoActivity extends AppCompatActivity {
             studentInfoGuardianInfoTable.setVisibility(View.GONE);
         }
 
-        studentInfoResultButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, StudentResultActivity.class));
-        });
+        studentInfoResultButton.setOnClickListener(v -> startActivity(new Intent(this, StudentResultActivity.class)));
         studentInfoLogoutButton.setOnClickListener(v -> {
             sessionManager.deleteStudentSession();
             startActivity(new Intent(this, LoginActivity.class));

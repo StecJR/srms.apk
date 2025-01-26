@@ -17,24 +17,22 @@ public class StudentDBHandler extends Database {
     public StudentDBHandler(Context context) {
         super(context);
     }
-
     public static synchronized StudentDBHandler getInstance(Context context) {
-        if (studentDBHandlerInstance == null) {
-            studentDBHandlerInstance = new StudentDBHandler(context.getApplicationContext());
-        }
+        if (studentDBHandlerInstance == null) studentDBHandlerInstance = new StudentDBHandler(context.getApplicationContext());
         return studentDBHandlerInstance;
     }
 
     public ArrayList<StudentInfo> getStudents(int deptId) {
-        ArrayList<StudentInfo> students = new ArrayList<>();
         SQLiteDatabase db = null;
         Cursor cursor = null;
-        StudentInfo info = null;
         try {
+            db = this.getReadableDatabase();
             String query = "SELECT * FROM students_" + deptId + ";";
-            db = this.getReadableDatabase();
             cursor = db.rawQuery(query, null);
+            ArrayList<StudentInfo> students = null;
             if (cursor.moveToFirst()) {
+                students = new ArrayList<>();
+                StudentInfo info;
                 do {
                     info = new StudentInfo();
                     info.studentId = cursor.getInt(cursor.getColumnIndexOrThrow("studentId"));
@@ -51,25 +49,25 @@ public class StudentDBHandler extends Database {
                     students.add(info);
                 } while (cursor.moveToNext());
             }
+            return students;
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         } finally {
             if (cursor != null) cursor.close();
             if (db != null) db.close();
         }
-        return students;
     }
-
     public ArrayList<StudentInfo> getStudents(int deptId, int sessionId) {
-        ArrayList<StudentInfo> students = new ArrayList<>();
         SQLiteDatabase db = null;
         Cursor cursor = null;
-        StudentInfo info = null;
         try {
-            String query = "SELECT * FROM students_" + deptId + " WHERE sessionId = " + sessionId + ";";
             db = this.getReadableDatabase();
+            String query = "SELECT * FROM students_" + deptId + " WHERE sessionId = " + sessionId + ";";
             cursor = db.rawQuery(query, null);
+            ArrayList<StudentInfo> students = null;
             if (cursor.moveToFirst()) {
+                students = new ArrayList<>();
+                StudentInfo info;
                 do {
                     info = new StudentInfo();
                     info.studentId = cursor.getInt(cursor.getColumnIndexOrThrow("studentId"));
@@ -86,23 +84,23 @@ public class StudentDBHandler extends Database {
                     students.add(info);
                 } while (cursor.moveToNext());
             }
+            return students;
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         } finally {
             if (cursor != null) cursor.close();
             if (db != null) db.close();
         }
-        return students;
     }
 
     public StudentInfo getStudentinfo(int deptId, int studentId) {
         SQLiteDatabase db = null;
         Cursor cursor = null;
-        StudentInfo info = null;
         try {
-            String query = "SELECT * FROM students_" + deptId + " WHERE studentId = " + studentId + " LIMIT 1;";
             db = this.getReadableDatabase();
+            String query = "SELECT * FROM students_" + deptId + " WHERE studentId = " + studentId + " LIMIT 1;";
             cursor = db.rawQuery(query, null);
+            StudentInfo info = null;
             if (cursor.moveToFirst()) {
                 info = new StudentInfo();
                 info.studentId = cursor.getInt(cursor.getColumnIndexOrThrow("studentId"));
@@ -117,23 +115,22 @@ public class StudentDBHandler extends Database {
                 info.guardianId = cursor.getInt(cursor.getColumnIndexOrThrow("guardianId"));
                 info.password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
             }
+            return info;
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         } finally {
             if (cursor != null) cursor.close();
             if (db != null) db.close();
         }
-        return info;
     }
-
     public GuardianInfo getGuardianinfo(int guardianId) {
         SQLiteDatabase db = null;
         Cursor cursor = null;
-        GuardianInfo info = null;
         try {
-            String query = "SELECT * FROM guardians WHERE guardianId = " + guardianId + " LIMIT 1;";
             db = this.getReadableDatabase();
+            String query = "SELECT * FROM guardians WHERE guardianId = " + guardianId + " LIMIT 1;";
             cursor = db.rawQuery(query, null);
+            GuardianInfo info = null;
             if (cursor.moveToFirst()) {
                 info = new GuardianInfo();
                 info.guardianId = cursor.getInt(cursor.getColumnIndexOrThrow("guardianId"));
@@ -145,54 +142,28 @@ public class StudentDBHandler extends Database {
                 info.deptId = cursor.getInt(cursor.getColumnIndexOrThrow("deptId"));
                 info.password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
             }
+            return info;
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         } finally {
             if (cursor != null) cursor.close();
             if (db != null) db.close();
         }
-        return info;
-    }
-
-    public ArrayList<ResultsSummary> getResultsSummaries(int sessionId, int deptId, int studentId) {
-        SQLiteDatabase db = null;
-        Cursor cursor = null;
-        ArrayList<ResultsSummary> summaries = null;
-        try {
-            String query = "SELECT * FROM results_summary_" + sessionId + "_" + deptId + " WHERE studentId = " + studentId + " ORDER BY semesterId;";
-            db = this.getReadableDatabase();
-            cursor = db.rawQuery(query, null);
-            if (cursor.moveToFirst()) {
-                summaries = new ArrayList<>();
-                do {
-                    ResultsSummary summary = new ResultsSummary();
-                    summary.studentId = cursor.getInt(cursor.getColumnIndexOrThrow("studentId"));
-                    summary.semesterId = cursor.getInt(cursor.getColumnIndexOrThrow("semesterId"));
-                    summary.gpa = cursor.getDouble(cursor.getColumnIndexOrThrow("gpa"));
-                    summaries.add(summary);
-                } while (cursor.moveToNext());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (cursor != null) cursor.close();
-            if (db != null) db.close();
-        }
-        return summaries;
     }
 
     public ArrayList<Results> getResults(int sessionId, int deptId, int studentId, int semesterId) {
         SQLiteDatabase db = null;
         Cursor cursor = null;
-        ArrayList<Results> results = null;
         try {
-            String query = "SELECT * FROM results_" + sessionId + "_" + deptId + " WHERE studentId = " + studentId + " AND semesterId = " + semesterId + " ORDER BY courseCode;";
             db = this.getReadableDatabase();
+            String query = "SELECT * FROM results_" + sessionId + "_" + deptId + " WHERE studentId = " + studentId + " AND semesterId = " + semesterId + " ORDER BY courseCode;";
             cursor = db.rawQuery(query, null);
+            ArrayList<Results> results = null;
             if (cursor.moveToFirst()) {
                 results = new ArrayList<>();
+                Results result;
                 do {
-                    Results result = new Results();
+                    result = new Results();
                     result.studentId = cursor.getInt(cursor.getColumnIndexOrThrow("studentId"));
                     result.semesterId = cursor.getInt(cursor.getColumnIndexOrThrow("semesterId"));
                     result.courseCode = cursor.getInt(cursor.getColumnIndexOrThrow("courseCode"));
@@ -201,12 +172,40 @@ public class StudentDBHandler extends Database {
                     results.add(result);
                 } while (cursor.moveToNext());
             }
+            return results;
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         } finally {
             if (cursor != null) cursor.close();
             if (db != null) db.close();
         }
-        return results;
+    }
+    public ArrayList<ResultsSummary> getResultsSummaries(int sessionId, int deptId, int studentId) {
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = this.getReadableDatabase();
+            String query = "SELECT * FROM results_summary_" + sessionId + "_" + deptId + " WHERE studentId = " + studentId + " ORDER BY semesterId;";
+            cursor = db.rawQuery(query, null);
+            ArrayList<ResultsSummary> summaries = null;
+            if (cursor.moveToFirst()) {
+                summaries = new ArrayList<>();
+                ResultsSummary summary;
+                do {
+                    summary = new ResultsSummary();
+                    summary.studentId = cursor.getInt(cursor.getColumnIndexOrThrow("studentId"));
+                    summary.semesterId = cursor.getInt(cursor.getColumnIndexOrThrow("semesterId"));
+                    summary.gpa = cursor.getDouble(cursor.getColumnIndexOrThrow("gpa"));
+                    summaries.add(summary);
+                } while (cursor.moveToNext());
+            }
+            return summaries;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
+
     }
 }

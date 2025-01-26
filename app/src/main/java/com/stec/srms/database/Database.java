@@ -22,6 +22,7 @@ import com.stec.srms.model.ResultsSummary;
 import com.stec.srms.model.SemesterInfo;
 import com.stec.srms.model.SessionInfo;
 import com.stec.srms.model.StudentInfo;
+import com.stec.srms.util.Toast;
 
 import java.util.ArrayList;
 
@@ -39,11 +40,8 @@ public class Database extends SQLiteOpenHelper {
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
     public static synchronized Database getInstance(Context context) {
-        if (databaseInstance == null) {
-            databaseInstance = new Database(context.getApplicationContext());
-        }
+        if (databaseInstance == null) databaseInstance = new Database(context.getApplicationContext());
         return databaseInstance;
     }
 
@@ -52,75 +50,61 @@ public class Database extends SQLiteOpenHelper {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(AccountType.getQuery());
     }
-
     public void createDeptInfoTable(SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(DeptInfo.getQuery());
     }
-
     public void createSessionInfoTable(SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(SessionInfo.getQuery());
     }
-
     public void createSemesterInfoTable(SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(SemesterInfo.getQuery());
     }
-
     public void createCourseInfoTable(SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(CourseInfo.getQuery());
     }
-
     public void createAdminInfoTable(SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(AdminInfo.getQuery());
     }
-
     // Create: user tables
     public void createStudentsTable(int deptId, SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(StudentInfo.getQuery(deptId));
     }
-
     public void createFacultiesTable(SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(FacultyInfo.getQuery());
     }
-
     public void createGuardiansTable(SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(GuardianInfo.getQuery());
     }
-
     // Create: result tables
     public void createResultsSummaryTable(int sessionId, int deptId, SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(ResultsSummary.getQuery(sessionId, deptId));
     }
-
     public void createResultsTable(int sessionId, int deptId, SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(Results.getQuery(sessionId, deptId));
     }
-
     // Create: pending verifications tables
     public void createPendingVerificationsTable(SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(PendingVerifications.getQuery());
     }
-
     public void createPendingStudentsTable(SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(PendingStudents.getQuery());
     }
-
     public void createPendingFacultiesTable(SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(PendingFaculties.getQuery());
     }
-
     public void createPendingGuardiansTable(SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
         db.execSQL(PendingGuardians.getQuery());
@@ -146,16 +130,11 @@ public class Database extends SQLiteOpenHelper {
                 accountType.accountType = cursor.getString(cursor.getColumnIndexOrThrow("accountType"));
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         return accountType;
     }
-
     public AccountType getAccountType(String type) {
         if (accountTypes != null) {
             for (AccountType item : accountTypes) {
@@ -175,16 +154,11 @@ public class Database extends SQLiteOpenHelper {
                 accountType.accountType = cursor.getString(cursor.getColumnIndexOrThrow("accountType"));
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         return accountType;
     }
-
     public ArrayList<AccountType> getAccountTypes() {
         if (accountTypes != null) return accountTypes;
         ArrayList<AccountType> dbAccountTypes = null;
@@ -204,17 +178,12 @@ public class Database extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         accountTypes = dbAccountTypes;
         return accountTypes;
     }
-
     public DeptInfo getDepartment(int deptId) {
         if (departments != null) {
             for (DeptInfo item : departments) {
@@ -235,21 +204,16 @@ public class Database extends SQLiteOpenHelper {
                 deptInfo.longDesc = cursor.getString(cursor.getColumnIndexOrThrow("longDesc"));
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         return deptInfo;
     }
-
     public ArrayList<DeptInfo> getDepartments() {
         if (departments != null) return departments;
+        ArrayList<DeptInfo> dbDepartments = null;
         SQLiteDatabase db = null;
         Cursor cursor = null;
-        ArrayList<DeptInfo> dbDepartments = null;
         try {
             db = this.getReadableDatabase();
             String query = "SELECT * FROM dept_info;";
@@ -265,17 +229,12 @@ public class Database extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         departments = dbDepartments;
         return departments;
     }
-
     public SessionInfo getSession(int sessionId) {
         if (sessions != null) {
             for (SessionInfo item : sessions) {
@@ -295,21 +254,16 @@ public class Database extends SQLiteOpenHelper {
                 sessionInfo.desc = cursor.getString(cursor.getColumnIndexOrThrow("desc"));
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         return sessionInfo;
     }
-
     public ArrayList<SessionInfo> getSessions() {
         if (sessions != null) return sessions;
+        ArrayList<SessionInfo> dbSessions = null;
         SQLiteDatabase db = null;
         Cursor cursor = null;
-        ArrayList<SessionInfo> dbSessions = null;
         try {
             db = this.getReadableDatabase();
             String query = "SELECT * FROM session_info;";
@@ -324,17 +278,12 @@ public class Database extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         sessions = dbSessions;
         return sessions;
     }
-
     public CourseInfo getCourse(int courseCode) {
         if (courses != null) {
             for (CourseInfo item : courses) {
@@ -358,21 +307,16 @@ public class Database extends SQLiteOpenHelper {
                 course.longDesc = cursor.getString(cursor.getColumnIndexOrThrow("longDesc"));
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         return course;
     }
-
     public ArrayList<CourseInfo> getCourses() {
         if (courses != null) return courses;
+        ArrayList<CourseInfo> dbCourses = null;
         SQLiteDatabase db = null;
         Cursor cursor = null;
-        ArrayList<CourseInfo> dbCourses = null;
         try {
             db = this.getReadableDatabase();
             String query = "SELECT * FROM course_info;";
@@ -391,17 +335,12 @@ public class Database extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         courses = dbCourses;
         return courses;
     }
-
     public ArrayList<CourseInfo> getDepartmentCourses(int deptId) {
         ArrayList<CourseInfo> deptCourses = new ArrayList<>();
         if (courses != null) {
@@ -409,7 +348,7 @@ public class Database extends SQLiteOpenHelper {
                 if (item.deptId == deptId) deptCourses.add(item);
             }
             return deptCourses;
-        };
+        }
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
@@ -429,16 +368,11 @@ public class Database extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         return deptCourses;
     }
-
     public ArrayList<CourseInfo> getSemesterCourses(int semesterId) {
         ArrayList<CourseInfo> semesterCourses = new ArrayList<>();
         if (courses != null) {
@@ -446,7 +380,7 @@ public class Database extends SQLiteOpenHelper {
                 if (item.semesterId == semesterId) semesterCourses.add(item);
             }
             return semesterCourses;
-        };
+        }
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
@@ -466,16 +400,11 @@ public class Database extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         return semesterCourses;
     }
-
     public ArrayList<CourseInfo> getSemesterCourses(int deptId, int semesterId) {
         ArrayList<CourseInfo> semesterCourses = new ArrayList<>();
         if (courses != null) {
@@ -483,7 +412,7 @@ public class Database extends SQLiteOpenHelper {
                 if (item.deptId == deptId && item.semesterId == semesterId) semesterCourses.add(item);
             }
             return semesterCourses;
-        };
+        }
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
@@ -503,16 +432,11 @@ public class Database extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         return semesterCourses;
     }
-
     public SemesterInfo getSemester(int semesterId) {
         if (semesters != null) {
             for (SemesterInfo item : semesters) {
@@ -533,21 +457,16 @@ public class Database extends SQLiteOpenHelper {
                 semesterInfo.longDesc = cursor.getString(cursor.getColumnIndexOrThrow("longDesc"));
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         return semesterInfo;
     }
-
     public ArrayList<SemesterInfo> getSemesters() {
         if (semesters != null) return semesters;
+        ArrayList<SemesterInfo> dbSemesters = null;
         SQLiteDatabase db = null;
         Cursor cursor = null;
-        ArrayList<SemesterInfo> dbSemesters = null;
         try {
             db = this.getReadableDatabase();
             String query = "SELECT * FROM semester_info;";
@@ -563,66 +482,62 @@ public class Database extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            if (db != null) {
-                db.close();
-            }
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
         semesters = dbSemesters;
         return semesters;
     }
 
     // Verify: users
-    public boolean isValidStudent(int deptId, int studentId) {
+    public boolean isValidStudent(Context context, int deptId, int studentId) {
         if (studentId == -1) return false;
-        boolean isValid = false;
+        boolean isValid;
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
+            db = this.getReadableDatabase();
             String query = "SELECT * FROM students_" + deptId + " WHERE studentId = " + studentId + " LIMIT 1;";
-            db = this.getReadableDatabase();
             cursor = db.rawQuery(query, null);
-            if (cursor.moveToFirst()) isValid = true;
+            isValid = cursor.moveToFirst();
         } catch (Exception e) {
-            e.printStackTrace();
+            Toast.databaseError(context, "Unable to validate student");
+            return false;
         } finally {
             if (cursor != null) cursor.close();
             if (db != null) db.close();
         }
         return isValid;
     }
-
-    public boolean isValidStudent(int deptId, int studentId, String studentPw) {
+    public boolean isValidStudent(Context context, int deptId, int studentId, String studentPw) {
         if (studentId == -1) return false;
-        boolean isValid = false;
+        boolean isValid;
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
-            String query = "SELECT * FROM students_" + deptId + " WHERE studentId = " + studentId + " AND password = '" + studentPw + "' LIMIT 1;";
             db = this.getReadableDatabase();
+            String query = "SELECT * FROM students_" + deptId + " WHERE studentId = " + studentId + " AND password = '" + studentPw + "' LIMIT 1;";
             cursor = db.rawQuery(query, null);
-            if (cursor.moveToFirst()) isValid = true;
+            isValid = cursor.moveToFirst();
         } catch (Exception e) {
-            e.printStackTrace();
+            Toast.databaseError(context, "Unable to validate student");
+            return false;
         } finally {
             if (cursor != null) cursor.close();
             if (db != null) db.close();
         }
         return isValid;
     }
-
     public boolean isValidGuardian(int guardianId) {
         if (guardianId == -1) return false;
         boolean isValid = false;
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
-            String query = "SELECT * FROM guardians WHERE guardianId = " + guardianId + " LIMIT 1;";
             db = this.getReadableDatabase();
+            String query = "SELECT * FROM guardians WHERE guardianId = " + guardianId + " LIMIT 1;";
             cursor = db.rawQuery(query, null);
-            if (cursor.moveToFirst()) isValid = true;
+            isValid = cursor.moveToFirst();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -631,17 +546,16 @@ public class Database extends SQLiteOpenHelper {
         }
         return isValid;
     }
-
     public boolean isValidGuardian(int guardianId, String guardianPw) {
         if (guardianId == -1) return false;
         boolean isValid = false;
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
-            String query = "SELECT * FROM guardians WHERE guardianId = " + guardianId + " AND password = '" + guardianPw + "' LIMIT 1;";
             db = this.getReadableDatabase();
+            String query = "SELECT * FROM guardians WHERE guardianId = " + guardianId + " AND password = '" + guardianPw + "' LIMIT 1;";
             cursor = db.rawQuery(query, null);
-            if (cursor.moveToFirst()) isValid = true;
+            isValid = cursor.moveToFirst();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -650,17 +564,16 @@ public class Database extends SQLiteOpenHelper {
         }
         return isValid;
     }
-
     public boolean isValidFaculty(int facultyId) {
         if (facultyId == -1) return false;
         boolean isValid = false;
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
-            String query = "SELECT * FROM faculties WHERE facultyId = " + facultyId + " LIMIT 1;";
             db = this.getReadableDatabase();
+            String query = "SELECT * FROM faculties WHERE facultyId = " + facultyId + " LIMIT 1;";
             cursor = db.rawQuery(query, null);
-            if (cursor.moveToFirst()) isValid = true;
+            isValid = cursor.moveToFirst();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -669,17 +582,16 @@ public class Database extends SQLiteOpenHelper {
         }
         return isValid;
     }
-
     public boolean isValidFaculty(int facultyId, String facultyPw) {
         if (facultyId == -1) return false;
         boolean isValid = false;
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
-            String query = "SELECT * FROM faculties WHERE facultyId = " + facultyId + " AND password = '" + facultyPw + "' LIMIT 1;";
             db = this.getReadableDatabase();
+            String query = "SELECT * FROM faculties WHERE facultyId = " + facultyId + " AND password = '" + facultyPw + "' LIMIT 1;";
             cursor = db.rawQuery(query, null);
-            if (cursor.moveToFirst()) isValid = true;
+            isValid = cursor.moveToFirst();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -688,20 +600,11 @@ public class Database extends SQLiteOpenHelper {
         }
         return isValid;
     }
-
     public boolean isTableExists(String query) {
-        SQLiteDatabase db = null;
-        Cursor cursor = null;
-        try {
-            db = this.getReadableDatabase();
-            cursor = db.rawQuery(query, null);
+        try (SQLiteDatabase db = this.getReadableDatabase(); Cursor cursor = db.rawQuery(query, null)) {
             return cursor.moveToFirst();
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
-        } finally {
-            if (cursor != null) cursor.close();
-            if (db != null) db.close();
         }
     }
 
@@ -750,7 +653,6 @@ public class Database extends SQLiteOpenHelper {
                 .append(" (1, 11, 1111, 1.5, 'FCC Lab', 'Fundamentals of Computers and Computing Lab'),")
                 .append(" (1, 11, 1113, 1.5, 'EC Lab', 'Electrical Circuits Lab'),")
                 .append(" (1, 11, 1114, 1.5, 'Chem Lab', 'Chemistry Lab'),")
-
                 .append(" (1, 12, 1201, 3.0, 'FP', 'Fundamentals of Programming'),")
                 .append(" (1, 12, 1202, 3.0, 'DLD', 'Digital Logic Design'),")
                 .append(" (1, 12, 1203, 3.0, 'Phy', 'Physics'),")
@@ -759,7 +661,6 @@ public class Database extends SQLiteOpenHelper {
                 .append(" (1, 12, 1211, 3.0, 'FP Lab', 'Fundamentals of Programming Lab'),")
                 .append(" (1, 12, 1212, 1.5, 'DLD Lab', 'Digital Logic Design Lab'),")
                 .append(" (1, 12, 1213, 1.5, 'Phy Lab', 'Physics Lab'),")
-
                 .append(" (1, 21, 2101, 3.0, 'FP', 'Fundamentals of Programming'),")
                 .append(" (1, 21, 2102, 3.0, 'DLD', 'Digital Logic Design'),")
                 .append(" (1, 21, 2103, 3.0, 'Phy', 'Physics'),")
@@ -777,7 +678,6 @@ public class Database extends SQLiteOpenHelper {
                 .append(" (2, 11, 1111, 1.5, 'FCC Lab', 'Fundamentals of Computers and Computing Lab'),")
                 .append(" (2, 11, 1113, 1.5, 'EC Lab', 'Electrical Circuits Lab'),")
                 .append(" (2, 11, 1114, 1.5, 'Chem Lab', 'Chemistry Lab'),")
-
                 .append(" (2, 12, 1201, 3.0, 'FP', 'Fundamentals of Programming'),")
                 .append(" (2, 12, 1202, 3.0, 'DLD', 'Digital Logic Design'),")
                 .append(" (2, 12, 1203, 3.0, 'Phy', 'Physics'),")
@@ -785,8 +685,7 @@ public class Database extends SQLiteOpenHelper {
                 .append(" (2, 12, 1205, 2.0, 'Eng', 'Developing English Language Skills'),")
                 .append(" (2, 12, 1211, 3.0, 'FP Lab', 'Fundamentals of Programming Lab'),")
                 .append(" (2, 12, 1212, 1.5, 'DLD Lab', 'Digital Logic Design Lab'),")
-                .append(" (2, 12, 1213, 1.5, 'Phy Lab', 'Physics Lab');")
-
+                .append(" (2, 12, 1213, 1.5, 'Phy Lab', 'Physics Lab'),")
                 .append(" (2, 21, 2101, 3.0, 'FP', 'Fundamentals of Programming'),")
                 .append(" (2, 21, 2102, 3.0, 'DLD', 'Digital Logic Design'),")
                 .append(" (2, 21, 2103, 3.0, 'Phy', 'Physics'),")
@@ -794,15 +693,13 @@ public class Database extends SQLiteOpenHelper {
                 .append(" (2, 21, 2105, 2.0, 'Eng', 'Developing English Language Skills'),")
                 .append(" (2, 21, 2111, 3.0, 'FP Lab', 'Fundamentals of Programming Lab'),")
                 .append(" (2, 21, 2112, 1.5, 'DLD Lab', 'Digital Logic Design Lab'),")
-                .append(" (2, 21, 2113, 1.5, 'Phy Lab', 'Physics Lab'),");
-
+                .append(" (2, 21, 2113, 1.5, 'Phy Lab', 'Physics Lab');");
         db.execSQL(query.toString());
         // Admin info table
         query = new StringBuilder("INSERT INTO admin_info VALUES")
                 .append(" ('admin', 'admin');");
         db.execSQL(query.toString());
     }
-
     public void addDummyUserData(@NonNull SQLiteDatabase db) {
         StringBuilder query;
         // CSE student table
@@ -828,7 +725,6 @@ public class Database extends SQLiteOpenHelper {
                 .append(" (10000002, 'Anik Kumara', 'Father', '01836123457', 'stec.anikkumar@gmail.com', 20000002, 2, '1234');");
         db.execSQL(query.toString());
     }
-
     public void addDummyResultData(@NonNull SQLiteDatabase db) {
         StringBuilder query;
         // CSE student results summary table
@@ -864,7 +760,6 @@ public class Database extends SQLiteOpenHelper {
                 .append(" (10000002, 11, 1111, 76, 3.75),")
                 .append(" (10000002, 11, 1113, 76, 3.75),")
                 .append(" (10000002, 11, 1114, 76, 3.75),")
-
                 .append(" (10000001, 12, 1201, 76, 3.75),")
                 .append(" (10000001, 12, 1202, 76, 3.75),")
                 .append(" (10000001, 12, 1203, 76, 3.75),")
@@ -882,7 +777,6 @@ public class Database extends SQLiteOpenHelper {
                 .append(" (10000002, 12, 1212, 76, 3.75),")
                 .append(" (10000002, 12, 1213, 76, 3.75);");
         db.execSQL(query.toString());
-
         // EEE student results table
         query = new StringBuilder("INSERT INTO results_22_2 VALUES")
                 .append(" (20000001, 11, 1101, 76, 3.75),")
@@ -901,7 +795,6 @@ public class Database extends SQLiteOpenHelper {
                 .append(" (20000002, 11, 1111, 76, 3.75),")
                 .append(" (20000002, 11, 1113, 76, 3.75),")
                 .append(" (20000002, 11, 1114, 76, 3.75),")
-
                 .append(" (20000001, 12, 1201, 76, 3.75),")
                 .append(" (20000001, 12, 1202, 76, 3.75),")
                 .append(" (20000001, 12, 1203, 76, 3.75),")
@@ -950,8 +843,5 @@ public class Database extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//        if (oldVersion < 2) {}
-//        if (oldVersion < 3) {}
-    }
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
 }

@@ -6,8 +6,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.stec.srms.R;
 
 import java.util.Objects;
@@ -15,7 +13,7 @@ import java.util.Objects;
 public class LoadingScreen {
     private static Dialog loadingDialog;
 
-    public static void start(@NonNull Context context, @NonNull String message) {
+    public static void start(Context context, String message) {
         if (loadingDialog != null && loadingDialog.isShowing()) return;
 
         loadingDialog = new Dialog(context);

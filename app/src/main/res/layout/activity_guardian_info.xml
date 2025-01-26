@@ -51,6 +51,7 @@
             android:textSize="@dimen/text_28" />
 
         <LinearLayout
+            android:id="@+id/guardianInfoStudentInfoLayout"
             style="@style/CustomStyle.Table.Simple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,14 +69,12 @@
                     android:id="@+id/guardianInfoStudentName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Jakir Hossain"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/guardianInfoStudentDept"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="B.Sc in CSE"
                     android:textSize="@dimen/text_16" />
             </LinearLayout>
 
@@ -115,7 +114,8 @@
             android:background="@drawable/rounded_shape"
             android:padding="10dp">
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
                 android:paddingVertical="3dp">
 
                 <TextView
@@ -129,7 +129,8 @@
                     android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
                 android:paddingVertical="3dp">
 
                 <TextView
@@ -143,7 +144,8 @@
                     android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
                 android:paddingVertical="3dp">
 
                 <TextView
@@ -157,7 +159,8 @@
                     android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
                 android:paddingVertical="3dp">
 
                 <TextView

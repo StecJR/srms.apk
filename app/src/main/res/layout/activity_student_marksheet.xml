@@ -12,18 +12,17 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/studentMarksheetTitle"
+            android:id="@+id/studentMarkSheetTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginVertical="30dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="1st Year 1st Semester"
             android:textAlignment="center"
             android:textSize="@dimen/text_28" />
 
         <TableLayout
-            android:id="@+id/studentMarksheetTable"
+            android:id="@+id/studentMarkSheetTable"
             style="@style/CustomStyle.Table.Simple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +35,7 @@
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Code"
+                    android:text="@string/code"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_18" />
 
@@ -44,7 +43,7 @@
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Course"
+                    android:text="@string/course"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_18" />
 
@@ -52,7 +51,7 @@
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="GPA"
+                    android:text="@string/gpa"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_18" />
 
@@ -60,7 +59,7 @@
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_width="60dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Grade"
+                    android:text="@string/grade"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_18" />
             </TableRow>

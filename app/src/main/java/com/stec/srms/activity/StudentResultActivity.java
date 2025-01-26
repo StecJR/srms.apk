@@ -26,22 +26,22 @@ public class StudentResultActivity extends AppCompatActivity {
 
     private void createTableRow(TableLayout tableLayout, int semesterId, String semesterDesc, double gpa) {
         TableRow tableRow;
-        TableRow.LayoutParams weightParam, widthParam;
-        TextView examTextView, gpaTextView, cgpaTextView;
+        TableRow.LayoutParams weight1Param, weight2Param;
+        TextView examTextView, gpaTextView;
 
-        weightParam = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
-        widthParam = new TableRow.LayoutParams(Util.dpToPx(this, 60), TableRow.LayoutParams.WRAP_CONTENT);
+        weight1Param = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
+        weight2Param = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2f);
         tableRow = new TableRow(tableRowStyle);
         tableRow.setPadding(tableRow.getPaddingLeft(), 12, tableRow.getPaddingRight(), 12);
 
         examTextView = new TextView(tableRowTextStyle);
-        examTextView.setLayoutParams(weightParam);
+        examTextView.setLayoutParams(weight2Param);
         examTextView.setText(semesterDesc);
         examTextView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
         tableRow.addView(examTextView);
 
         gpaTextView = new TextView(tableRowTextStyle);
-        gpaTextView.setLayoutParams(widthParam);
+        gpaTextView.setLayoutParams(weight1Param);
         gpaTextView.setText(String.valueOf(gpa));
         gpaTextView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
         tableRow.addView(gpaTextView);
@@ -59,8 +59,6 @@ public class StudentResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_student_result);
-        Intent intent = getIntent();
-        boolean hideTopButtons = intent.getBooleanExtra("hideTopButtons", false);
         tableRowStyle = new ContextThemeWrapper(this, R.style.CustomStyle_Table_Simple_SimpleRow);
         tableRowTextStyle = new ContextThemeWrapper(this, R.style.CustomStyle_Table_Simple_SimpleRowText);
         StudentDBHandler studentDBHandler = StudentDBHandler.getInstance(this);
@@ -90,7 +88,7 @@ public class StudentResultActivity extends AppCompatActivity {
         // Handle invalid student session
         StudentSession studentSession = sessionManager.getStudentSession();
         if (studentSession == null ||
-                !studentDBHandler.isValidStudent(studentSession.deptId, studentSession.studentId)) {
+                !studentDBHandler.isValidStudent(this, studentSession.deptId, studentSession.studentId)) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
             return;
@@ -98,9 +96,8 @@ public class StudentResultActivity extends AppCompatActivity {
 
         TableLayout table = findViewById(R.id.studentResultTable);
         StudentInfo studentInfo = studentDBHandler.getStudentinfo(studentSession.deptId, studentSession.studentId);
-        ArrayList<ResultsSummary> resultsSummaries = studentDBHandler.getResultsSummaries(
-                studentInfo.sessionId, studentInfo.deptId, studentInfo.studentId);
-
+        ArrayList<ResultsSummary> resultsSummaries = studentDBHandler.getResultsSummaries(studentInfo.sessionId, studentInfo.deptId, studentInfo.studentId);
+        if (resultsSummaries == null) return;
         for (ResultsSummary summary : resultsSummaries) {
             if (summary.gpa == 0.0) continue;
             createTableRow(table, summary.semesterId, studentDBHandler.getSemester(summary.semesterId).longDesc, summary.gpa);

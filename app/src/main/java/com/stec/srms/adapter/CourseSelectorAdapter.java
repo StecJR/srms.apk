@@ -13,8 +13,8 @@ import com.stec.srms.model.CourseInfo;
 import java.util.ArrayList;
 
 public class CourseSelectorAdapter extends BaseAdapter {
-    private Context context;
-    private ArrayList<CourseInfo> courses;
+    private final Context context;
+    private final ArrayList<CourseInfo> courses;
 
     public CourseSelectorAdapter(Context context, ArrayList<CourseInfo> courses) {
         this.context = context;
@@ -25,17 +25,14 @@ public class CourseSelectorAdapter extends BaseAdapter {
     public int getCount() {
         return courses.size();
     }
-
     @Override
     public Object getItem(int position) {
         return courses.get(position);
     }
-
     @Override
     public long getItemId(int position) {
         return courses.get(position).courseCode;
     }
-
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         if (view == null) {

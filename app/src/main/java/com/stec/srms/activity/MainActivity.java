@@ -11,15 +11,13 @@ import com.stec.srms.model.AdminInfo;
 import com.stec.srms.util.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
-    SessionManager sessionManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        Database database = Database.getInstance(getApplicationContext());
+        Database database = Database.getInstance(this);
+        SessionManager sessionManager = SessionManager.getInstance(this);
         database.getWritableDatabase();
-        SessionManager sessionManager = SessionManager.getInstance(getApplicationContext());
         String accountType = sessionManager.validSession();
 
         if (sessionManager.isFirstTime()) {

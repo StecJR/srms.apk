@@ -54,4 +54,6 @@
     <string name="mark">Mark</string>
     <string name="grade">Grade</string>
     <string name="cancel">Cancel</string>
+    <string name="course">Course</string>
+    <string name="code">Code</string>
 </resources>

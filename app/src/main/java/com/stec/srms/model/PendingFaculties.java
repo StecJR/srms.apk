@@ -10,26 +10,7 @@ public class PendingFaculties {
     public String address;
     public String password;
 
-    public static String getQuery() {
-        StringBuilder query = new StringBuilder("CREATE TABLE pending_faculties")
-                .append(" (")
-                .append("userId INTEGER PRIMARY KEY AUTOINCREMENT, ")
-                .append("name TEXT, ")
-                .append("gender TEXT, ")
-                .append("deptId INTEGER, ")
-                .append("contact TEXT, ")
-                .append("email TEXT UNIQUE, ")
-                .append("address TEXT, ")
-                .append("password TEXT, ")
-
-                .append("FOREIGN KEY (deptId) REFERENCES dept_info(deptId)")
-                .append(");");
-        return query.toString();
-    }
-
-    public PendingFaculties() {
-    }
-
+    public PendingFaculties() {}
     public PendingFaculties(int userId, String name, String gender, int deptId, String contact, String email, String address, String password) {
         this.userId = userId;
         this.name = name;
@@ -39,5 +20,20 @@ public class PendingFaculties {
         this.email = email;
         this.address = address;
         this.password = password;
+    }
+
+    public static String getQuery() {
+        return "CREATE TABLE pending_faculties" +
+                " (" +
+                "userId INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name TEXT, " +
+                "gender TEXT, " +
+                "deptId INTEGER, " +
+                "contact TEXT, " +
+                "email TEXT UNIQUE, " +
+                "address TEXT, " +
+                "password TEXT, " +
+                "FOREIGN KEY (deptId) REFERENCES dept_info(deptId)" +
+                ");";
     }
 }

@@ -5,22 +5,19 @@ public class DeptInfo {
     public String shortDesc;
     public String longDesc;
 
-    public static String getQuery() {
-        StringBuilder query = new StringBuilder("CREATE TABLE dept_info")
-                .append(" (")
-                .append("deptId INTEGER PRIMARY KEY AUTOINCREMENT, ")
-                .append("shortDesc TEXT, ")
-                .append("longDesc TEXT")
-                .append(");");
-        return query.toString();
-    }
-
-    public DeptInfo() {
-    }
-
+    public DeptInfo() {}
     public DeptInfo(int deptId, String shortDesc, String longDesc) {
         this.deptId = deptId;
         this.shortDesc = shortDesc;
         this.longDesc = longDesc;
+    }
+
+    public static String getQuery() {
+        return "CREATE TABLE dept_info" +
+                " (" +
+                "deptId INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "shortDesc TEXT, " +
+                "longDesc TEXT" +
+                ");";
     }
 }

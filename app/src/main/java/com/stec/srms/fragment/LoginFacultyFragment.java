@@ -1,6 +1,6 @@
 package com.stec.srms.fragment;
 
-import static com.stec.srms.util.Util.addPasswordVisibilityToggler;
+import static com.stec.srms.util.Util.togglePasswordVisibility;
 import static com.stec.srms.util.Util.stringToInt;
 
 import android.content.Context;
@@ -48,21 +48,16 @@ public class LoginFacultyFragment extends Fragment {
                 Toast.credentialError(context);
                 return;
             }
-            // Save session info
+
             SessionManager sessionManager = SessionManager.getInstance(context);
             sessionManager.createFacultySession(stringToInt(facultyId, -1), 15);
             startActivity(new Intent(context, FacultyInfoActivity.class));
-            requireActivity().finish();
+            activity.finish();
         });
-        loginFacultyForgetPwButton.setOnClickListener(v -> {
-            // startActivity(new Intent(context, StudentInfoActivity.class));
-            // activity.finish();
-        });
-        loginFacultyCreateAccountButton.setOnClickListener(v -> {
-            startActivity(new Intent(context, FacultySignupActivity.class));
-        });
+        loginFacultyForgetPwButton.setOnClickListener(v -> {});
+        loginFacultyCreateAccountButton.setOnClickListener(v -> startActivity(new Intent(context, FacultySignupActivity.class)));
 
-        addPasswordVisibilityToggler(loginFacultyPwInput, context);
+        togglePasswordVisibility(loginFacultyPwInput, context);
         return view;
     }
 }

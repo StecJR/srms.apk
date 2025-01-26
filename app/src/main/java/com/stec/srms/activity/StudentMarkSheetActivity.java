@@ -30,13 +30,14 @@ public class StudentMarkSheetActivity extends AppCompatActivity {
     ContextThemeWrapper tableRowStyle, tableRowTextStyle;
 
     private void createMarkSheetTable(TableLayout tableLayout, ArrayList<MarkSheetData> markSheet) {
-        for (MarkSheetData markSheetData : markSheet) {
-            TableRow tableRow;
-            TableRow.LayoutParams weightParam, widthParam;
-            TextView codeTextView, courseTextView, gpaTextView, gradeTextView;
+        TableRow tableRow;
+        TableRow.LayoutParams weightParam, widthParam;
+        TextView codeTextView, courseTextView, gpaTextView, gradeTextView;
 
-            weightParam = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
-            widthParam = new TableRow.LayoutParams(Util.dpToPx(this, 50), TableRow.LayoutParams.WRAP_CONTENT);
+        weightParam = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
+        widthParam = new TableRow.LayoutParams(Util.dpToPx(this, 50), TableRow.LayoutParams.WRAP_CONTENT);
+
+        for (MarkSheetData markSheetData : markSheet) {
             tableRow = new TableRow(tableRowStyle);
 
             codeTextView = new TextView(tableRowTextStyle);
@@ -71,12 +72,12 @@ public class StudentMarkSheetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_student_marksheet);
-        Intent intent = getIntent();
-        int semesterId = intent.getIntExtra("semesterId", -1);
         tableRowStyle = new ContextThemeWrapper(this, R.style.CustomStyle_Table_Simple_SimpleRow);
         tableRowTextStyle = new ContextThemeWrapper(this, R.style.CustomStyle_Table_Simple_SimpleRowText);
         StudentDBHandler studentDBHandler = StudentDBHandler.getInstance(this);
         SessionManager sessionManager = SessionManager.getInstance(this);
+        Intent intent = getIntent();
+        int semesterId = intent.getIntExtra("semesterId", -1);
 
         // Verify or goto login page
         String accountType = sessionManager.validSession();
@@ -102,18 +103,16 @@ public class StudentMarkSheetActivity extends AppCompatActivity {
         // Handle invalid student session
         StudentSession studentSession = sessionManager.getStudentSession();
         if (studentSession == null ||
-                !studentDBHandler.isValidStudent(studentSession.deptId, studentSession.studentId)) {
+                !studentDBHandler.isValidStudent(this, studentSession.deptId, studentSession.studentId)) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
             return;
         }
 
-        TableLayout table = findViewById(R.id.studentMarksheetTable);
-        TextView title = findViewById(R.id.studentMarksheetTitle);
+        TableLayout table = findViewById(R.id.studentMarkSheetTable);
+        TextView title = findViewById(R.id.studentMarkSheetTitle);
         StudentInfo studentInfo = studentDBHandler.getStudentinfo(studentSession.deptId, studentSession.studentId);
-        ArrayList<Results> results = studentDBHandler.getResults(
-                studentInfo.sessionId, studentInfo.deptId, studentInfo.studentId, semesterId
-        );
+        ArrayList<Results> results = studentDBHandler.getResults(studentInfo.sessionId, studentInfo.deptId, studentInfo.studentId, semesterId);
         SemesterInfo semesterInfo = studentDBHandler.getSemester(semesterId);
         title.setText(semesterInfo.longDesc);
 
@@ -142,6 +141,5 @@ public class StudentMarkSheetActivity extends AppCompatActivity {
             Util.saveMarkSheetAsPDF(this, semesterInfo.longDesc, studentInfo, markSheet);
             Toast.generalSuccess(this, "Mark sheet saved successfully");
         });
-
     }
 }

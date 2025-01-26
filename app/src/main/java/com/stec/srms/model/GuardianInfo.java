@@ -10,26 +10,7 @@ public class GuardianInfo {
     public int deptId;
     public String password;
 
-    public static String getQuery() {
-        StringBuilder query = new StringBuilder("CREATE TABLE guardians")
-                .append(" (")
-                .append("guardianId INTEGER PRIMARY KEY AUTOINCREMENT, ")
-                .append("name TEXT, ")
-                .append("relation TEXT, ")
-                .append("contact TEXT, ")
-                .append("email TEXT UNIQUE, ")
-                .append("studentId INTEGER, ")
-                .append("deptId INTEGER, ")
-                .append("password TEXT, ")
-
-                .append("FOREIGN KEY (deptId) REFERENCES dept_info(deptId)")
-                .append(");");
-        return query.toString();
-    }
-
-    public GuardianInfo() {
-    }
-
+    public GuardianInfo() {}
     public GuardianInfo(int guardianId, String name, String relation, String contact, String email, int studentId, int deptId, String password) {
         this.guardianId = guardianId;
         this.name = name;
@@ -39,5 +20,20 @@ public class GuardianInfo {
         this.studentId = studentId;
         this.deptId = deptId;
         this.password = password;
+    }
+
+    public static String getQuery() {
+        return "CREATE TABLE guardians" +
+                " (" +
+                "guardianId INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name TEXT, " +
+                "relation TEXT, " +
+                "contact TEXT, " +
+                "email TEXT UNIQUE, " +
+                "studentId INTEGER, " +
+                "deptId INTEGER, " +
+                "password TEXT, " +
+                "FOREIGN KEY (deptId) REFERENCES dept_info(deptId)" +
+                ");";
     }
 }

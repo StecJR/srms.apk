@@ -9,25 +9,7 @@ public class PendingGuardians {
     public int deptId;
     public String password;
 
-    public static String getQuery() {
-        StringBuilder query = new StringBuilder("CREATE TABLE pending_guardians")
-                .append(" (")
-                .append("userId INTEGER PRIMARY KEY AUTOINCREMENT, ")
-                .append("name TEXT, ")
-                .append("contact TEXT, ")
-                .append("email TEXT UNIQUE, ")
-                .append("studentId INTEGER, ")
-                .append("deptId INTEGER, ")
-                .append("password TEXT, ")
-
-                .append("FOREIGN KEY (deptId) REFERENCES dept_info(deptId)")
-                .append(");");
-        return query.toString();
-    }
-
-    public PendingGuardians() {
-    }
-
+    public PendingGuardians() {}
     public PendingGuardians(int userId, String name, String contact, String email, int studentId, int deptId, String password) {
         this.userId = userId;
         this.name = name;
@@ -36,5 +18,19 @@ public class PendingGuardians {
         this.studentId = studentId;
         this.deptId = deptId;
         this.password = password;
+    }
+
+    public static String getQuery() {
+        return "CREATE TABLE pending_guardians" +
+                " (" +
+                "userId INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name TEXT, " +
+                "contact TEXT, " +
+                "email TEXT UNIQUE, " +
+                "studentId INTEGER, " +
+                "deptId INTEGER, " +
+                "password TEXT, " +
+                "FOREIGN KEY (deptId) REFERENCES dept_info(deptId)" +
+                ");";
     }
 }

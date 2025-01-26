@@ -13,8 +13,8 @@ import com.stec.srms.model.DeptInfo;
 import java.util.ArrayList;
 
 public class DeptSelectorAdapter extends BaseAdapter {
-    private Context context;
-    private ArrayList<DeptInfo> departments;
+    private final Context context;
+    private final ArrayList<DeptInfo> departments;
 
     public DeptSelectorAdapter(Context context, ArrayList<DeptInfo> departments) {
         this.context = context;
@@ -25,17 +25,14 @@ public class DeptSelectorAdapter extends BaseAdapter {
     public int getCount() {
         return departments.size();
     }
-
     @Override
     public Object getItem(int position) {
         return departments.get(position);
     }
-
     @Override
     public long getItemId(int position) {
         return departments.get(position).deptId;
     }
-
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         if (view == null) {

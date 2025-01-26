@@ -13,8 +13,8 @@ import com.stec.srms.model.SessionInfo;
 import java.util.ArrayList;
 
 public class SessionSelectorAdapter extends BaseAdapter {
-    private Context context;
-    private ArrayList<SessionInfo> sessions;
+    private final Context context;
+    private final ArrayList<SessionInfo> sessions;
 
     public SessionSelectorAdapter(Context context, ArrayList<SessionInfo> sessions) {
         this.context = context;
@@ -25,17 +25,14 @@ public class SessionSelectorAdapter extends BaseAdapter {
     public int getCount() {
         return sessions.size();
     }
-
     @Override
     public Object getItem(int position) {
         return sessions.get(position);
     }
-
     @Override
     public long getItemId(int position) {
         return sessions.get(position).sessionId;
     }
-
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         if (view == null) {

@@ -3,7 +3,6 @@ package com.stec.srms.activity;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
@@ -69,9 +68,7 @@ public class FacultyResultActivity extends AppCompatActivity {
         bottomSheetEditMarkSaveButton = bottomSheetView.findViewById(R.id.bottomSheetEditMarkSaveButton);
 
         bottomSheetEditMarkInput.setText(String.valueOf(result.mark));
-        bottomSheetEditMarkCancelButton.setOnClickListener(view -> {
-            bottomSheetDialog.dismiss();
-        });
+        bottomSheetEditMarkCancelButton.setOnClickListener(view -> bottomSheetDialog.dismiss());
         bottomSheetEditMarkSaveButton.setOnClickListener(view -> {
             try {
                 int mark = Integer.parseInt(bottomSheetEditMarkInput.getText().toString());
@@ -108,6 +105,7 @@ public class FacultyResultActivity extends AppCompatActivity {
     }
 
     private void createTableRows(TableLayout tableLayout, ArrayList<Results> results) {
+        if (results == null || results.isEmpty()) return;
         TableRow tableRow;
         TableRow.LayoutParams weightParam, widthParam;
         TextView studentIdTextView, markTextView, gradeTextView;
@@ -137,9 +135,7 @@ public class FacultyResultActivity extends AppCompatActivity {
             tableRow.addView(gradeTextView);
 
             TableRow finalTableRow = tableRow;
-            tableRow.setOnClickListener(view -> {
-                openMarkEditor(result, finalTableRow);
-            });
+            tableRow.setOnClickListener(view -> openMarkEditor(result, finalTableRow));
             tableLayout.addView(tableRow);
         }
     }
@@ -275,51 +271,32 @@ public class FacultyResultActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Confirmation");
                 builder.setMessage("Do you want to create a new result record?");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        try {
-                            facultyDBHandler.createNewResultTable(context, sessionId, deptId, semesterId, courseCode);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            Toast.databaseInfo(context, "No student record found");
-                        }
-                        createTableRows(table, facultyDBHandler.getCourseResult(sessionId, deptId, courseCode));
+                builder.setPositiveButton("Yes", (dialog, which) -> {
+                    try {
+                        facultyDBHandler.createNewResultTable(context, sessionId, deptId, semesterId, courseCode);
+                    } catch (Exception e) {
+                        Toast.databaseInfo(context, "No student record found");
                     }
+                    createTableRows(table, facultyDBHandler.getCourseResult(sessionId, deptId, courseCode));
                 });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        return;
-                    }
-                });
+                builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
                 AlertDialog dialog = builder.create();
                 dialog.show();
             } else {
                 ArrayList<Results> results = facultyDBHandler.getCourseResult(sessionId, deptId, courseCode);
-                if (results.isEmpty()) {
+                if (results == null || results.isEmpty()) {
                     Context context = this;
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setTitle("Confirmation");
                     builder.setMessage("Do you want to create a new result?");
-                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            facultyDBHandler.addNewCourseResult(context, sessionId, deptId, semesterId, courseCode);
-                            if (!facultyDBHandler.hasSemesterInResultSummary(sessionId, deptId, semesterId)) {
-                                facultyDBHandler.addNewCourseResultSummary(context, sessionId, deptId, semesterId);
-                            }
-                            createTableRows(table, facultyDBHandler.getCourseResult(sessionId, deptId, courseCode));
+                    builder.setPositiveButton("Yes", (dialog, which) -> {
+                        facultyDBHandler.addNewCourseResult(context, sessionId, deptId, semesterId, courseCode);
+                        if (!facultyDBHandler.hasSemesterInResultSummary(sessionId, deptId, semesterId)) {
+                            facultyDBHandler.addNewCourseResultSummary(context, sessionId, deptId, semesterId);
                         }
+                        createTableRows(table, facultyDBHandler.getCourseResult(sessionId, deptId, courseCode));
                     });
-                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            return;
-                        }
-                    });
+                    builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 } else {

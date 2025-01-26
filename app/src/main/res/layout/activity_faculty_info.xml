@@ -65,7 +65,8 @@
             android:background="@drawable/rounded_shape"
             android:padding="10dp">
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
                 android:paddingVertical="3dp">
 
                 <TextView
@@ -79,7 +80,8 @@
                     android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
                 android:paddingVertical="3dp">
 
                 <TextView
@@ -93,7 +95,8 @@
                     android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
                 android:paddingVertical="3dp">
 
                 <TextView
@@ -107,7 +110,8 @@
                     android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
                 android:paddingVertical="3dp">
 
                 <TextView
@@ -121,7 +125,8 @@
                     android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
                 android:paddingVertical="3dp">
 
                 <TextView
@@ -135,7 +140,8 @@
                     android:layout_weight="1" />
             </TableRow>
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow"
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
                 android:paddingVertical="3dp">
 
                 <TextView

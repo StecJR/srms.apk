@@ -2,6 +2,7 @@ package com.stec.srms.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -11,16 +12,13 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.stec.srms.R;
 import com.stec.srms.database.StudentDBHandler;
 import com.stec.srms.model.AdminInfo;
-import com.stec.srms.model.DeptInfo;
 import com.stec.srms.model.GuardianInfo;
 import com.stec.srms.model.GuardianSession;
-import com.stec.srms.model.SessionInfo;
 import com.stec.srms.model.StudentInfo;
-import com.stec.srms.model.StudentSession;
 import com.stec.srms.util.SessionManager;
+import com.stec.srms.util.Toast;
 
 public class GuardianInfoActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +76,15 @@ public class GuardianInfoActivity extends AppCompatActivity {
         guardianStudentInfoButton = findViewById(R.id.GuardianStudentInfoButton);
         guardianStudentResultButton = findViewById(R.id.GuardianStudentResultButton);
 
-        guardianInfoStudentName.setText(studentInfo.name);
-        guardianInfoStudentDept.setText(guardianDBHandler.getDepartment(guardianInfo.deptId).longDesc);
+        if (studentInfo != null) {
+            guardianInfoStudentName.setText(studentInfo.name);
+            guardianInfoStudentDept.setText(guardianDBHandler.getDepartment(studentInfo.deptId).longDesc);
+        } else {
+            LinearLayout guardianInfoStudentInfoLayout = findViewById(R.id.guardianInfoStudentInfoLayout);
+            guardianInfoStudentInfoLayout.setVisibility(LinearLayout.GONE);
+            Toast.generalError(this, "Failed to get student info");
+        }
+
         guardianInfoName.setText(guardianInfo.name);
         guardianInfoRelation.setText(guardianInfo.relation);
         guardianInfoContact.setText(guardianInfo.contact);
@@ -94,8 +99,6 @@ public class GuardianInfoActivity extends AppCompatActivity {
             intent.putExtra("hideTopButtons", true);
             startActivity(intent);
         });
-        guardianStudentResultButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, StudentResultActivity.class));
-        });
+        guardianStudentResultButton.setOnClickListener(v -> startActivity(new Intent(this, StudentResultActivity.class)));
     }
 }

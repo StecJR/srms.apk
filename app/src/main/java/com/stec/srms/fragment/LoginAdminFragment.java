@@ -1,6 +1,6 @@
 package com.stec.srms.fragment;
 
-import static com.stec.srms.util.Util.addPasswordVisibilityToggler;
+import static com.stec.srms.util.Util.togglePasswordVisibility;
 
 import android.content.Context;
 import android.content.Intent;
@@ -38,7 +38,7 @@ public class LoginAdminFragment extends Fragment {
             String adminPw = loginAdminPwInput.getText().toString().trim();
             boolean isValid = !adminName.isBlank() &&
                     !adminPw.isBlank() &&
-                    adminDBHandler.isValidAdmin(adminName, adminPw);
+                    adminDBHandler.isValidAdmin(context, adminName, adminPw);
             if (!isValid) {
                 Toast.credentialError(context);
                 return;
@@ -46,10 +46,10 @@ public class LoginAdminFragment extends Fragment {
             // Save session info
 
             startActivity(new Intent(context, AdminDashboardActivity.class));
-            requireActivity().finish();
+            activity.finish();
         });
 
-        addPasswordVisibilityToggler(loginAdminPwInput, context);
+        togglePasswordVisibility(loginAdminPwInput, context);
         return view;
     }
 }
