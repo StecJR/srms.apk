@@ -197,6 +197,7 @@ public class FacultyResultActivity extends AppCompatActivity {
         DeptSelectorAdapter deptSelectorAdapter = new DeptSelectorAdapter(this, departments);
         departmentSpinner.setAdapter(deptSelectorAdapter);
         departmentSpinner.setSelection(0);
+
         ArrayList<SessionInfo> sessions = new ArrayList<>(facultyDBHandler.getSessions());
         if (sessions.get(0).sessionId != -1) {
             sessions.add(0, new SessionInfo(-1, "Session"));
@@ -204,6 +205,7 @@ public class FacultyResultActivity extends AppCompatActivity {
         SessionSelectorAdapter sessionSelectorAdapter = new SessionSelectorAdapter(this, sessions);
         sessionSpinner.setAdapter(sessionSelectorAdapter);
         sessionSpinner.setSelection(0);
+
         ArrayList<SemesterInfo> semesters = new ArrayList<>(facultyDBHandler.getSemesters());
         if (semesters.get(0).semesterId != -1) {
             semesters.add(0, new SemesterInfo(-1, "Semester", ""));

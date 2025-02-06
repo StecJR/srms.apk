@@ -36,13 +36,12 @@ public class LoginStudentFragment extends Fragment {
         StudentDBHandler studentDBHandler = StudentDBHandler.getInstance(context);
         Spinner departmentSpinner;
         EditText loginStudentIdInput, loginStudentPwInput;
-        AppCompatButton loginStudentLoginButton, loginStudentForgetPwButton, loginStudentCreateAccountButton;
+        AppCompatButton loginStudentLoginButton, loginStudentCreateAccountButton;
 
         departmentSpinner = view.findViewById(R.id.departmentSpinner);
         loginStudentIdInput = view.findViewById(R.id.loginStudentIdInput);
         loginStudentPwInput = view.findViewById(R.id.loginStudentPwInput);
         loginStudentLoginButton = view.findViewById(R.id.loginStudentLoginButton);
-        loginStudentForgetPwButton = view.findViewById(R.id.loginStudentForgetPwButton);
         loginStudentCreateAccountButton = view.findViewById(R.id.loginStudentCreateAccountButton);
 
         ArrayList<DeptInfo> departments = new ArrayList<>(studentDBHandler.getDepartments());
@@ -71,10 +70,9 @@ public class LoginStudentFragment extends Fragment {
             startActivity(new Intent(context, StudentInfoActivity.class));
             activity.finish();
         });
-        loginStudentForgetPwButton.setOnClickListener(v -> {});
         loginStudentCreateAccountButton.setOnClickListener(v -> startActivity(new Intent(context, StudentSignupActivity.class)));
 
-        togglePasswordVisibility(loginStudentPwInput, context);
+        togglePasswordVisibility(context, loginStudentPwInput);
         return view;
     }
 }

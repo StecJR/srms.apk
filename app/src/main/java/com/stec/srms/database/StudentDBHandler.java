@@ -1,25 +1,56 @@
 package com.stec.srms.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.stec.srms.model.GuardianInfo;
+import com.stec.srms.model.PendingStudent;
 import com.stec.srms.model.Results;
 import com.stec.srms.model.ResultsSummary;
 import com.stec.srms.model.StudentInfo;
+import com.stec.srms.util.Toast;
 
 import java.util.ArrayList;
 
 public class StudentDBHandler extends Database {
     private static StudentDBHandler studentDBHandlerInstance;
+    Context context;
 
     public StudentDBHandler(Context context) {
         super(context);
+        this.context = context;
     }
+
     public static synchronized StudentDBHandler getInstance(Context context) {
-        if (studentDBHandlerInstance == null) studentDBHandlerInstance = new StudentDBHandler(context.getApplicationContext());
+        if (studentDBHandlerInstance == null)
+            studentDBHandlerInstance = new StudentDBHandler(context.getApplicationContext());
         return studentDBHandlerInstance;
+    }
+
+    public boolean isEmailExists(int deptId, String email) {
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = this.getReadableDatabase();
+            String query = "SELECT * FROM students_" + deptId + " WHERE email = '" + email + "' LIMIT 1;";
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                db.close();
+                cursor.close();
+                return true;
+            }
+
+            query = "SELECT * FROM pending_students WHERE email = '" + email + "' LIMIT 1;";
+            cursor = db.rawQuery(query, null);
+            return cursor.moveToFirst();
+        } catch (Exception e) {
+            return false;
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
     }
 
     public ArrayList<StudentInfo> getStudents(int deptId) {
@@ -57,6 +88,7 @@ public class StudentDBHandler extends Database {
             if (db != null) db.close();
         }
     }
+
     public ArrayList<StudentInfo> getStudents(int deptId, int sessionId) {
         SQLiteDatabase db = null;
         Cursor cursor = null;
@@ -123,6 +155,7 @@ public class StudentDBHandler extends Database {
             if (db != null) db.close();
         }
     }
+
     public GuardianInfo getGuardianinfo(int guardianId) {
         SQLiteDatabase db = null;
         Cursor cursor = null;
@@ -180,6 +213,7 @@ public class StudentDBHandler extends Database {
             if (db != null) db.close();
         }
     }
+
     public ArrayList<ResultsSummary> getResultsSummaries(int sessionId, int deptId, int studentId) {
         SQLiteDatabase db = null;
         Cursor cursor = null;
@@ -207,5 +241,70 @@ public class StudentDBHandler extends Database {
             if (db != null) db.close();
         }
 
+    }
+
+    public int addPendingStudent(PendingStudent studentInfo) {
+        int accountId = getAccountType("pendingStudent").accountId;
+        SQLiteDatabase db = null;
+        try {
+            db = this.getWritableDatabase();
+            db.beginTransaction();
+
+            ContentValues values = new ContentValues();
+            values.put("name", studentInfo.name);
+            values.put("birthDate", studentInfo.birthDate);
+            values.put("gender", studentInfo.gender);
+            values.put("deptId", studentInfo.deptId);
+            values.put("sessionId", studentInfo.sessionId);
+            values.put("contact", studentInfo.contact);
+            values.put("email", studentInfo.email);
+            values.put("address", studentInfo.address);
+            values.put("password", studentInfo.password);
+            int userId = (int) db.insert("pending_students", null, values);
+            if (userId == -1) {
+                Toast.databaseError(context, "Failed to add student record");
+                return -1;
+            }
+
+            values = new ContentValues();
+            values.put("accountId", accountId);
+            values.put("userId", userId);
+            int verificationId = (int) db.insert("pending_verifications", null, values);
+            if (verificationId == -1) {
+                Toast.databaseError(context, "Failed to add student record");
+                return -1;
+            }
+
+            db.setTransactionSuccessful();
+            return userId;
+        } catch (Exception e) {
+            return -1;
+        } finally {
+            if (db != null) {
+                db.endTransaction();
+                db.close();
+            }
+        }
+    }
+
+    public boolean deletePendingStudent(int userId) {
+        SQLiteDatabase db = null;
+        try {
+            db = this.getWritableDatabase();
+            db.beginTransaction();
+
+            db.delete("pending_students", "userId = " + userId, null);
+            db.delete("pending_verifications", "userId = " + userId, null);
+
+            db.setTransactionSuccessful();
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            if (db != null) {
+                db.endTransaction();
+                db.close();
+            }
+        }
     }
 }

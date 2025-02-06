@@ -12,8 +12,10 @@ public class AdminDBHandler extends Database {
     public AdminDBHandler(Context context) {
         super(context);
     }
+
     public static synchronized AdminDBHandler getInstance(Context context) {
-        if (adminDBHandlerInstance == null) adminDBHandlerInstance = new AdminDBHandler(context.getApplicationContext());
+        if (adminDBHandlerInstance == null)
+            adminDBHandlerInstance = new AdminDBHandler(context.getApplicationContext());
         return adminDBHandlerInstance;
     }
 

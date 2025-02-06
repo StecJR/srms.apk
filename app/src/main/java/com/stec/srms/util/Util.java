@@ -2,17 +2,27 @@ package com.stec.srms.util;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.pm.PackageManager;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.ImageDecoder;
+import android.graphics.Matrix;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.text.InputType;
 import android.util.TypedValue;
 import android.view.MotionEvent;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.lowagie.text.Document;
@@ -35,7 +45,14 @@ import com.stec.srms.model.StudentInfo;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.regex.Pattern;
 
 class FooterEvent extends PdfPageEventHelper {
     private final Font footerFont;
@@ -68,8 +85,11 @@ class FooterEvent extends PdfPageEventHelper {
 }
 
 public class Util {
-    private static final int PERMISSION_REQUEST_CODE = 100;
     private static Drawable eyeShow, eyeHide;
+    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.US);
+    private static final Pattern validPhonePattern = Pattern.compile("^(01\\d{9}|\\+8801\\d{9})$");
+    private static final Pattern validEmailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    private static final SecureRandom random = new SecureRandom();
 
     public static double getGpa(int mark) {
         if (mark >= 80) return 4.0;
@@ -110,6 +130,9 @@ public class Util {
                 context.getResources().getDisplayMetrics()
         );
     }
+    public static int getOTP() {
+        return 100000 + random.nextInt(900000);
+    }
 
     // Password show/hide
     private static void setCompoundDrawable(EditText editText, Drawable drawable) {
@@ -138,7 +161,7 @@ public class Util {
         editText.setTypeface(typeFace);
     }
     @SuppressLint("ClickableViewAccessibility")
-    public static void togglePasswordVisibility(EditText editText, Context context) {
+    public static void togglePasswordVisibility(Context context, EditText editText) {
         if (eyeShow == null || eyeHide == null) {
             eyeShow = ContextCompat.getDrawable(context, R.drawable.eye_password_show);
             eyeHide = ContextCompat.getDrawable(context, R.drawable.eye_password_hide);
@@ -156,18 +179,6 @@ public class Util {
     }
 
     // Generate and save mark sheet PDF
-    public static boolean checkStoragePermission(Context context) {
-        return ContextCompat.checkSelfPermission(
-                context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED;
-    }
-    public static void requestStoragePermission(Activity activity) {
-        ActivityCompat.requestPermissions(
-                activity,
-                new String[]{ android.Manifest.permission.WRITE_EXTERNAL_STORAGE },
-                PERMISSION_REQUEST_CODE
-        );
-    }
     public static void saveMarkSheetAsPDF(Context context, String semester, StudentInfo studentInfo, ArrayList<MarkSheetData> markSheet) {
         File downloadsDir, file;
         try {
@@ -268,5 +279,93 @@ public class Util {
         } catch (Exception e) {
             Toast.generalError(context, "Unable to save mark sheet");
         }
+    }
+
+    // Date picker
+    private static void updateUI(Calendar calendar, EditText view) {
+        view.setText(simpleDateFormat.format(calendar.getTime()));
+    }
+    public static void pickDate(Context context, Calendar calendar, EditText view) {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                context,
+                (DatePicker pickerView, int year, int month, int dayOfMonth) -> {
+                    calendar.set(Calendar.YEAR, year);
+                    calendar.set(Calendar.MONTH, month);
+                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                    updateUI(calendar, view);
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        datePickerDialog.show();
+    }
+
+    // Simple validations
+    public static boolean validPhoneNumber(String number) {
+        return validPhonePattern.matcher(number).matches();
+    }
+    public static boolean validEmail(String email) {
+        return validEmailPattern.matcher(email).matches();
+    }
+
+    // Image handler
+    public static void openImagePicker(Activity activity) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        activity.startActivityForResult(intent, PermissionHandler.REQUEST_PICK_IMAGE);
+    }
+    public static void saveImageToInternalStorage(Context context, Uri imageUri, String imageName) {
+        if (imageUri == null) {
+            Toast.generalError(context, "No image selected");
+            return;
+        }
+        try {
+            Bitmap bitmap = ImageDecoder.decodeBitmap(
+                    ImageDecoder.createSource(context.getContentResolver(), imageUri)
+            );
+
+            int width = bitmap.getWidth(), height = bitmap.getHeight();
+            int newWidth = 256, newHeight = 256;
+            float scaleWidth = ((float) newWidth) / width;
+            float scaleHeight = ((float) newHeight) / height;
+            float scale = Math.min(scaleWidth, scaleHeight);
+
+            Matrix matrix = new Matrix();
+            matrix.postScale(scale, scale, (float) width / 2, (float) height / 2);
+            bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
+
+            File file = new File(context.getFilesDir(), imageName);
+            FileOutputStream fos = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.close();
+        } catch (IOException e) {
+            Toast.generalError(context, "Failed to save image");
+        }
+    }
+    public static Bitmap getImageFromInternalStorage(Context context, String imageName) {
+        File file = new File(context.getFilesDir(), imageName);
+        return BitmapFactory.decodeFile(file.getAbsolutePath());
+    }
+
+    // Check internet connection
+    public static boolean isInternetConnected(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            Network network = connectivityManager.getActiveNetwork();
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+                if (network != null)
+                    return Objects.requireNonNull(connectivityManager.getNetworkCapabilities(network))
+                            .hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+            } else {
+                if (network != null) {
+                    NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);
+                    if (capabilities != null)
+                        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+                }
+            }
+        }
+        return false;
     }
 }

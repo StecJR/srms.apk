@@ -18,6 +18,9 @@ public class Toast {
     public static void databaseError(Context context, String message) {
         android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
     }
+    public static void authenticationError(Context context, String message) {
+        android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
+    }
     public static void generalWarning(Context context, String message) {
         android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
     }

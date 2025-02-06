@@ -30,12 +30,11 @@ public class LoginFacultyFragment extends Fragment {
         FragmentActivity activity = requireActivity();
         FacultyDBHandler facultyDBHandler = FacultyDBHandler.getInstance(context);
         EditText loginFacultyIdInput, loginFacultyPwInput;
-        AppCompatButton loginFacultyLoginButton, loginFacultyForgetPwButton, loginFacultyCreateAccountButton;
+        AppCompatButton loginFacultyLoginButton, loginFacultyCreateAccountButton;
 
         loginFacultyIdInput = view.findViewById(R.id.loginFacultyIdInput);
         loginFacultyPwInput = view.findViewById(R.id.loginFacultyPwInput);
         loginFacultyLoginButton = view.findViewById(R.id.loginFacultyButton);
-        loginFacultyForgetPwButton = view.findViewById(R.id.loginFacultyForgetPwButton);
         loginFacultyCreateAccountButton = view.findViewById(R.id.loginFacultyCreateAccountButton);
 
         loginFacultyLoginButton.setOnClickListener(v -> {
@@ -54,10 +53,9 @@ public class LoginFacultyFragment extends Fragment {
             startActivity(new Intent(context, FacultyInfoActivity.class));
             activity.finish();
         });
-        loginFacultyForgetPwButton.setOnClickListener(v -> {});
         loginFacultyCreateAccountButton.setOnClickListener(v -> startActivity(new Intent(context, FacultySignupActivity.class)));
 
-        togglePasswordVisibility(loginFacultyPwInput, context);
+        togglePasswordVisibility(context, loginFacultyPwInput);
         return view;
     }
 }

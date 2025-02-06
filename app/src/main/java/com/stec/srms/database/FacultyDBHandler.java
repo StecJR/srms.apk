@@ -23,8 +23,10 @@ public class FacultyDBHandler extends Database {
     public FacultyDBHandler(Context context) {
         super(context);
     }
+
     public static synchronized FacultyDBHandler getInstance(Context context) {
-        if (facultyDBHandlerInstance == null) facultyDBHandlerInstance = new FacultyDBHandler(context.getApplicationContext());
+        if (facultyDBHandlerInstance == null)
+            facultyDBHandlerInstance = new FacultyDBHandler(context.getApplicationContext());
         return facultyDBHandlerInstance;
     }
 
@@ -43,6 +45,7 @@ public class FacultyDBHandler extends Database {
             if (db != null) db.close();
         }
     }
+
     public void regenerateGpa(Context context, int sessionId, int deptId, int studentId, int semesterId) {
         ArrayList<CourseInfo> courses = getSemesterCourses(semesterId);
         ArrayList<Results> results = StudentDBHandler.getInstance(context).getResults(sessionId, deptId, studentId, semesterId);
@@ -88,6 +91,7 @@ public class FacultyDBHandler extends Database {
             Toast.databaseError(context, "Failed to add result for student " + result.studentId);
         }
     }
+
     public void addNewResultSummary(Context context, int sessionId, int deptId, ResultsSummary resultsSummary) {
         try (SQLiteDatabase db = this.getWritableDatabase()) {
             ContentValues values = new ContentValues();
@@ -99,6 +103,7 @@ public class FacultyDBHandler extends Database {
             Toast.databaseError(context, "Failed to add result summary for student " + resultsSummary.studentId);
         }
     }
+
     public void addNewCourseResult(Context context, int sessionId, int deptId, int semesterId, int courseCode) {
         ArrayList<StudentInfo> students = StudentDBHandler.getInstance(context).getStudents(deptId, sessionId);
         if (students == null || students.isEmpty()) return;
@@ -106,6 +111,7 @@ public class FacultyDBHandler extends Database {
             addNewResult(context, sessionId, deptId, new Results(student.studentId, semesterId, courseCode, 0, 0.0));
         }
     }
+
     public void addNewCourseResultSummary(Context context, int sessionId, int deptId, int semesterId) {
         ArrayList<StudentInfo> students = StudentDBHandler.getInstance(context).getStudents(deptId, sessionId);
         if (students == null || students.isEmpty()) return;
@@ -148,6 +154,7 @@ public class FacultyDBHandler extends Database {
         }
         return info;
     }
+
     public ArrayList<Results> getCourseResult(int sessionId, int deptId, int courseCode) {
         ArrayList<Results> results = null;
         SQLiteDatabase db = null;

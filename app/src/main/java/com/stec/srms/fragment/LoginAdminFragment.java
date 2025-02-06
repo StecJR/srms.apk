@@ -49,7 +49,7 @@ public class LoginAdminFragment extends Fragment {
             activity.finish();
         });
 
-        togglePasswordVisibility(loginAdminPwInput, context);
+        togglePasswordVisibility(context, loginAdminPwInput);
         return view;
     }
 }

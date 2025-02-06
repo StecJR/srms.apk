@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/studentSignupScrollView"
     android:layout_width="match_parent"
@@ -39,7 +40,7 @@
             android:background="@drawable/rounded_shape"
             android:backgroundTint="#331323"
             android:padding="15dp"
-            android:text="Fill-up the following details carefully"
+            android:text="@string/signup_fill_up_notice"
             android:textColor="#e74747"
             android:textSize="@dimen/text_16"
             android:textStyle="bold" />
@@ -47,66 +48,106 @@
         <EditText
             android:id="@+id/studentSignupNameInput"
             style="@style/CustomStyle.Input.Text"
-            android:hint="Name" />
+            android:hint="@string/name"
+            android:importantForAutofill="noExcludeDescendants" />
 
         <EditText
             android:id="@+id/studentSignupDOBInput"
             style="@style/CustomStyle.Input.Text"
             android:layout_marginTop="30dp"
-            android:hint="Date of birth"
+            android:drawableEnd="@drawable/calendar"
+            android:drawableTint="@color/yellow_lite"
+            android:focusable="false"
+            android:gravity="center"
+            android:hint="@string/date_of_birth"
             android:inputType="date" />
 
-        <EditText
-            android:id="@+id/studentSignupGenderInput"
-            style="@style/CustomStyle.Input.Text"
+        <Spinner
+            android:id="@+id/studentSignupGenderSpinner"
+            style="@style/CustomStyle.Input.Spinner"
+            android:layout_width="280dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
-            android:hint="Gender" />
+            android:padding="5dp" />
 
-        <EditText
-            android:id="@+id/studentSignupDeptInput"
-            style="@style/CustomStyle.Input.Text"
+        <Spinner
+            android:id="@+id/studentSignupDeptSpinner"
+            style="@style/CustomStyle.Input.Spinner"
+            android:layout_width="280dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
-            android:hint="Department" />
+            android:padding="5dp" />
 
-        <EditText
-            android:id="@+id/studentSignupSessionInput"
-            style="@style/CustomStyle.Input.Text"
+        <Spinner
+            android:id="@+id/studentSignupSessionSpinner"
+            style="@style/CustomStyle.Input.Spinner"
+            android:layout_width="280dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
-            android:hint="Session" />
+            android:padding="5dp" />
 
         <EditText
             android:id="@+id/studentSignupContactInput"
             style="@style/CustomStyle.Input.Text"
             android:layout_marginTop="30dp"
-            android:hint="Contact"
-            android:inputType="phone" />
+            android:digits="0123456789+"
+            android:hint="@string/contact"
+            android:importantForAutofill="noExcludeDescendants"
+            android:inputType="phone"
+            android:maxLength="14" />
 
         <EditText
             android:id="@+id/studentSignupEmailInput"
             style="@style/CustomStyle.Input.Text"
             android:layout_marginTop="30dp"
-            android:hint="Email"
+            android:hint="@string/email"
+            android:importantForAutofill="noExcludeDescendants"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/studentSignupAddressInput"
             style="@style/CustomStyle.Input.Text"
             android:layout_marginTop="30dp"
-            android:hint="Address" />
+            android:hint="@string/address"
+            android:importantForAutofill="noExcludeDescendants" />
 
         <EditText
             android:id="@+id/studentSignupPwInput"
             style="@style/CustomStyle.Input.Password"
             android:layout_marginTop="30dp"
             android:autofillHints="password"
-            android:hint="@string/password" />
+            android:hint="@string/password"
+            android:importantForAutofill="noExcludeDescendants" />
 
         <EditText
             android:id="@+id/studentSignupRetypePwInput"
             style="@style/CustomStyle.Input.Password"
             android:layout_marginTop="30dp"
             android:autofillHints="password"
-            android:hint="Retype password" />
+            android:hint="@string/retype_password"
+            android:importantForAutofill="noExcludeDescendants" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/studentSignupImageSelectorButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_shape"
+            android:backgroundTint="@color/black_grey"
+            android:padding="3dp"
+            android:text="@string/upload_image_description"
+            android:textAllCaps="false" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/studentSignupImagePreviewer"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:scaleType="centerCrop"
+            android:clickable="true"
+            app:shapeAppearanceOverlay="@style/CircleImageShape" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/studentSignupSignupButton"

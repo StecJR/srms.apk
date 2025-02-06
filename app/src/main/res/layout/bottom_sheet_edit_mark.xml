@@ -6,14 +6,12 @@
     android:background="@drawable/top_rounded_shape"
     android:backgroundTint="@color/yellow_dark"
     android:orientation="vertical"
-    android:paddingTop="30dp"
     android:paddingBottom="50dp">
 
     <EditText
         android:id="@+id/bottomSheetEditMarkInput"
         style="@style/CustomStyle.Input.Text"
-        android:layout_marginTop="10dp"
-        android:autofillHints="name"
+        android:layout_marginTop="30dp"
         android:hint="@string/mark"
         android:inputType="number" />
 

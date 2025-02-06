@@ -1,6 +1,6 @@
 package com.stec.srms.model;
 
-public class PendingStudents {
+public class PendingStudent {
     public int userId;
     public String name;
     public String birthDate;
@@ -12,8 +12,8 @@ public class PendingStudents {
     public String address;
     public String password;
 
-    public PendingStudents() {}
-    public PendingStudents(int userId, String name, String birthDate, String gender, int deptId, int sessionId, String contact, String email, String address, String password) {
+    public PendingStudent() {}
+    public PendingStudent(int userId, String name, String birthDate, String gender, int deptId, int sessionId, String contact, String email, String address, String password) {
         this.userId = userId;
         this.name = name;
         this.birthDate = birthDate;

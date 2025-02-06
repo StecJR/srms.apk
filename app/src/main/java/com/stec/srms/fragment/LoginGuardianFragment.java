@@ -31,12 +31,11 @@ public class LoginGuardianFragment extends Fragment {
         FragmentActivity activity = requireActivity();
         StudentDBHandler guardianDBHandler = StudentDBHandler.getInstance(context);
         EditText loginGuardianIdInput, loginGuardianPwInput;
-        AppCompatButton loginGuardianLoginButton, loginGuardianForgetPwButton, loginGuardianCreateAccountButton;
+        AppCompatButton loginGuardianLoginButton, loginGuardianCreateAccountButton;
 
         loginGuardianIdInput = view.findViewById(R.id.loginGuardianIdInput);
         loginGuardianPwInput = view.findViewById(R.id.loginGuardianPwInput);
         loginGuardianLoginButton = view.findViewById(R.id.loginGuardianLoginButton);
-        loginGuardianForgetPwButton = view.findViewById(R.id.loginGuardianForgetPwButton);
         loginGuardianCreateAccountButton = view.findViewById(R.id.loginGuardianCreateAccountButton);
 
         loginGuardianLoginButton.setOnClickListener(v -> {
@@ -56,10 +55,9 @@ public class LoginGuardianFragment extends Fragment {
             startActivity(new Intent(context, GuardianInfoActivity.class));
             activity.finish();
         });
-        loginGuardianForgetPwButton.setOnClickListener(v -> {});
         loginGuardianCreateAccountButton.setOnClickListener(v -> startActivity(new Intent(context, GuardianSignupActivity.class)));
 
-        togglePasswordVisibility(loginGuardianPwInput, context);
+        togglePasswordVisibility(context, loginGuardianPwInput);
         return view;
     }
 }

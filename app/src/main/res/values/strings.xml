@@ -56,4 +56,9 @@
     <string name="cancel">Cancel</string>
     <string name="course">Course</string>
     <string name="code">Code</string>
+    <string name="retype_password">Retype password</string>
+    <string name="upload_image_description">Upload\n256 X 256\nimage\n(JPG, PNG)</string>
+    <string name="signup_fill_up_notice">Fill-up the following details carefully</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="verify">Verify</string>
 </resources>

@@ -19,6 +19,7 @@ android {
         }*/
         packagingOptions {
             exclude("license/*")
+            exclude("META-INF/*")
         }
     }
 
@@ -79,6 +80,9 @@ dependencies {
 
     implementation(libs.openpdf)
     implementation(libs.androidawt)
+
+    implementation(libs.android.mail)
+    implementation(libs.android.activation)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
