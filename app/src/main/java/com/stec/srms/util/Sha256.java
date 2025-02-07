@@ -7,7 +7,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 public class Sha256 {
-    public static String hash( String password, String salt) throws Exception {
+    public static String hash(String password, String salt) throws Exception {
         KeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(), 65536, 256);
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
         byte[] byte_hash = factory.generateSecret(spec).getEncoded();

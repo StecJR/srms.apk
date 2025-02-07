@@ -224,8 +224,10 @@ public class FacultyResultActivity extends AppCompatActivity {
                     setCoursesWithHint(facultyDBHandler.getDepartmentCourses((int) id));
                 }
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
         semesterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -236,8 +238,10 @@ public class FacultyResultActivity extends AppCompatActivity {
                     setCoursesWithHint(facultyDBHandler.getSemesterCourses((int) id));
                 }
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         facultyResultSearchButton.setOnClickListener(v -> {

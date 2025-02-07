@@ -25,14 +25,17 @@ public class DeptSelectorAdapter extends BaseAdapter {
     public int getCount() {
         return departments.size();
     }
+
     @Override
     public Object getItem(int position) {
         return departments.get(position);
     }
+
     @Override
     public long getItemId(int position) {
         return departments.get(position).deptId;
     }
+
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         if (view == null) {

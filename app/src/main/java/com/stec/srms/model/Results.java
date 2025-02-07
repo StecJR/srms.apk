@@ -7,7 +7,9 @@ public class Results {
     public int mark;
     public double gpa;
 
-    public Results() {}
+    public Results() {
+    }
+
     public Results(int studentId, int semesterId, int courseCode, int mark, double gpa) {
         this.studentId = studentId;
         this.semesterId = semesterId;

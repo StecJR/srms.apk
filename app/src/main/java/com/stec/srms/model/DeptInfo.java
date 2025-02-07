@@ -5,7 +5,9 @@ public class DeptInfo {
     public String shortDesc;
     public String longDesc;
 
-    public DeptInfo() {}
+    public DeptInfo() {
+    }
+
     public DeptInfo(int deptId, String shortDesc, String longDesc) {
         this.deptId = deptId;
         this.shortDesc = shortDesc;

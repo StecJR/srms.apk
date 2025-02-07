@@ -25,14 +25,17 @@ public class SemesterSelectorAdapter extends BaseAdapter {
     public int getCount() {
         return semesters.size();
     }
+
     @Override
     public Object getItem(int position) {
         return semesters.get(position);
     }
+
     @Override
     public long getItemId(int position) {
         return semesters.get(position).semesterId;
     }
+
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         if (view == null) {

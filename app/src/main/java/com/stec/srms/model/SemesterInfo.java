@@ -5,7 +5,9 @@ public class SemesterInfo {
     public String shortDesc;
     public String longDesc;
 
-    public SemesterInfo() {}
+    public SemesterInfo() {
+    }
+
     public SemesterInfo(int semesterId, String shortDesc, String longDesc) {
         this.semesterId = semesterId;
         this.shortDesc = shortDesc;

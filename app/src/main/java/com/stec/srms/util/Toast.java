@@ -12,24 +12,31 @@ public class Toast {
     public static void credentialError(Context context) {
         android.widget.Toast.makeText(context, "Wrong credentials", android.widget.Toast.LENGTH_LONG).show();
     }
+
     public static void generalError(Context context, String message) {
         android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
     }
+
     public static void databaseError(Context context, String message) {
         android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
     }
+
     public static void authenticationError(Context context, String message) {
         android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
     }
+
     public static void generalWarning(Context context, String message) {
         android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
     }
+
     public static void generalInfo(Context context, String message) {
         android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
     }
+
     public static void databaseInfo(Context context, String message) {
         android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
     }
+
     public static void generalSuccess(Context context, String message) {
         android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show();
     }

@@ -10,7 +10,9 @@ public class GuardianInfo {
     public int deptId;
     public String password;
 
-    public GuardianInfo() {}
+    public GuardianInfo() {
+    }
+
     public GuardianInfo(int guardianId, String name, String relation, String contact, String email, int studentId, int deptId, String password) {
         this.guardianId = guardianId;
         this.name = name;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="Base.Theme.SRMS" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:textColor">@color/black</item>
@@ -7,8 +8,11 @@
         <item name="fontFamily">@font/nunito</item>
         <!-- Splash screen styles -->
         <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/wheat</item>
-        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@drawable/srms_logo_mini</item>
+        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">
+            @drawable/srms_logo_mini
+        </item>
     </style>
+
     <style name="Theme.SRMS" parent="Base.Theme.SRMS" />
 
     <!-- Button:Blue style -->
@@ -16,7 +20,9 @@
         <item name="android:background">@drawable/button_night</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
     <style name="CustomStyle.Button" parent="CustomStyle.Button.Blue" />
+
     <style name="CustomStyle.Button.LongWidth" parent="CustomStyle.Button.LongWidth.Base">
         <item name="android:backgroundTint">@color/black_grey</item>
     </style>

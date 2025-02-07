@@ -17,7 +17,6 @@ import com.stec.srms.model.ResultsSummary;
 import com.stec.srms.model.StudentInfo;
 import com.stec.srms.model.StudentSession;
 import com.stec.srms.util.SessionManager;
-import com.stec.srms.util.Util;
 
 import java.util.ArrayList;
 

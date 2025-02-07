@@ -35,6 +35,7 @@ public class SessionManager {
             }
         }
     }
+
     public static synchronized SessionManager getInstance(Context context) {
         if (sessionManager == null) sessionManager = new SessionManager(context);
         return sessionManager;
@@ -43,6 +44,7 @@ public class SessionManager {
     public boolean isFirstTime() {
         return sharedPreference.getBoolean("isFirstTime", true);
     }
+
     public void turnOffFirstTime() {
         sharedPreference.edit()
                 .putBoolean("isFirstTime", false)
@@ -57,6 +59,7 @@ public class SessionManager {
                 .putLong("sessionExpiryDate", new Date().getTime() + (expiryDay * 86400000L) - 1)
                 .apply();
     }
+
     public void createFacultySession(int facultyId, int expiryDay) {
         sharedPreference.edit()
                 .putInt("sessionFacultyId", facultyId)
@@ -64,6 +67,7 @@ public class SessionManager {
                 .putLong("sessionExpiryDate", new Date().getTime() + (expiryDay * 86400000L) - 1)
                 .apply();
     }
+
     public void createGuardianSession(int guardianId, int deptId, int studentId, int expiryDay) {
         sharedPreference.edit()
                 .putInt("sessionGuardianId", guardianId)
@@ -73,6 +77,7 @@ public class SessionManager {
                 .putLong("sessionExpiryDate", new Date().getTime() + (expiryDay * 86400000L) - 1)
                 .apply();
     }
+
     public void createAdminSession(int expiryDay) {
         sharedPreference.edit()
                 .putString("sessionUserType", "admin")
@@ -111,20 +116,24 @@ public class SessionManager {
         if (accType == null) return -1;
         return accType.accountId;
     }
+
     public String getAccountType() {
         return sharedPreference.getString("sessionUserType", null);
     }
+
     public StudentSession getStudentSession() {
         int deptId = sharedPreference.getInt("sessionStudentDeptId", -1);
         int studentId = sharedPreference.getInt("sessionStudentId", -1);
         if (deptId == -1 || studentId == -1) return null;
         return new StudentSession(deptId, studentId);
     }
+
     public FacultySession getFacultySession() {
         int facultyId = sharedPreference.getInt("sessionFacultyId", -1);
         if (facultyId == -1) return null;
         return new FacultySession(facultyId);
     }
+
     public GuardianSession getGuardianSession() {
         int guardianId = sharedPreference.getInt("sessionGuardianId", -1);
         int studentId = sharedPreference.getInt("sessionStudentId", -1);
@@ -141,6 +150,7 @@ public class SessionManager {
                 .remove("sessionExpiryDate")
                 .apply();
     }
+
     public void deleteFacultySession() {
         sharedPreference.edit()
                 .remove("sessionFacultyId")
@@ -148,6 +158,7 @@ public class SessionManager {
                 .remove("sessionExpiryDate")
                 .apply();
     }
+
     public void deleteGuardianSession() {
         sharedPreference.edit()
                 .remove("sessionGuardianId")
@@ -157,12 +168,14 @@ public class SessionManager {
                 .remove("sessionExpiryDate")
                 .apply();
     }
+
     public void deleteAdminSession() {
         sharedPreference.edit()
                 .remove("sessionUserType")
                 .remove("sessionExpiryDate")
                 .apply();
     }
+
     public void deleteAllSessions() {
         sharedPreference.edit()
                 .remove("sessionStudentDeptId")

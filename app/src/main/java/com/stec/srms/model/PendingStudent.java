@@ -12,7 +12,9 @@ public class PendingStudent {
     public String address;
     public String password;
 
-    public PendingStudent() {}
+    public PendingStudent() {
+    }
+
     public PendingStudent(int userId, String name, String birthDate, String gender, int deptId, int sessionId, String contact, String email, String address, String password) {
         this.userId = userId;
         this.name = name;

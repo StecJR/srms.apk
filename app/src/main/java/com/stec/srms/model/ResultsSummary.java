@@ -5,7 +5,9 @@ public class ResultsSummary {
     public int semesterId;
     public double gpa;
 
-    public ResultsSummary() {}
+    public ResultsSummary() {
+    }
+
     public ResultsSummary(int studentId, int semesterId, double gpa) {
         this.studentId = studentId;
         this.semesterId = semesterId;

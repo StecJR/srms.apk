@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/studentSignupScrollView"
     android:layout_width="match_parent"
@@ -39,58 +40,98 @@
             android:background="@drawable/rounded_shape"
             android:backgroundTint="#331323"
             android:padding="15dp"
-            android:text="Fill-up the following details carefully"
+            android:text="@string/signup_fill_up_notice"
             android:textColor="#e74747"
             android:textSize="@dimen/text_16"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/studentSignupNameInput"
+            android:id="@+id/guardianSignupNameInput"
             style="@style/CustomStyle.Input.Text"
-            android:hint="Name" />
+            android:hint="@string/name"
+            android:importantForAutofill="noExcludeDescendants" />
 
         <EditText
-            android:id="@+id/studentSignupContactInput"
+            android:id="@+id/guardianSignupRelationInput"
             style="@style/CustomStyle.Input.Text"
             android:layout_marginTop="30dp"
-            android:hint="Contact"
-            android:inputType="phone" />
+            android:hint="@string/relation"
+            android:importantForAutofill="noExcludeDescendants" />
 
         <EditText
-            android:id="@+id/studentSignupEmailInput"
+            android:id="@+id/guardianSignupContactInput"
             style="@style/CustomStyle.Input.Text"
             android:layout_marginTop="30dp"
-            android:hint="Email"
+            android:digits="0123456789+"
+            android:hint="@string/contact"
+            android:importantForAutofill="noExcludeDescendants"
+            android:inputType="phone"
+            android:maxLength="14" />
+
+        <EditText
+            android:id="@+id/guardianSignupEmailInput"
+            style="@style/CustomStyle.Input.Text"
+            android:layout_marginTop="30dp"
+            android:hint="@string/email"
+            android:importantForAutofill="noExcludeDescendants"
             android:inputType="textEmailAddress" />
 
-        <EditText
-            android:id="@+id/studentSignupSIdInput"
-            style="@style/CustomStyle.Input.Text"
+        <Spinner
+            android:id="@+id/guardianSignupDeptSpinner"
+            style="@style/CustomStyle.Input.Spinner"
+            android:layout_width="280dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
-            android:hint="@string/student_id" />
+            android:padding="5dp" />
 
         <EditText
-            android:id="@+id/studentSignupSDeptInput"
+            android:id="@+id/guardianSignupStudentIdInput"
             style="@style/CustomStyle.Input.Text"
             android:layout_marginTop="30dp"
-            android:hint="@string/department" />
+            android:hint="@string/student_id"
+            android:inputType="number"
+            android:maxLength="8" />
 
         <EditText
-            android:id="@+id/studentSignupPwInput"
+            android:id="@+id/guardianSignupPwInput"
             style="@style/CustomStyle.Input.Password"
             android:layout_marginTop="30dp"
             android:autofillHints="password"
-            android:hint="@string/password" />
+            android:hint="@string/password"
+            android:importantForAutofill="noExcludeDescendants" />
 
         <EditText
-            android:id="@+id/studentSignupRetypePwInput"
+            android:id="@+id/guardianSignupRetypePwInput"
             style="@style/CustomStyle.Input.Password"
             android:layout_marginTop="30dp"
             android:autofillHints="password"
-            android:hint="Retype password" />
+            android:hint="@string/retype_password"
+            android:importantForAutofill="noExcludeDescendants" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/studentSignupSignupButton"
+            android:id="@+id/guardianSignupImageSelectorButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_shape"
+            android:backgroundTint="@color/black_grey"
+            android:padding="3dp"
+            android:text="@string/upload_image_description"
+            android:textAllCaps="false" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/guardianSignupImagePreviewer"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:clickable="true"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/CircleImageShape" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/guardianSignupSignupButton"
             style="@style/CustomStyle.Button.Blue"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"

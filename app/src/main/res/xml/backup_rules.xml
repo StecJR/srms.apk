@@ -6,6 +6,10 @@
    See https://developer.android.com/about/versions/12/backup-restore
 -->
 <full-backup-content>
-    <include domain="file" path="/data/data/com.stec.srms/databases/"/>
-    <include domain="file" path="/data/data/com.stec.srms/files/"/>
+    <include
+        domain="file"
+        path="/data/data/com.stec.srms/databases/" />
+    <include
+        domain="file"
+        path="/data/data/com.stec.srms/files/" />
 </full-backup-content>

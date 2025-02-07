@@ -23,10 +23,11 @@ public class PermissionHandler {
                 context, android.Manifest.permission.READ_EXTERNAL_STORAGE
         ) == PackageManager.PERMISSION_GRANTED;
     }
+
     public static void requestReadStoragePermission(Activity activity) {
         ActivityCompat.requestPermissions(
                 activity,
-                new String[]{ android.Manifest.permission.READ_EXTERNAL_STORAGE },
+                new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
                 REQUEST_READ_EXTERNAL_STORAGE
         );
     }
@@ -40,11 +41,12 @@ public class PermissionHandler {
             return android.os.Environment.isExternalStorageManager();
         }
     }
+
     public static void requestWriteStoragePermission(Activity activity) {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
             ActivityCompat.requestPermissions(
                     activity,
-                    new String[]{ android.Manifest.permission.WRITE_EXTERNAL_STORAGE },
+                    new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     REQUEST_WRITE_EXTERNAL_STORAGE
             );
         } else {

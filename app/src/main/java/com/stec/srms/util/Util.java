@@ -60,6 +60,7 @@ class FooterEvent extends PdfPageEventHelper {
     public FooterEvent() {
         this.footerFont = new Font(Font.COURIER, 10, Font.NORMAL, new Color(80, 100, 150, 150));
     }
+
     @Override
     public void onEndPage(PdfWriter writer, Document document) {
         PdfContentByte canvas = writer.getDirectContent();
@@ -85,11 +86,11 @@ class FooterEvent extends PdfPageEventHelper {
 }
 
 public class Util {
-    private static Drawable eyeShow, eyeHide;
     private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.US);
     private static final Pattern validPhonePattern = Pattern.compile("^(01\\d{9}|\\+8801\\d{9})$");
     private static final Pattern validEmailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
     private static final SecureRandom random = new SecureRandom();
+    private static Drawable eyeShow, eyeHide;
 
     public static double getGpa(int mark) {
         if (mark >= 80) return 4.0;
@@ -103,6 +104,7 @@ public class Util {
         else if (mark >= 40) return 2.0;
         else return 0.0;
     }
+
     public static String getGrade(double gpa) {
         if (gpa >= 4.0) return "A+";
         else if (gpa >= 3.75) return "A";
@@ -115,6 +117,7 @@ public class Util {
         else if (gpa >= 2.0) return "C-";
         else return "F";
     }
+
     public static int stringToInt(String value, int defaultValue) {
         if (value == null || value.trim().isBlank()) return defaultValue;
         try {
@@ -123,6 +126,7 @@ public class Util {
             return defaultValue;
         }
     }
+
     public static int dpToPx(Context context, int dp) {
         return (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
@@ -130,6 +134,7 @@ public class Util {
                 context.getResources().getDisplayMetrics()
         );
     }
+
     public static int getOTP() {
         return 100000 + random.nextInt(900000);
     }
@@ -143,10 +148,12 @@ public class Util {
                 editText.getCompoundDrawables()[3]
         );
     }
+
     private static boolean isTouchWithinDrawableBounds(EditText editText, MotionEvent event) {
         Drawable drawable = editText.getCompoundDrawables()[2];
         return drawable != null && event.getRawX() >= (editText.getRight() - drawable.getBounds().width() - 50);
     }
+
     private static void togglePasswordVisibility(EditText editText) {
         Typeface typeFace = editText.getTypeface();
         int cursorPosition = editText.getSelectionStart();
@@ -160,6 +167,7 @@ public class Util {
         editText.setSelection(cursorPosition);
         editText.setTypeface(typeFace);
     }
+
     @SuppressLint("ClickableViewAccessibility")
     public static void togglePasswordVisibility(Context context, EditText editText) {
         if (eyeShow == null || eyeHide == null) {
@@ -285,6 +293,7 @@ public class Util {
     private static void updateUI(Calendar calendar, EditText view) {
         view.setText(simpleDateFormat.format(calendar.getTime()));
     }
+
     public static void pickDate(Context context, Calendar calendar, EditText view) {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 context,
@@ -306,6 +315,7 @@ public class Util {
     public static boolean validPhoneNumber(String number) {
         return validPhonePattern.matcher(number).matches();
     }
+
     public static boolean validEmail(String email) {
         return validEmailPattern.matcher(email).matches();
     }
@@ -316,6 +326,7 @@ public class Util {
         intent.setType("image/*");
         activity.startActivityForResult(intent, PermissionHandler.REQUEST_PICK_IMAGE);
     }
+
     public static void saveImageToInternalStorage(Context context, Uri imageUri, String imageName) {
         if (imageUri == null) {
             Toast.generalError(context, "No image selected");
@@ -344,6 +355,7 @@ public class Util {
             Toast.generalError(context, "Failed to save image");
         }
     }
+
     public static Bitmap getImageFromInternalStorage(Context context, String imageName) {
         File file = new File(context.getFilesDir(), imageName);
         return BitmapFactory.decodeFile(file.getAbsolutePath());

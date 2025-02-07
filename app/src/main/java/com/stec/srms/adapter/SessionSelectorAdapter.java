@@ -25,14 +25,17 @@ public class SessionSelectorAdapter extends BaseAdapter {
     public int getCount() {
         return sessions.size();
     }
+
     @Override
     public Object getItem(int position) {
         return sessions.get(position);
     }
+
     @Override
     public long getItemId(int position) {
         return sessions.get(position).sessionId;
     }
+
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         if (view == null) {

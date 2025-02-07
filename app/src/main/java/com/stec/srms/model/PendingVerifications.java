@@ -5,7 +5,9 @@ public class PendingVerifications {
     public int accountId;
     public int userId;
 
-    public PendingVerifications() {}
+    public PendingVerifications() {
+    }
+
     public PendingVerifications(int pvId, int accountId, int userId) {
         this.pvId = pvId;
         this.accountId = accountId;

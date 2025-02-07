@@ -10,7 +10,9 @@ public class FacultyInfo {
     public String address;
     public String password;
 
-    public FacultyInfo() {}
+    public FacultyInfo() {
+    }
+
     public FacultyInfo(int facultyId, String name, String gender, int deptId, String contact, String email, String address, String password) {
         this.facultyId = facultyId;
         this.name = name;

@@ -13,8 +13,8 @@ import com.stec.srms.model.CourseInfo;
 import com.stec.srms.model.DeptInfo;
 import com.stec.srms.model.FacultyInfo;
 import com.stec.srms.model.GuardianInfo;
-import com.stec.srms.model.PendingFaculties;
-import com.stec.srms.model.PendingGuardians;
+import com.stec.srms.model.PendingFaculty;
+import com.stec.srms.model.PendingGuardian;
 import com.stec.srms.model.PendingStudent;
 import com.stec.srms.model.PendingVerifications;
 import com.stec.srms.model.Results;
@@ -117,12 +117,12 @@ public class Database extends SQLiteOpenHelper {
 
     public void createPendingFacultiesTable(SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
-        db.execSQL(PendingFaculties.getQuery());
+        db.execSQL(PendingFaculty.getQuery());
     }
 
     public void createPendingGuardiansTable(SQLiteDatabase db) {
         if (db == null) db = this.getWritableDatabase();
-        db.execSQL(PendingGuardians.getQuery());
+        db.execSQL(PendingGuardian.getQuery());
     }
 
     // Get: static table data
@@ -882,5 +882,6 @@ public class Database extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    }
 }

@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         loginFragments.put(R.id.loginBottomNavGuardian, new LoginGuardianFragment());
         loginFragments.put(R.id.loginBottomNavAdmin, new LoginAdminFragment());
     }
+
     private void loadFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()

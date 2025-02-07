@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.stec.srms.model.CourseInfo;
 import com.stec.srms.model.FacultyInfo;
+import com.stec.srms.model.PendingFaculty;
 import com.stec.srms.model.Results;
 import com.stec.srms.model.ResultsSummary;
 import com.stec.srms.model.StudentInfo;
@@ -19,15 +20,41 @@ import java.util.Map;
 
 public class FacultyDBHandler extends Database {
     private static FacultyDBHandler facultyDBHandlerInstance;
+    Context context;
 
     public FacultyDBHandler(Context context) {
         super(context);
+        this.context = context;
     }
 
     public static synchronized FacultyDBHandler getInstance(Context context) {
         if (facultyDBHandlerInstance == null)
             facultyDBHandlerInstance = new FacultyDBHandler(context.getApplicationContext());
         return facultyDBHandlerInstance;
+    }
+
+    public boolean isEmailExists(String email) {
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = this.getReadableDatabase();
+            String query = "SELECT * FROM faculties WHERE email = '" + email + "' LIMIT 1;";
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                db.close();
+                cursor.close();
+                return true;
+            }
+
+            query = "SELECT * FROM pending_faculties WHERE email = '" + email + "' LIMIT 1;";
+            cursor = db.rawQuery(query, null);
+            return cursor.moveToFirst();
+        } catch (Exception e) {
+            return false;
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
     }
 
     public boolean hasSemesterInResultSummary(int sessionId, int deptId, int semesterId) {
@@ -196,5 +223,68 @@ public class FacultyDBHandler extends Database {
             Toast.databaseError(context, "Failed to update result");
         }
     }
-}
 
+    public int addPendingFaculty(PendingFaculty facultyInfo) {
+        int accountId = getAccountType("pendingFaculty").accountId;
+        SQLiteDatabase db = null;
+        try {
+            db = this.getWritableDatabase();
+            db.beginTransaction();
+
+            ContentValues values = new ContentValues();
+            values.put("name", facultyInfo.name);
+            values.put("gender", facultyInfo.gender);
+            values.put("deptId", facultyInfo.deptId);
+            values.put("contact", facultyInfo.contact);
+            values.put("email", facultyInfo.email);
+            values.put("address", facultyInfo.address);
+            values.put("password", facultyInfo.password);
+            int userId = (int) db.insert("pending_faculties", null, values);
+            if (userId == -1) {
+                Toast.databaseError(context, "Failed to add faculty record");
+                return -1;
+            }
+
+            values = new ContentValues();
+            values.put("accountId", accountId);
+            values.put("userId", userId);
+            int verificationId = (int) db.insert("pending_verifications", null, values);
+            if (verificationId == -1) {
+                Toast.databaseError(context, "Failed to add faculty record");
+                return -1;
+            }
+
+            db.setTransactionSuccessful();
+            return userId;
+        } catch (Exception e) {
+            return -1;
+        } finally {
+            if (db != null) {
+                db.endTransaction();
+                db.close();
+            }
+        }
+    }
+
+    public boolean deletePendingFaculty(int userId) {
+        int accountId = getAccountType("pendingFaculty").accountId;
+        SQLiteDatabase db = null;
+        try {
+            db = this.getWritableDatabase();
+            db.beginTransaction();
+
+            db.delete("pending_faculties", "userId = " + userId, null);
+            db.delete("pending_verifications", "accountId = " + accountId + " AND userId = " + userId, null);
+
+            db.setTransactionSuccessful();
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            if (db != null) {
+                db.endTransaction();
+                db.close();
+            }
+        }
+    }
+}

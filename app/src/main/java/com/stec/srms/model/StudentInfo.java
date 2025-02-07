@@ -13,7 +13,9 @@ public class StudentInfo {
     public int guardianId;
     public String password;
 
-    public StudentInfo() {}
+    public StudentInfo() {
+    }
+
     public StudentInfo(int studentId, String name, String birthDate, String gender, int deptId, int sessionId, String contact, String email, String address, int guardianId, String password) {
         this.studentId = studentId;
         this.name = name;

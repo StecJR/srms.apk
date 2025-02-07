@@ -48,7 +48,7 @@ public class StudentSignupActivity extends AppCompatActivity {
                         imageUri,
                         String.valueOf(database.getAccountType("pendingStudent").accountId) + userId + ".jpeg"
                 );
-                Toast.generalSuccess(this, "Signup complete. Wait for admin to verify everything");
+                Toast.generalSuccess(this, "Signup complete. Wait for admin to verify");
                 finish();
             }
         });

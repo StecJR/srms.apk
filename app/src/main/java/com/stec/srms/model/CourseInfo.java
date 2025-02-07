@@ -8,7 +8,9 @@ public class CourseInfo {
     public String shortDesc;
     public String longDesc;
 
-    public CourseInfo() {}
+    public CourseInfo() {
+    }
+
     public CourseInfo(int deptId, int semesterId, int courseCode, double credit, String shortDesc, String longDesc) {
         this.deptId = deptId;
         this.semesterId = semesterId;
