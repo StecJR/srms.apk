@@ -1,14 +1,15 @@
 package com.stec.srms.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.google.android.material.imageview.ShapeableImageView;
 import com.stec.srms.R;
 import com.stec.srms.database.StudentDBHandler;
 import com.stec.srms.model.AdminInfo;
@@ -16,7 +17,7 @@ import com.stec.srms.model.GuardianInfo;
 import com.stec.srms.model.GuardianSession;
 import com.stec.srms.model.StudentInfo;
 import com.stec.srms.util.SessionManager;
-import com.stec.srms.util.Toast;
+import com.stec.srms.util.Util;
 
 public class GuardianInfoActivity extends AppCompatActivity {
     @Override
@@ -60,12 +61,14 @@ public class GuardianInfoActivity extends AppCompatActivity {
             return;
         }
 
+        ShapeableImageView guardianInfoProfileImage;
         TextView guardianInfoStudentName, guardianInfoStudentDept, guardianInfoName,
                 guardianInfoRelation, guardianInfoContact, guardianInfoEmail;
         AppCompatButton guardianInfoLogoutButton, guardianStudentInfoButton, guardianStudentResultButton;
         StudentInfo studentInfo = guardianDBHandler.getStudentinfo(guardianSession.deptId, guardianSession.studentId);
         GuardianInfo guardianInfo = guardianDBHandler.getGuardianinfo(guardianSession.guardianId);
 
+        guardianInfoProfileImage = findViewById(R.id.guardianInfoProfileImage);
         guardianInfoStudentName = findViewById(R.id.guardianInfoStudentName);
         guardianInfoStudentDept = findViewById(R.id.guardianInfoStudentDept);
         guardianInfoName = findViewById(R.id.guardianInfoName);
@@ -76,14 +79,15 @@ public class GuardianInfoActivity extends AppCompatActivity {
         guardianStudentInfoButton = findViewById(R.id.GuardianStudentInfoButton);
         guardianStudentResultButton = findViewById(R.id.GuardianStudentResultButton);
 
-        if (studentInfo != null) {
-            guardianInfoStudentName.setText(studentInfo.name);
-            guardianInfoStudentDept.setText(guardianDBHandler.getDepartment(studentInfo.deptId).longDesc);
-        } else {
-            LinearLayout guardianInfoStudentInfoLayout = findViewById(R.id.guardianInfoStudentInfoLayout);
-            guardianInfoStudentInfoLayout.setVisibility(LinearLayout.GONE);
-            Toast.generalError(this, "Failed to get student info");
-        }
+        int accountId = guardianDBHandler.getAccountType("guardian").accountId;
+        Bitmap profileImage = Util.getImageFromInternalStorage(
+                this,
+                String.valueOf(accountId) + studentInfo.studentId + ".jpeg");
+        if (profileImage != null) guardianInfoProfileImage.setImageBitmap(profileImage);
+        else guardianInfoProfileImage.setImageResource(R.drawable.default_profile);
+
+        guardianInfoStudentName.setText(studentInfo.name);
+        guardianInfoStudentDept.setText(guardianDBHandler.getDepartment(studentInfo.deptId).longDesc);
 
         guardianInfoName.setText(guardianInfo.name);
         guardianInfoRelation.setText(guardianInfo.relation);

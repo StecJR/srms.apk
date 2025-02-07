@@ -1,6 +1,7 @@
 package com.stec.srms.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -8,6 +9,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.google.android.material.imageview.ShapeableImageView;
 import com.stec.srms.R;
 import com.stec.srms.database.FacultyDBHandler;
 import com.stec.srms.model.AdminInfo;
@@ -15,6 +17,7 @@ import com.stec.srms.model.DeptInfo;
 import com.stec.srms.model.FacultyInfo;
 import com.stec.srms.model.FacultySession;
 import com.stec.srms.util.SessionManager;
+import com.stec.srms.util.Util;
 
 public class FacultyInfoActivity extends AppCompatActivity {
     @Override
@@ -58,12 +61,14 @@ public class FacultyInfoActivity extends AppCompatActivity {
             return;
         }
 
+        ShapeableImageView facultyInfoProfileImage;
         TextView facultyInfoFacultyId, facultyInfoName, facultyInfoGender, facultyInfoDept,
                 facultyInfoContact, facultyInfoEmail;
         AppCompatButton facultyInfoResultButton, facultyInfoLogoutButton;
         FacultyInfo facultyInfo = facultyDBHandler.getFacultyInfo(facultySession.facultyId);
         DeptInfo deptInfo = facultyDBHandler.getDepartment(facultyInfo.deptId);
 
+        facultyInfoProfileImage = findViewById(R.id.facultyInfoProfileImage);
         facultyInfoFacultyId = findViewById(R.id.facultyInfoFacultyId);
         facultyInfoName = findViewById(R.id.facultyInfoName);
         facultyInfoGender = findViewById(R.id.facultyInfoGender);
@@ -72,6 +77,13 @@ public class FacultyInfoActivity extends AppCompatActivity {
         facultyInfoEmail = findViewById(R.id.facultyInfoEmail);
         facultyInfoResultButton = findViewById(R.id.facultyInfoResultButton);
         facultyInfoLogoutButton = findViewById(R.id.facultyInfoLogoutButton);
+
+        int accountId = facultyDBHandler.getAccountType("faculty").accountId;
+        Bitmap profileImage = Util.getImageFromInternalStorage(
+                this,
+                String.valueOf(accountId) + facultyInfo.facultyId + ".jpeg");
+        if (profileImage != null) facultyInfoProfileImage.setImageBitmap(profileImage);
+        else facultyInfoProfileImage.setImageResource(R.drawable.default_profile);
 
         facultyInfoFacultyId.setText(String.valueOf(facultyInfo.facultyId));
         facultyInfoName.setText(facultyInfo.name);

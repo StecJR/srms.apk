@@ -1,6 +1,7 @@
 package com.stec.srms.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TableLayout;
@@ -10,6 +11,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.google.android.material.imageview.ShapeableImageView;
 import com.stec.srms.R;
 import com.stec.srms.database.StudentDBHandler;
 import com.stec.srms.model.AdminInfo;
@@ -19,6 +21,7 @@ import com.stec.srms.model.SessionInfo;
 import com.stec.srms.model.StudentInfo;
 import com.stec.srms.model.StudentSession;
 import com.stec.srms.util.SessionManager;
+import com.stec.srms.util.Util;
 
 public class StudentInfoActivity extends AppCompatActivity {
     @Override
@@ -61,12 +64,14 @@ public class StudentInfoActivity extends AppCompatActivity {
             return;
         }
 
+        ShapeableImageView studentInfoProfileImage;
         TextView studentInfoStudentId, studentInfoName, studentInfoBirthDate, studentInfoGender,
                 studentInfoDept, studentInfoSession, studentInfoContact, studentInfoEmail, studentInfoAddress;
         StudentInfo studentInfo = studentDBHandler.getStudentinfo(studentSession.deptId, studentSession.studentId);
         DeptInfo deptInfo = studentDBHandler.getDepartment(studentInfo.deptId);
         SessionInfo sessionInfo = studentDBHandler.getSession(studentInfo.sessionId);
 
+        studentInfoProfileImage = findViewById(R.id.studentInfoProfileImage);
         studentInfoStudentId = findViewById(R.id.studentInfoStudentId);
         studentInfoName = findViewById(R.id.studentInfoName);
         studentInfoBirthDate = findViewById(R.id.studentInfoBirthDate);
@@ -76,6 +81,13 @@ public class StudentInfoActivity extends AppCompatActivity {
         studentInfoContact = findViewById(R.id.studentInfoContact);
         studentInfoEmail = findViewById(R.id.studentInfoEmail);
         studentInfoAddress = findViewById(R.id.studentInfoAddress);
+
+        int accountId = studentDBHandler.getAccountType("student").accountId;
+        Bitmap profileImage = Util.getImageFromInternalStorage(
+                this,
+                String.valueOf(accountId) + studentInfo.studentId + ".jpeg");
+        if (profileImage != null) studentInfoProfileImage.setImageBitmap(profileImage);
+        else studentInfoProfileImage.setImageResource(R.drawable.default_profile);
 
         studentInfoStudentId.setText(String.valueOf(studentInfo.studentId));
         studentInfoName.setText(studentInfo.name);

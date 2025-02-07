@@ -43,7 +43,6 @@
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
-            android:src="@drawable/profile"
             app:shapeAppearanceOverlay="@style/CircleImageShape" />
 
         <TextView
