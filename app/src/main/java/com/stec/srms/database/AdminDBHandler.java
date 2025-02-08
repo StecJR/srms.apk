@@ -203,7 +203,7 @@ public class AdminDBHandler extends Database {
         Cursor cursor = null;
         try {
             db = this.getReadableDatabase();
-            String query = "SELECT * FROM pending_students WHERE userId = " + userId + " LIMIT 1;";
+            String query = "SELECT * FROM pending_guardians WHERE userId = " + userId + " LIMIT 1;";
             cursor = db.rawQuery(query, null);
             PendingGuardian pendingGuardian = null;
             if (cursor.moveToFirst()) {
@@ -308,6 +308,48 @@ public class AdminDBHandler extends Database {
         } catch (Exception e) {
             return -1;
         }
+    }
+
+    public int movePendingFacultyToFacultyTable(PendingFaculty facultyInfo) {
+        try (SQLiteDatabase db = this.getWritableDatabase()) {
+            ContentValues values = new ContentValues();
+            values.put("name", facultyInfo.name);
+            values.put("gender", facultyInfo.gender);
+            values.put("deptId", facultyInfo.deptId);
+            values.put("contact", facultyInfo.contact);
+            values.put("email", facultyInfo.email);
+            values.put("address", facultyInfo.address);
+            values.put("password", facultyInfo.password);
+            return (int) db.insert("faculties", null, values);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    public int movePendingGuardianToGuardianTable(PendingGuardian guardianInfo) {
+        int guardianId;
+        try (SQLiteDatabase db = this.getWritableDatabase()) {
+            ContentValues values = new ContentValues();
+            values.put("name", guardianInfo.name);
+            values.put("relation", guardianInfo.relation);
+            values.put("contact", guardianInfo.contact);
+            values.put("email", guardianInfo.email);
+            values.put("studentId", guardianInfo.studentId);
+            values.put("deptId", guardianInfo.deptId);
+            values.put("password", guardianInfo.password);
+            guardianId = (int) db.insert("guardians", null, values);
+        } catch (Exception e) {
+            return -1;
+        }
+
+        try (SQLiteDatabase db = this.getWritableDatabase()) {
+            ContentValues values = new ContentValues();
+            values.put("guardianId", guardianId);
+            db.update("students_" + guardianInfo.deptId, values, "studentId = ?", new String[]{String.valueOf(guardianInfo.studentId)});
+        } catch (Exception e) {
+            return -1;
+        }
+        return guardianId;
     }
 }
 

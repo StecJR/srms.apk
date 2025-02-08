@@ -2,6 +2,7 @@ package com.stec.srms.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -17,9 +18,12 @@ import com.stec.srms.model.PendingUserInfo;
 import java.util.ArrayList;
 
 public class AdminPendingGuardianActivity extends AppCompatActivity {
+    AdminDBHandler adminDBHandler;
+    TableLayout adminPendingGuardianTable;
     ContextThemeWrapper tableRowStyle, tableRowTextStyle;
 
-    private void createTableRows(TableLayout tableLayout, ArrayList<PendingUserInfo> pendingUsers) {
+    private void createTableRows() {
+        ArrayList<PendingUserInfo> pendingUsers = adminDBHandler.getPendingGuardians();
         if (pendingUsers == null || pendingUsers.isEmpty()) return;
 
         TableRow tableRow;
@@ -30,7 +34,7 @@ public class AdminPendingGuardianActivity extends AppCompatActivity {
 
         for (PendingUserInfo pendingUser : pendingUsers) {
             tableRow = new TableRow(tableRowStyle);
-            tableRow.setPadding(tableRow.getPaddingLeft(), 5, tableRow.getPaddingRight(), 5);
+            tableRow.setPadding(tableRow.getPaddingLeft(), 10, tableRow.getPaddingRight(), 10);
 
             deptTextView = new TextView(tableRowTextStyle);
             deptTextView.setText(pendingUser.shortDept);
@@ -45,10 +49,11 @@ public class AdminPendingGuardianActivity extends AppCompatActivity {
 
             tableRow.setOnClickListener(v -> {
                 Intent intent = new Intent(this, AdminPendingGuardianInfoActivity.class);
-                intent.putExtra("pendingStudentId", pendingUser.userId);
+                intent.putExtra("pendingGuardianId", pendingUser.userId);
+                Log.e("TAG", "createTableRows: " + pendingUser.userId);
                 startActivity(intent);
             });
-            tableLayout.addView(tableRow);
+            adminPendingGuardianTable.addView(tableRow);
         }
     }
 
@@ -59,9 +64,17 @@ public class AdminPendingGuardianActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_pending_guardian);
         tableRowStyle = new ContextThemeWrapper(this, R.style.CustomStyle_Table_Simple_SimpleRow);
         tableRowTextStyle = new ContextThemeWrapper(this, R.style.CustomStyle_Table_Simple_SimpleRowText);
-        AdminDBHandler adminDBHandler = AdminDBHandler.getInstance(this);
+        adminDBHandler = AdminDBHandler.getInstance(this);
+        adminPendingGuardianTable = findViewById(R.id.adminPendingGuardianTable);
+        createTableRows();
+    }
 
-        TableLayout adminPendingGuardianTable = findViewById(R.id.adminPendingGuardianTable);
-        createTableRows(adminPendingGuardianTable, adminDBHandler.getPendingGuardians());
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        for (int i = adminPendingGuardianTable.getChildCount() - 1; i > 0; i--)
+            adminPendingGuardianTable.removeViewAt(i);
+        createTableRows();
     }
 }

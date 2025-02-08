@@ -17,9 +17,12 @@ import com.stec.srms.model.PendingUserInfo;
 import java.util.ArrayList;
 
 public class AdminPendingFacultyActivity extends AppCompatActivity {
+    AdminDBHandler adminDBHandler;
+    TableLayout adminPendingFacultyTable;
     ContextThemeWrapper tableRowStyle, tableRowTextStyle;
 
-    private void createTableRows(TableLayout tableLayout, ArrayList<PendingUserInfo> pendingUsers) {
+    private void createTableRows() {
+        ArrayList<PendingUserInfo> pendingUsers = adminDBHandler.getPendingFaculties();
         if (pendingUsers == null || pendingUsers.isEmpty()) return;
 
         TableRow tableRow;
@@ -30,7 +33,7 @@ public class AdminPendingFacultyActivity extends AppCompatActivity {
 
         for (PendingUserInfo pendingUser : pendingUsers) {
             tableRow = new TableRow(tableRowStyle);
-            tableRow.setPadding(tableRow.getPaddingLeft(), 5, tableRow.getPaddingRight(), 5);
+            tableRow.setPadding(tableRow.getPaddingLeft(), 10, tableRow.getPaddingRight(), 10);
 
             deptTextView = new TextView(tableRowTextStyle);
             deptTextView.setText(pendingUser.shortDept);
@@ -45,10 +48,10 @@ public class AdminPendingFacultyActivity extends AppCompatActivity {
 
             tableRow.setOnClickListener(v -> {
                 Intent intent = new Intent(this, AdminPendingFacultyInfoActivity.class);
-                intent.putExtra("pendingStudentId", pendingUser.userId);
+                intent.putExtra("pendingFacultyId", pendingUser.userId);
                 startActivity(intent);
             });
-            tableLayout.addView(tableRow);
+            adminPendingFacultyTable.addView(tableRow);
         }
     }
 
@@ -59,9 +62,17 @@ public class AdminPendingFacultyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_pending_faculty);
         tableRowStyle = new ContextThemeWrapper(this, R.style.CustomStyle_Table_Simple_SimpleRow);
         tableRowTextStyle = new ContextThemeWrapper(this, R.style.CustomStyle_Table_Simple_SimpleRowText);
-        AdminDBHandler adminDBHandler = AdminDBHandler.getInstance(this);
+        adminDBHandler = AdminDBHandler.getInstance(this);
+        adminPendingFacultyTable = findViewById(R.id.adminPendingFacultyTable);
+        createTableRows();
+    }
 
-        TableLayout adminPendingFacultyTable = findViewById(R.id.adminPendingFacultyTable);
-        createTableRows(adminPendingFacultyTable, adminDBHandler.getPendingFaculties());
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        for (int i = adminPendingFacultyTable.getChildCount() - 1; i > 0; i--)
+            adminPendingFacultyTable.removeViewAt(i);
+        createTableRows();
     }
 }
