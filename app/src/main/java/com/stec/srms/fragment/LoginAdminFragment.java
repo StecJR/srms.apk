@@ -1,6 +1,5 @@
 package com.stec.srms.fragment;
 
-import static com.stec.srms.util.Util.stringToInt;
 import static com.stec.srms.util.Util.togglePasswordVisibility;
 
 import android.content.Context;

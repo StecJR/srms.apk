@@ -265,26 +265,4 @@ public class FacultyDBHandler extends Database {
             }
         }
     }
-
-    public boolean deletePendingFaculty(int userId) {
-        int accountId = getAccountType("pendingFaculty").accountId;
-        SQLiteDatabase db = null;
-        try {
-            db = this.getWritableDatabase();
-            db.beginTransaction();
-
-            db.delete("pending_faculties", "userId = " + userId, null);
-            db.delete("pending_verifications", "accountId = " + accountId + " AND userId = " + userId, null);
-
-            db.setTransactionSuccessful();
-            return true;
-        } catch (Exception e) {
-            return false;
-        } finally {
-            if (db != null) {
-                db.endTransaction();
-                db.close();
-            }
-        }
-    }
 }

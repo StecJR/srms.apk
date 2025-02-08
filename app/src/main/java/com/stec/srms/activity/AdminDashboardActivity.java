@@ -8,9 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.stec.srms.R;
-import com.stec.srms.database.AdminDBHandler;
-import com.stec.srms.model.AdminInfo;
-import com.stec.srms.model.StudentSession;
 import com.stec.srms.util.SessionManager;
 
 public class AdminDashboardActivity extends AppCompatActivity {

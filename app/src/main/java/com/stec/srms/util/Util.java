@@ -327,6 +327,11 @@ public class Util {
         activity.startActivityForResult(intent, PermissionHandler.REQUEST_PICK_IMAGE);
     }
 
+    public static boolean imageExistsOnInternalStorage(Context context, String imageName) {
+        File file = new File(context.getFilesDir(), imageName);
+        return file.exists();
+    }
+
     public static void saveImageToInternalStorage(Context context, Uri imageUri, String imageName) {
         if (imageUri == null) {
             Toast.generalError(context, "No image selected");
@@ -359,6 +364,29 @@ public class Util {
     public static Bitmap getImageFromInternalStorage(Context context, String imageName) {
         File file = new File(context.getFilesDir(), imageName);
         return BitmapFactory.decodeFile(file.getAbsolutePath());
+    }
+
+    /**
+     * @param context Application context
+     * @param oldName old image file name
+     * @param newName new image file name
+     * @return 0 for success, 1 for new image already exists, -1 for old image not found, -2 for failure
+     */
+    public static int renameImageFromInternalStorage(Context context, String oldName, String newName) {
+        File oldFile = new File(context.getFilesDir(), oldName);
+        File newFile = new File(context.getFilesDir(), newName);
+
+        if (!oldFile.exists()) return -1;
+        if (newFile.exists()) return 1;
+
+        if (oldFile.renameTo(newFile)) return 0;
+        else return -2;
+    }
+
+    public static boolean deleteImageFromInternalStorage(Context context, String imageName) {
+        File file = new File(context.getFilesDir(), imageName);
+        if (file.exists()) return file.delete();
+        else return false;
     }
 
     // Check internet connection

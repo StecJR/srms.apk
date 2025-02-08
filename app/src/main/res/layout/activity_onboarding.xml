@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/top_rounded_shape"
-        android:backgroundTint="@color/yellow_dark"
+        android:backgroundTint="@color/yellow_darker"
         android:orientation="vertical"
         android:padding="30dp">
 

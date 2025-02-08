@@ -104,26 +104,4 @@ public class GuardianDBHandler extends Database {
             }
         }
     }
-
-    public boolean deletePendingGuardian(int userId) {
-        int accountId = getAccountType("pendingGuardian").accountId;
-        SQLiteDatabase db = null;
-        try {
-            db = this.getWritableDatabase();
-            db.beginTransaction();
-
-            db.delete("pending_guardians", "userId = " + userId, null);
-            db.delete("pending_verifications", "accountId = " + accountId + " AND userId = " + userId, null);
-
-            db.setTransactionSuccessful();
-            return true;
-        } catch (Exception e) {
-            return false;
-        } finally {
-            if (db != null) {
-                db.endTransaction();
-                db.close();
-            }
-        }
-    }
 }

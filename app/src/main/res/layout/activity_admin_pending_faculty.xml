@@ -49,20 +49,6 @@
                     android:textSize="@dimen/text_18" />
 
             </TableRow>
-
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="CSE"
-                    android:textAlignment="textStart" />
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_weight="1"
-                    android:text="jakirhossainjr079@gmail.com"
-                    android:textAlignment="textStart" />
-            </TableRow>
         </TableLayout>
     </ScrollView>
 </LinearLayout>

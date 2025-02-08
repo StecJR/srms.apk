@@ -51,10 +51,7 @@ public class EmailHandler {
             Session session = Session.getInstance(properties, new Authenticator() {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(
-                            SENDER_EMAIL,
-                            EnvVariable.get("SMTP_EMAIL_PASSWORD")
-                    );
+                    return new PasswordAuthentication(SENDER_EMAIL, EnvVariable.get("SMTP_EMAIL_PASSWORD"));
                 }
             });
             Message message = new MimeMessage(session);
@@ -88,6 +85,24 @@ public class EmailHandler {
             if (mailBody != null) {
                 mailBody = mailBody.replace("{{NAME}}", name);
                 mailBody = mailBody.replace("{{OTP}}", String.valueOf(otp));
+            }
+
+            boolean success = sendMail(context, receiverMail, subject, mailBody);
+            new Handler(Looper.getMainLooper()).post(() -> {
+                LoadingScreen.stop();
+                if (listener != null) listener.onEmailSent(success);
+            });
+        }).start();
+    }
+
+    public static void sendNewUserIdMail(Context context, String receiverMail, String name, int userId, OnEmailSentListener listener) {
+        LoadingScreen.start(context, "Sending email");
+        new Thread(() -> {
+            String subject = "SRMS: Here Is Your User ID";
+            String mailBody = getTemplate(context, "newUserIdTemplate.html");
+            if (mailBody != null) {
+                mailBody = mailBody.replace("{{NAME}}", name);
+                mailBody = mailBody.replace("{{USER_ID}}", String.valueOf(userId));
             }
 
             boolean success = sendMail(context, receiverMail, subject, mailBody);
