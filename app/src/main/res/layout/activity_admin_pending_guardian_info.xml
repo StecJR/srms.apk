@@ -2,43 +2,19 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
-    tools:context=".activity.FacultyInfoActivity">
+    tools:context=".activity.AdminPendingGuardianInfoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="30dp">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/facultyInfoResultButton"
-                style="@style/CustomStyle.Button.Blue"
-                android:text="@string/result"
-                android:textAllCaps="false" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/facultyInfoLogoutButton"
-                style="@style/CustomStyle.Button.Blue"
-                android:text="@string/logout"
-                android:textAllCaps="false" />
-        </LinearLayout>
-
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/facultyInfoProfileImage"
+            android:id="@+id/guardianInfoProfileImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
@@ -52,7 +28,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="@string/faculty_info"
+            android:text="@string/guardian_info"
             android:textSize="@dimen/text_28" />
 
         <TableLayout
@@ -70,25 +46,10 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="@string/faculty_id" />
-
-                <TextView
-                    android:id="@+id/facultyInfoFacultyId"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="3dp">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:text="@string/name" />
 
                 <TextView
-                    android:id="@+id/facultyInfoName"
+                    android:id="@+id/guardianInfoName"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1" />
@@ -100,25 +61,10 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="@string/gender" />
+                    android:text="@string/relation" />
 
                 <TextView
-                    android:id="@+id/facultyInfoGender"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1" />
-            </TableRow>
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="3dp">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="@string/department" />
-
-                <TextView
-                    android:id="@+id/facultyInfoDept"
+                    android:id="@+id/guardianInfoRelation"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1" />
@@ -133,7 +79,7 @@
                     android:text="@string/contact" />
 
                 <TextView
-                    android:id="@+id/facultyInfoContact"
+                    android:id="@+id/guardianInfoContact"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1" />
@@ -148,15 +94,52 @@
                     android:text="@string/email" />
 
                 <TextView
-                    android:id="@+id/facultyInfoEmail"
+                    android:id="@+id/guardianInfoEmail"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1" />
             </TableRow>
 
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:text="@string/student_id" />
+
+                <TextView
+                    android:id="@+id/guardianInfoStudentId"
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1" />
+            </TableRow>
 
         </TableLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="30dp">
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/guardianInfoDeleteButton"
+                style="@style/CustomStyle.Button.Blue"
+                android:text="@string/delete"
+                android:textAllCaps="false" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/guardianInfoVerifyButton"
+                style="@style/CustomStyle.Button.Blue"
+                android:text="@string/verify"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </LinearLayout>
 </ScrollView>

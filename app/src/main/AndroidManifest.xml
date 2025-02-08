@@ -70,6 +70,27 @@
         <activity
             android:name=".activity.AdminDashboardActivity"
             android:exported="true" />
+        <activity
+            android:name=".activity.AdminVerifyUserActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.AdminPendingStudentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminPendingFacultyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminPendingGuardianActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminPendingStudentInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminPendingFacultyInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminPendingGuardianInfoActivity"
+            android:exported="false" />
 
         <!-- Main activity -->
         <activity
@@ -77,6 +98,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -14,7 +14,6 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.stec.srms.R;
 import com.stec.srms.database.StudentDBHandler;
-import com.stec.srms.model.AdminInfo;
 import com.stec.srms.model.DeptInfo;
 import com.stec.srms.model.GuardianInfo;
 import com.stec.srms.model.SessionInfo;
@@ -46,7 +45,7 @@ public class StudentInfoActivity extends AppCompatActivity {
                     startActivity(new Intent(this, FacultyInfoActivity.class));
                     break;
                 case "admin":
-                    startActivity(new Intent(this, AdminInfo.class));
+                    startActivity(new Intent(this, AdminDashboardActivity.class));
                     break;
                 default:
                     startActivity(new Intent(this, LoginActivity.class));

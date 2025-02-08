@@ -7,7 +7,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.stec.srms.database.Database;
-import com.stec.srms.model.AdminInfo;
 import com.stec.srms.util.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(this, FacultyInfoActivity.class));
                     break;
                 case "admin":
-                    startActivity(new Intent(this, AdminInfo.class));
+                    startActivity(new Intent(this, AdminDashboardActivity.class));
                     break;
                 default:
                     startActivity(new Intent(this, LoginActivity.class));

@@ -1,5 +1,6 @@
 package com.stec.srms.fragment;
 
+import static com.stec.srms.util.Util.stringToInt;
 import static com.stec.srms.util.Util.togglePasswordVisibility;
 
 import android.content.Context;
@@ -17,6 +18,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.stec.srms.R;
 import com.stec.srms.activity.AdminDashboardActivity;
 import com.stec.srms.database.AdminDBHandler;
+import com.stec.srms.util.SessionManager;
 import com.stec.srms.util.Toast;
 
 public class LoginAdminFragment extends Fragment {
@@ -43,8 +45,9 @@ public class LoginAdminFragment extends Fragment {
                 Toast.credentialError(context);
                 return;
             }
-            // Save session info
 
+            SessionManager sessionManager = SessionManager.getInstance(context);
+            sessionManager.createAdminSession(15);
             startActivity(new Intent(context, AdminDashboardActivity.class));
             activity.finish();
         });

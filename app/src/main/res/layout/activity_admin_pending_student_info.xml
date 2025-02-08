@@ -2,43 +2,19 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
-    tools:context=".activity.FacultyInfoActivity">
+    tools:context=".activity.AdminPendingStudentInfoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="30dp">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/facultyInfoResultButton"
-                style="@style/CustomStyle.Button.Blue"
-                android:text="@string/result"
-                android:textAllCaps="false" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/facultyInfoLogoutButton"
-                style="@style/CustomStyle.Button.Blue"
-                android:text="@string/logout"
-                android:textAllCaps="false" />
-        </LinearLayout>
-
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/facultyInfoProfileImage"
+            android:id="@+id/studentInfoProfileImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
@@ -52,7 +28,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="@string/faculty_info"
+            android:text="@string/student_info"
             android:textSize="@dimen/text_28" />
 
         <TableLayout
@@ -60,24 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="30dp"
             android:background="@drawable/rounded_shape"
             android:padding="10dp">
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="3dp">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="@string/faculty_id" />
-
-                <TextView
-                    android:id="@+id/facultyInfoFacultyId"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1" />
-            </TableRow>
 
             <TableRow
                 style="@style/CustomStyle.Table.Simple.SimpleRow"
@@ -88,9 +48,24 @@
                     android:text="@string/name" />
 
                 <TextView
-                    android:id="@+id/facultyInfoName"
+                    android:id="@+id/studentInfoName"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:text="@string/date_of_birth" />
+
+                <TextView
+                    android:id="@+id/studentInfoBirthDate"
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_marginStart="20dp"
                     android:layout_weight="1" />
             </TableRow>
 
@@ -103,9 +78,9 @@
                     android:text="@string/gender" />
 
                 <TextView
-                    android:id="@+id/facultyInfoGender"
+                    android:id="@+id/studentInfoGender"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:layout_weight="1" />
             </TableRow>
 
@@ -115,12 +90,27 @@
 
                 <TextView
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="@string/department" />
+                    android:text="@string/program" />
 
                 <TextView
-                    android:id="@+id/facultyInfoDept"
+                    android:id="@+id/studentInfoDept"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:text="@string/session" />
+
+                <TextView
+                    android:id="@+id/studentInfoSession"
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_marginStart="20dp"
                     android:layout_weight="1" />
             </TableRow>
 
@@ -133,9 +123,9 @@
                     android:text="@string/contact" />
 
                 <TextView
-                    android:id="@+id/facultyInfoContact"
+                    android:id="@+id/studentInfoContact"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:layout_weight="1" />
             </TableRow>
 
@@ -148,15 +138,51 @@
                     android:text="@string/email" />
 
                 <TextView
-                    android:id="@+id/facultyInfoEmail"
+                    android:id="@+id/studentInfoEmail"
                     style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:layout_weight="1" />
             </TableRow>
 
+            <TableRow
+                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                android:paddingVertical="3dp">
 
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:text="@string/address" />
+
+                <TextView
+                    android:id="@+id/studentInfoAddress"
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1" />
+            </TableRow>
         </TableLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="30dp">
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/studentInfoDeleteButton"
+                style="@style/CustomStyle.Button.Blue"
+                android:text="@string/delete"
+                android:textAllCaps="false" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/studentInfoVerifyButton"
+                style="@style/CustomStyle.Button.Blue"
+                android:text="@string/verify"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </LinearLayout>
 </ScrollView>

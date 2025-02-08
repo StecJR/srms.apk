@@ -6,19 +6,22 @@ import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.stec.srms.R;
 import com.stec.srms.database.AdminDBHandler;
-import com.stec.srms.model.AdminInfo;
-import com.stec.srms.model.StudentSession;
 import com.stec.srms.util.SessionManager;
 
-public class AdminDashboardActivity extends AppCompatActivity {
+public class AdminVerifyUserActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_admin_dashboard);
+        setContentView(R.layout.activity_admin_verify_user);
+        AdminDBHandler adminDBHandler = AdminDBHandler.getInstance(this);
         SessionManager sessionManager = SessionManager.getInstance(this);
 
         // Verify or goto login page
@@ -45,16 +48,14 @@ public class AdminDashboardActivity extends AppCompatActivity {
             return;
         }
 
-        AppCompatButton adminLogoutButton, adminVerifyUserButton;
+        AppCompatButton adminPendingStudentButton, adminPendingFacultyButton, adminPendingGuardianButton;
 
-        adminLogoutButton = findViewById(R.id.adminLogoutButton);
-        adminVerifyUserButton = findViewById(R.id.adminVerifyUserButton);
+        adminPendingStudentButton = findViewById(R.id.adminPendingStudentButton);
+        adminPendingFacultyButton = findViewById(R.id.adminPendingFacultyButton);
+        adminPendingGuardianButton = findViewById(R.id.adminPendingGuardianButton);
 
-        adminLogoutButton.setOnClickListener(v -> {
-            sessionManager.deleteAdminSession();
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
-        });
-        adminVerifyUserButton.setOnClickListener(v -> startActivity(new Intent(this, AdminVerifyUserActivity.class)));
+        adminPendingStudentButton.setOnClickListener(v -> startActivity(new Intent(this, AdminPendingStudentActivity.class)));
+        adminPendingFacultyButton.setOnClickListener(v -> startActivity(new Intent(this, AdminPendingFacultyActivity.class)));
+        adminPendingGuardianButton.setOnClickListener(v -> startActivity(new Intent(this, AdminPendingGuardianActivity.class)));
     }
 }

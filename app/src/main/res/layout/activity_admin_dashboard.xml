@@ -26,27 +26,25 @@
                 android:layout_weight="1" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/guardianInfoLogoutButton"
+                android:id="@+id/adminLogoutButton"
                 style="@style/CustomStyle.Button.Blue"
                 android:text="@string/logout"
                 android:textAllCaps="false" />
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/dashboard"
+            android:textSize="@dimen/text_28" />
+
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/adminVerifyUserButton"
             style="@style/CustomStyle.Button.LongWidth"
             android:text="@string/verify_users" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/CustomStyle.Button.LongWidth"
-            android:text="@string/student_info" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/CustomStyle.Button.LongWidth"
-            android:text="@string/faculty_info" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/CustomStyle.Button.LongWidth"
-            android:text="@string/guardian_info" />
 
     </LinearLayout>
 </ScrollView>

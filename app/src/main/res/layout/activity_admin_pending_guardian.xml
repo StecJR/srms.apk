@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.AdminPendingGuardianActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/pending_guardians"
+        android:textSize="@dimen/text_24"
+        android:textStyle="bold" />
+
+    <ScrollView
+        style="@style/CustomStyle.Table.Simple"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="30dp"
+        android:background="@drawable/rounded_shape"
+        android:paddingVertical="10dp"
+        android:scrollbars="none">
+
+        <TableLayout
+            android:id="@+id/adminPendingGuardianTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp">
+
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_width="80dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/dept"
+                    android:textSize="@dimen/text_18" />
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/email"
+                    android:textSize="@dimen/text_18" />
+
+            </TableRow>
+
+            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:text="CSE"
+                    android:textAlignment="textStart" />
+
+                <TextView
+                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    android:layout_weight="1"
+                    android:text="jakirhossainjr079@gmail.com"
+                    android:textAlignment="textStart" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+</LinearLayout>

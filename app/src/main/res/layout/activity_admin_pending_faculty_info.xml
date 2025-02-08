@@ -4,38 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
-    tools:context=".activity.FacultyInfoActivity">
+    tools:context=".activity.AdminPendingFacultyInfoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="30dp">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/facultyInfoResultButton"
-                style="@style/CustomStyle.Button.Blue"
-                android:text="@string/result"
-                android:textAllCaps="false" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/facultyInfoLogoutButton"
-                style="@style/CustomStyle.Button.Blue"
-                android:text="@string/logout"
-                android:textAllCaps="false" />
-        </LinearLayout>
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/facultyInfoProfileImage"
@@ -63,21 +38,6 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/rounded_shape"
             android:padding="10dp">
-
-            <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
-                android:paddingVertical="3dp">
-
-                <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:text="@string/faculty_id" />
-
-                <TextView
-                    android:id="@+id/facultyInfoFacultyId"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1" />
-            </TableRow>
 
             <TableRow
                 style="@style/CustomStyle.Table.Simple.SimpleRow"
@@ -153,10 +113,32 @@
                     android:layout_marginStart="10dp"
                     android:layout_weight="1" />
             </TableRow>
-
-
         </TableLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="30dp">
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/facultyInfoDeleteButton"
+                style="@style/CustomStyle.Button.Blue"
+                android:text="@string/delete"
+                android:textAllCaps="false" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/facultyInfoVerifyButton"
+                style="@style/CustomStyle.Button.Blue"
+                android:text="@string/verify"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+    </LinearLayout>
 </ScrollView>

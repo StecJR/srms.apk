@@ -25,7 +25,6 @@
     <string name="student_info">Student Info</string>
     <string name="guardian_info">Guardian Info</string>
     <string name="save">Save</string>
-    <string name="teacher_info">Teacher Info</string>
     <string name="search">Search</string>
     <string name="search_result">Search Result</string>
     <string name="info">Info</string>
@@ -61,4 +60,11 @@
     <string name="signup_fill_up_notice">Fill-up the following details carefully</string>
     <string name="enter_otp">Enter OTP</string>
     <string name="verify">Verify</string>
+    <string name="accounts">Accounts</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="pending_students">Pending Students</string>
+    <string name="dept">Dept</string>
+    <string name="delete">Delete</string>
+    <string name="pending_faculties">Pending Faculties</string>
+    <string name="pending_guardians">Pending Guardians</string>
 </resources>
