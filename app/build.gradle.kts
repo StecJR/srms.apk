@@ -11,12 +11,9 @@ android {
         minSdk = 28
         targetSdk = 34
         versionCode = 1
-        versionName = "0.0.0-alpha1"
+        versionName = "1.0.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        /*ndk {
-            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
-        }*/
         packagingOptions {
             exclude("license/*")
             exclude("META-INF/*")
@@ -28,8 +25,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("debug")
         }

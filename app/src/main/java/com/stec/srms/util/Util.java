@@ -193,7 +193,6 @@ public class Util {
             downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
             file = new File(downloadsDir, studentInfo.studentId + "_" + semester + "_mark sheet.pdf");
         } catch (Exception e) {
-            Toast.generalError(context, "Unable to save mark sheet");
             return;
         }
         try {

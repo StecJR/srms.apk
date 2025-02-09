@@ -19,7 +19,6 @@ import com.stec.srms.model.Results;
 import com.stec.srms.model.SemesterInfo;
 import com.stec.srms.model.StudentInfo;
 import com.stec.srms.model.StudentSession;
-import com.stec.srms.util.PermissionHandler;
 import com.stec.srms.util.SessionManager;
 import com.stec.srms.util.Toast;
 import com.stec.srms.util.Util;
@@ -132,13 +131,6 @@ public class StudentMarkSheetActivity extends AppCompatActivity {
 
         AppCompatButton studentMarkSheetPrintButton = findViewById(R.id.studentMarkSheetPrintButton);
         studentMarkSheetPrintButton.setOnClickListener(v -> {
-            if (!PermissionHandler.checkWriteStoragePermission(this)) {
-                PermissionHandler.requestWriteStoragePermission(this);
-                if (!PermissionHandler.checkWriteStoragePermission(this)) {
-                    Toast.generalError(this, "Storage permission is required to save mark sheet");
-                    return;
-                }
-            }
             Util.saveMarkSheetAsPDF(this, semesterInfo.longDesc, studentInfo, markSheet);
             Toast.generalSuccess(this, "Mark sheet saved successfully");
         });
