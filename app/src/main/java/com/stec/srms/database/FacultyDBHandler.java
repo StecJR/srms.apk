@@ -89,17 +89,12 @@ public class FacultyDBHandler extends Database {
             totalWeightedGpa += result.gpa * credit;
             totalCredits += credit;
         }
-        @SuppressLint("DefaultLocale")
-        double gpa = Double.parseDouble(String.format("%.2f", totalCredits > 0 ? totalWeightedGpa / totalCredits : 0.0));
+        @SuppressLint("DefaultLocale") double gpa = Double.parseDouble(String.format("%.2f", totalCredits > 0 ? totalWeightedGpa / totalCredits : 0.0));
 
         try (SQLiteDatabase db = this.getWritableDatabase()) {
             ContentValues values = new ContentValues();
             values.put("gpa", gpa);
-            db.update(
-                    "results_summary_" + sessionId + "_" + deptId, values,
-                    "studentId = ? AND semesterId = ?",
-                    new String[]{String.valueOf(studentId), String.valueOf(semesterId)}
-            );
+            db.update("results_summary_" + sessionId + "_" + deptId, values, "studentId = ? AND semesterId = ?", new String[]{String.valueOf(studentId), String.valueOf(semesterId)});
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -186,6 +181,8 @@ public class FacultyDBHandler extends Database {
         ArrayList<Results> results = null;
         SQLiteDatabase db = null;
         Cursor cursor = null;
+
+        // get existing students result
         try {
             db = this.getReadableDatabase();
             String query = "SELECT * FROM results_" + sessionId + "_" + deptId + " WHERE courseCode = " + courseCode + " ORDER BY studentId ASC;";
@@ -206,7 +203,50 @@ public class FacultyDBHandler extends Database {
             if (cursor != null) cursor.close();
             if (db != null) db.close();
         }
-        return results;
+
+        // get all student id
+        ArrayList<Integer> resultStudentIds = new ArrayList<>();
+        if (results != null) {
+            for (Results result : results) {
+                resultStudentIds.add(result.studentId);
+            }
+        }
+        Integer[] studentId = null;
+        try {
+            db = this.getReadableDatabase();
+            String query = "SELECT studentId FROM students_" + deptId + " WHERE sessionId = " + sessionId + " ORDER BY studentId ASC;";
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                studentId = new Integer[cursor.getCount()];
+                int i = 0;
+                do {
+                    studentId[i] = cursor.getInt(cursor.getColumnIndexOrThrow("studentId"));
+                    i++;
+                } while (cursor.moveToNext());
+            }
+        } catch (IllegalArgumentException e) {
+            return results;
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
+
+        // create full result list
+        ArrayList<Results> finalResults = new ArrayList<>();
+        if (studentId == null) return results;
+        for (Integer sId : studentId) {
+            if (resultStudentIds.contains(sId)) {
+                int index = resultStudentIds.indexOf(sId);
+                finalResults.add(results.get(index));
+                continue;
+            }
+            int semesterId = getSemesterFromCourseCode(courseCode).semesterId;
+            Results result = new Results(sId, semesterId, courseCode, 0, 0.00);
+            addNewResult(context, sessionId, deptId, result);
+            addNewResultSummary(context, sessionId, deptId, new ResultsSummary(sId, semesterId, 0.00));
+            finalResults.add(result);
+        }
+        return finalResults;
     }
 
     public void updateResult(Context context, int sessionId, int deptId, Results result) {

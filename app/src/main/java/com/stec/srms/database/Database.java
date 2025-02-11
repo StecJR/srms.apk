@@ -491,6 +491,37 @@ public class Database extends SQLiteOpenHelper {
         return semesterInfo;
     }
 
+    public SemesterInfo getSemesterFromCourseCode(int courseCode) {
+        if (courses != null && semesters != null) {
+            return courses.stream()
+                    .filter(course -> course.courseCode == courseCode)
+                    .flatMap(course -> semesters.stream()
+                            .filter(semester -> course.semesterId == semester.semesterId))
+                    .findFirst()
+                    .orElse(null);
+        }
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        SemesterInfo semesterInfo = null;
+        try {
+            db = this.getReadableDatabase();
+            String query = "SELECT s.* FROM semester_info s" +
+                    "INNER JOIN course_info c ON s.semesterId = c.semesterId" +
+                    "WHERE c.courseCode = " + courseCode + " LIMIT 1;";
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                semesterInfo = new SemesterInfo();
+                semesterInfo.semesterId = cursor.getInt(cursor.getColumnIndexOrThrow("semesterId"));
+                semesterInfo.shortDesc = cursor.getString(cursor.getColumnIndexOrThrow("shortDesc"));
+                semesterInfo.longDesc = cursor.getString(cursor.getColumnIndexOrThrow("longDesc"));
+            }
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
+        return semesterInfo;
+    }
+
     public ArrayList<SemesterInfo> getSemesters() {
         if (semesters != null) return semesters;
         ArrayList<SemesterInfo> dbSemesters = null;
@@ -635,11 +666,35 @@ public class Database extends SQLiteOpenHelper {
         return isValid;
     }
 
-    public boolean isTableExists(String query) {
-        try (SQLiteDatabase db = this.getReadableDatabase(); Cursor cursor = db.rawQuery(query, null)) {
-            return cursor.moveToFirst();
+    public boolean tableExists(String tableName) {
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = this.getReadableDatabase();
+            String query = "SELECT name FROM sqlite_master WHERE type='table' AND name='" + tableName + "';";
+            cursor = db.rawQuery(query, null);
+            return cursor.getCount() > 0;
         } catch (Exception e) {
             return false;
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
+    }
+
+    public boolean tableDataExists(String tableName) {
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = this.getReadableDatabase();
+            String query = "SELECT 1 FROM " + tableName + " LIMIT 1;";
+            cursor = db.rawQuery(query, null);
+            return cursor.getCount() > 0;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
     }
 
@@ -740,25 +795,25 @@ public class Database extends SQLiteOpenHelper {
         StringBuilder query;
         // CSE student table
         query = new StringBuilder("INSERT INTO students_1 VALUES")
-                .append(" (10000001, 'Jakir Hossain', '9 February 2004', 'Male', 1, 22, '01836123456', 'stec.jrhossain@gmail.com', 'Dhaka, Bangladesh', 10000001, '1234'),")
-                .append(" (10000002, 'Anik Kumara', '9 March 2004', 'Male', 1, 22, '01836123457', 'stec.anikkumar@gmail.com', 'Dhaka, Bangladesh', -1, '1234');");
+                .append(" (10000001, 'Jakir Hossain', '9 February 2004', 'Male', 1, 22, '01836123456', 'api.jrmail@gmail.com', 'Dhaka, Bangladesh', 10000001, '1234'),")
+                .append(" (10000002, 'Anik Kumara', '9 March 2004', 'Male', 1, 22, '01836123457', 'api2.jrmail@gmail.com', 'Dhaka, Bangladesh', -1, '1234');");
         db.execSQL(query.toString());
         // EEE student table
         query = new StringBuilder("INSERT INTO students_2 VALUES")
-                .append(" (20000001, 'Jakir Hossain', '9 February 2004', 'Male', 2, 22, '01836123456', 'stec.jrhossain@gmail.com', 'Dhaka, Bangladesh', -1, '1234'),")
-                .append(" (20000002, 'Anik Kumara', '9 March 2004', 'Male', 2, 22, '01836123457', 'stec.anikkumar@gmail.com', 'Dhaka, Bangladesh', 10000002, '1234');");
+                .append(" (20000001, 'Jakir Hossain', '9 February 2004', 'Male', 2, 22, '01836123456', 'api.jrmail@gmail.com', 'Dhaka, Bangladesh', -1, '1234'),")
+                .append(" (20000002, 'Anik Kumara', '9 March 2004', 'Male', 2, 22, '01836123457', 'api2.jrmail@gmail.com', 'Dhaka, Bangladesh', 10000002, '1234');");
         db.execSQL(query.toString());
         // Faculty table
         query = new StringBuilder("INSERT INTO faculties VALUES")
-                .append(" (10000001, 'Jakir Hossain', 'Male', 1, '01836123456', 'stec.jrhossain@gmail.com', 'Dhaka, Bangladesh', '1234'),")
-                .append(" (10000002, 'Anik Kumara', 'Male', 1, '01836123457', 'stec.anikkumar@gmail.com', 'Dhaka, Bangladesh', '1234'),")
-                .append(" (10000003, 'Jakir Hossain', 'Male', 2, '01836123456', 'stec.jrhossain2@gmail.com', 'Dhaka, Bangladesh', '1234'),")
-                .append(" (10000004, 'Anik Kumara', 'Male', 2, '01836123457', 'stec.anikkumar2@gmail.com', 'Dhaka, Bangladesh', '1234');");
+                .append(" (10000001, 'Jakir Hossain', 'Male', 1, '01836123456', 'api.jrmail@gmail.com', 'Dhaka, Bangladesh', '1234'),")
+                .append(" (10000002, 'Anik Kumara', 'Male', 1, '01836123457', 'api2.jrmail@gmail.com', 'Dhaka, Bangladesh', '1234'),")
+                .append(" (10000003, 'Jakir Hossain', 'Male', 2, '01836123456', 'api3.jrmail@gmail.com', 'Dhaka, Bangladesh', '1234'),")
+                .append(" (10000004, 'Anik Kumara', 'Male', 2, '01836123457', 'api4.jrmail@gmail.com', 'Dhaka, Bangladesh', '1234');");
         db.execSQL(query.toString());
         // Guardians table
         query = new StringBuilder("INSERT INTO guardians VALUES")
-                .append(" (10000001, 'Jakir Hossain', 'Brother', '01836123456', 'stec.jrhossain@gmail.com', 10000001, 1, '1234'),")
-                .append(" (10000002, 'Anik Kumara', 'Father', '01836123457', 'stec.anikkumar@gmail.com', 20000002, 2, '1234');");
+                .append(" (10000001, 'Jakir Hossain', 'Brother', '01836123456', 'api.jrmail@gmail.com', 10000001, 1, '1234'),")
+                .append(" (10000002, 'Anik Kumara', 'Father', '01836123457', 'api2.jrmail@gmail.com', 20000002, 2, '1234');");
         db.execSQL(query.toString());
     }
 

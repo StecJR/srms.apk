@@ -82,19 +82,8 @@ public class FacultyResultActivity extends AppCompatActivity {
                     gradeTextView.setText(Util.getGrade(result.gpa));
 
                     FacultyDBHandler facultyDBHandler = FacultyDBHandler.getInstance(this);
-                    facultyDBHandler.updateResult(
-                            this,
-                            (int) sessionSpinner.getSelectedItemId(),
-                            (int) departmentSpinner.getSelectedItemId(),
-                            result
-                    );
-                    facultyDBHandler.regenerateGpa(
-                            this,
-                            (int) sessionSpinner.getSelectedItemId(),
-                            (int) departmentSpinner.getSelectedItemId(),
-                            result.studentId,
-                            result.semesterId
-                    );
+                    facultyDBHandler.updateResult(this, (int) sessionSpinner.getSelectedItemId(), (int) departmentSpinner.getSelectedItemId(), result);
+                    facultyDBHandler.regenerateGpa(this, (int) sessionSpinner.getSelectedItemId(), (int) departmentSpinner.getSelectedItemId(), result.studentId, result.semesterId);
                 }
             } catch (NumberFormatException e) {
                 Toast.generalError(this, "Invalid mark");
@@ -177,8 +166,7 @@ public class FacultyResultActivity extends AppCompatActivity {
 
         // Handle invalid student session
         FacultySession facultySession = sessionManager.getFacultySession();
-        if (facultySession == null ||
-                !facultyDBHandler.isValidFaculty(facultySession.facultyId)) {
+        if (facultySession == null || !facultyDBHandler.isValidFaculty(facultySession.facultyId)) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
             return;
@@ -272,7 +260,7 @@ public class FacultyResultActivity extends AppCompatActivity {
                 table.removeViewAt(i);
             }
 
-            if (!facultyDBHandler.isTableExists("SELECT * FROM results_" + sessionId + "_" + deptId + " LIMIT 1;")) {
+            if (!facultyDBHandler.tableExists("results_" + sessionId + "_" + deptId)) {
                 Context context = this;
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Confirmation");
@@ -294,7 +282,7 @@ public class FacultyResultActivity extends AppCompatActivity {
                     Context context = this;
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setTitle("Confirmation");
-                    builder.setMessage("Do you want to create a new result?");
+                    builder.setMessage("Do you want to create a new course result?");
                     builder.setPositiveButton("Yes", (dialog, which) -> {
                         facultyDBHandler.addNewCourseResult(context, sessionId, deptId, semesterId, courseCode);
                         if (!facultyDBHandler.hasSemesterInResultSummary(sessionId, deptId, semesterId)) {
