@@ -39,11 +39,7 @@ public class GuardianSignupActivity extends AppCompatActivity {
         OtpVerification otpVerification = new OtpVerification(String.valueOf(otp), () -> {
             int userId = database.addPendingGuardian(this, new PendingGuardian(-1, name, relation, contact, email, studentId, deptId, password1));
             if (userId != -1) {
-                Util.saveImageToInternalStorage(
-                        this,
-                        imageUri,
-                        String.valueOf(database.getAccountType("pendingGuardian").accountId) + userId + ".jpeg"
-                );
+                Util.saveImageToInternalStorage(this, imageUri, String.valueOf(database.getAccountType("pendingGuardian").accountId) + userId + ".jpeg");
                 Toast.generalSuccess(this, "Signup complete. Wait for admin to verify");
                 finish();
             }
@@ -190,9 +186,7 @@ public class GuardianSignupActivity extends AppCompatActivity {
                 return;
             }
             try {
-                Bitmap imageBitmap = ImageDecoder.decodeBitmap(
-                        ImageDecoder.createSource(getContentResolver(), imageUri)
-                );
+                Bitmap imageBitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(getContentResolver(), imageUri));
                 if (imageBitmap.getWidth() != 256 || imageBitmap.getHeight() != 256)
                     imageBitmap = Bitmap.createScaledBitmap(imageBitmap, 256, 256, true);
                 guardianSignupImageSelectorButton.setVisibility(View.GONE);

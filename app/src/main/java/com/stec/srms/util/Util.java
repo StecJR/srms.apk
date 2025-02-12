@@ -128,11 +128,7 @@ public class Util {
     }
 
     public static int dpToPx(Context context, int dp) {
-        return (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                dp,
-                context.getResources().getDisplayMetrics()
-        );
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 
     public static int getOTP() {
@@ -141,12 +137,7 @@ public class Util {
 
     // Password show/hide
     private static void setCompoundDrawable(EditText editText, Drawable drawable) {
-        editText.setCompoundDrawablesWithIntrinsicBounds(
-                editText.getCompoundDrawables()[0],
-                editText.getCompoundDrawables()[1],
-                drawable,
-                editText.getCompoundDrawables()[3]
-        );
+        editText.setCompoundDrawablesWithIntrinsicBounds(editText.getCompoundDrawables()[0], editText.getCompoundDrawables()[1], drawable, editText.getCompoundDrawables()[3]);
     }
 
     private static boolean isTouchWithinDrawableBounds(EditText editText, MotionEvent event) {
@@ -294,18 +285,12 @@ public class Util {
     }
 
     public static void pickDate(Context context, Calendar calendar, EditText view) {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                context,
-                (DatePicker pickerView, int year, int month, int dayOfMonth) -> {
-                    calendar.set(Calendar.YEAR, year);
-                    calendar.set(Calendar.MONTH, month);
-                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                    updateUI(calendar, view);
-                },
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-        );
+        DatePickerDialog datePickerDialog = new DatePickerDialog(context, (DatePicker pickerView, int year, int month, int dayOfMonth) -> {
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, month);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateUI(calendar, view);
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         datePickerDialog.show();
     }
@@ -337,9 +322,7 @@ public class Util {
             return;
         }
         try {
-            Bitmap bitmap = ImageDecoder.decodeBitmap(
-                    ImageDecoder.createSource(context.getContentResolver(), imageUri)
-            );
+            Bitmap bitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(context.getContentResolver(), imageUri));
 
             int width = bitmap.getWidth(), height = bitmap.getHeight();
             int newWidth = 256, newHeight = 256;
@@ -365,12 +348,6 @@ public class Util {
         return BitmapFactory.decodeFile(file.getAbsolutePath());
     }
 
-    /**
-     * @param context Application context
-     * @param oldName old image file name
-     * @param newName new image file name
-     * @return 0 for success, 1 for new image already exists, -1 for old image not found, -2 for failure
-     */
     public static int renameImageFromInternalStorage(Context context, String oldName, String newName) {
         File oldFile = new File(context.getFilesDir(), oldName);
         File newFile = new File(context.getFilesDir(), newName);
@@ -388,15 +365,13 @@ public class Util {
         else return false;
     }
 
-    // Check internet connection
     public static boolean isInternetConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager != null) {
             Network network = connectivityManager.getActiveNetwork();
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
                 if (network != null)
-                    return Objects.requireNonNull(connectivityManager.getNetworkCapabilities(network))
-                            .hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+                    return Objects.requireNonNull(connectivityManager.getNetworkCapabilities(network)).hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
             } else {
                 if (network != null) {
                     NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);

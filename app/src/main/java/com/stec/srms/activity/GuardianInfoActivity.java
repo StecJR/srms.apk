@@ -57,8 +57,7 @@ public class GuardianInfoActivity extends AppCompatActivity {
 
         // Handle invalid guardian session
         GuardianSession guardianSession = sessionManager.getGuardianSession();
-        if (guardianSession == null ||
-                !guardianDBHandler.isValidGuardian(guardianSession.guardianId)) {
+        if (guardianSession == null || !guardianDBHandler.isValidGuardian(guardianSession.guardianId)) {
             Intent intent = new Intent(this, LoginActivity.class);
             intent.putExtra("activeMenuIndex", 2);
             startActivity(intent);
@@ -85,9 +84,7 @@ public class GuardianInfoActivity extends AppCompatActivity {
         guardianStudentResultButton = findViewById(R.id.GuardianStudentResultButton);
 
         int accountId = guardianDBHandler.getAccountType("guardian").accountId;
-        Bitmap profileImage = Util.getImageFromInternalStorage(
-                this,
-                String.valueOf(accountId) + studentInfo.studentId + ".jpeg");
+        Bitmap profileImage = Util.getImageFromInternalStorage(this, String.valueOf(accountId) + studentInfo.studentId + ".jpeg");
         if (profileImage != null) guardianInfoProfileImage.setImageBitmap(profileImage);
         else guardianInfoProfileImage.setImageResource(R.drawable.default_profile);
 

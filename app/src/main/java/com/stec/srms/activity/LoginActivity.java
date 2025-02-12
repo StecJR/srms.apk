@@ -29,10 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadFragment(Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.loginFrame, fragment)
-                .commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.loginFrame, fragment).commit();
     }
 
     @Override

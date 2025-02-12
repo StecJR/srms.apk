@@ -51,10 +51,7 @@ public class AdminPendingGuardianInfoActivity extends AppCompatActivity {
         guardianInfoDeleteButton = findViewById(R.id.guardianInfoDeleteButton);
         guardianInfoVerifyButton = findViewById(R.id.guardianInfoVerifyButton);
 
-        Bitmap profileImage = Util.getImageFromInternalStorage(
-                this,
-                String.valueOf(accountId) + pendingGuardian.userId + ".jpeg"
-        );
+        Bitmap profileImage = Util.getImageFromInternalStorage(this, String.valueOf(accountId) + pendingGuardian.userId + ".jpeg");
         if (profileImage != null) guardianInfoProfileImage.setImageBitmap(profileImage);
         else guardianInfoProfileImage.setImageResource(R.drawable.default_profile);
 
@@ -97,11 +94,7 @@ public class AdminPendingGuardianInfoActivity extends AppCompatActivity {
                 finish();
             });
 
-            int returnCode = Util.renameImageFromInternalStorage(
-                    this,
-                    String.valueOf(accountId) + pendingGuardian.userId + ".jpeg",
-                    String.valueOf(newAccountId) + newGuardianId + ".jpeg"
-            );
+            int returnCode = Util.renameImageFromInternalStorage(this, String.valueOf(accountId) + pendingGuardian.userId + ".jpeg", String.valueOf(newAccountId) + newGuardianId + ".jpeg");
             if (returnCode == 1) {
                 Util.deleteImageFromInternalStorage(this, String.valueOf(accountId) + pendingGuardian.userId + ".jpeg");
                 Toast.generalWarning(this, "Profile image already exists");

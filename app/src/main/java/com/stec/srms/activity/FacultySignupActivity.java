@@ -42,11 +42,7 @@ public class FacultySignupActivity extends AppCompatActivity {
             String gender = genderId == 1 ? "Male" : "Female";
             int userId = database.addPendingFaculty(this, new PendingFaculty(-1, name, gender, deptId, contact, email, address, password1));
             if (userId != -1) {
-                Util.saveImageToInternalStorage(
-                        this,
-                        imageUri,
-                        String.valueOf(database.getAccountType("pendingFaculty").accountId) + userId + ".jpeg"
-                );
+                Util.saveImageToInternalStorage(this, imageUri, String.valueOf(database.getAccountType("pendingFaculty").accountId) + userId + ".jpeg");
                 Toast.generalSuccess(this, "Signup complete. Wait for admin to verify");
                 finish();
             }
@@ -196,9 +192,7 @@ public class FacultySignupActivity extends AppCompatActivity {
                 return;
             }
             try {
-                Bitmap imageBitmap = ImageDecoder.decodeBitmap(
-                        ImageDecoder.createSource(getContentResolver(), imageUri)
-                );
+                Bitmap imageBitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(getContentResolver(), imageUri));
                 if (imageBitmap.getWidth() != 256 || imageBitmap.getHeight() != 256)
                     imageBitmap = Bitmap.createScaledBitmap(imageBitmap, 256, 256, true);
                 facultySignupImageSelectorButton.setVisibility(View.GONE);

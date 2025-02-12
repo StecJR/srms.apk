@@ -44,9 +44,7 @@ public class SessionManager {
     }
 
     public void turnOffFirstTime() {
-        sharedPreference.edit()
-                .putBoolean("isFirstTime", false)
-                .apply();
+        sharedPreference.edit().putBoolean("isFirstTime", false).apply();
     }
 
     public void createStudentSession(int deptId, int studentId, int expiryDay) {

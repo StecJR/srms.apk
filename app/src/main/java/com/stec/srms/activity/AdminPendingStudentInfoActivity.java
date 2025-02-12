@@ -39,8 +39,7 @@ public class AdminPendingStudentInfoActivity extends AppCompatActivity {
         }
 
         ShapeableImageView studentInfoProfileImage;
-        TextView studentInfoName, studentInfoBirthDate, studentInfoGender, studentInfoDept,
-                studentInfoSession, studentInfoContact, studentInfoEmail, studentInfoAddress;
+        TextView studentInfoName, studentInfoBirthDate, studentInfoGender, studentInfoDept, studentInfoSession, studentInfoContact, studentInfoEmail, studentInfoAddress;
         AppCompatButton studentInfoDeleteButton, studentInfoVerifyButton;
 
         studentInfoProfileImage = findViewById(R.id.studentInfoProfileImage);
@@ -55,10 +54,7 @@ public class AdminPendingStudentInfoActivity extends AppCompatActivity {
         studentInfoDeleteButton = findViewById(R.id.studentInfoDeleteButton);
         studentInfoVerifyButton = findViewById(R.id.studentInfoVerifyButton);
 
-        Bitmap profileImage = Util.getImageFromInternalStorage(
-                this,
-                String.valueOf(accountId) + pendingStudent.userId + ".jpeg"
-        );
+        Bitmap profileImage = Util.getImageFromInternalStorage(this, String.valueOf(accountId) + pendingStudent.userId + ".jpeg");
         if (profileImage != null) studentInfoProfileImage.setImageBitmap(profileImage);
         else studentInfoProfileImage.setImageResource(R.drawable.default_profile);
 
@@ -104,11 +100,7 @@ public class AdminPendingStudentInfoActivity extends AppCompatActivity {
                 finish();
             });
 
-            int returnCode = Util.renameImageFromInternalStorage(
-                    this,
-                    String.valueOf(accountId) + pendingStudent.userId + ".jpeg",
-                    String.valueOf(newAccountId) + newStudentId + ".jpeg"
-            );
+            int returnCode = Util.renameImageFromInternalStorage(this, String.valueOf(accountId) + pendingStudent.userId + ".jpeg", String.valueOf(newAccountId) + newStudentId + ".jpeg");
             if (returnCode == 1) {
                 Util.deleteImageFromInternalStorage(this, String.valueOf(accountId) + pendingStudent.userId + ".jpeg");
                 Toast.generalWarning(this, "Profile image already exists");

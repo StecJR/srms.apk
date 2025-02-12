@@ -102,8 +102,7 @@ public class StudentMarkSheetActivity extends AppCompatActivity {
 
         // Handle invalid student session
         StudentSession studentSession = sessionManager.getStudentSession();
-        if (studentSession == null ||
-                !studentDBHandler.isValidStudent(this, studentSession.deptId, studentSession.studentId)) {
+        if (studentSession == null || !studentDBHandler.isValidStudent(this, studentSession.deptId, studentSession.studentId)) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
             return;

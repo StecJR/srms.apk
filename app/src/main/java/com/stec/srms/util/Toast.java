@@ -43,8 +43,7 @@ public class Toast {
 
     public static void errorMessage(Context context, String message) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        @SuppressLint("InflateParams")
-        View layout = inflater.inflate(R.layout.toast_error, null);
+        @SuppressLint("InflateParams") View layout = inflater.inflate(R.layout.toast_error, null);
 
         TextView textView = layout.findViewById(R.id.toastErrorText);
         textView.setText(message);

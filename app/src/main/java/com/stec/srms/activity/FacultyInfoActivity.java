@@ -57,8 +57,7 @@ public class FacultyInfoActivity extends AppCompatActivity {
 
         // Handle invalid student session
         FacultySession facultySession = sessionManager.getFacultySession();
-        if (facultySession == null ||
-                !facultyDBHandler.isValidFaculty(facultySession.facultyId)) {
+        if (facultySession == null || !facultyDBHandler.isValidFaculty(facultySession.facultyId)) {
             Intent intent = new Intent(this, LoginActivity.class);
             intent.putExtra("activeMenuIndex", 1);
             startActivity(intent);
@@ -67,8 +66,7 @@ public class FacultyInfoActivity extends AppCompatActivity {
         }
 
         ShapeableImageView facultyInfoProfileImage;
-        TextView facultyInfoFacultyId, facultyInfoName, facultyInfoGender, facultyInfoDept,
-                facultyInfoContact, facultyInfoEmail;
+        TextView facultyInfoFacultyId, facultyInfoName, facultyInfoGender, facultyInfoDept, facultyInfoContact, facultyInfoEmail;
         AppCompatButton facultyInfoResultButton, facultyInfoLogoutButton;
         FacultyInfo facultyInfo = facultyDBHandler.getFacultyInfo(facultySession.facultyId);
         DeptInfo deptInfo = facultyDBHandler.getDepartment(facultyInfo.deptId);
@@ -84,9 +82,7 @@ public class FacultyInfoActivity extends AppCompatActivity {
         facultyInfoLogoutButton = findViewById(R.id.facultyInfoLogoutButton);
 
         int accountId = facultyDBHandler.getAccountType("faculty").accountId;
-        Bitmap profileImage = Util.getImageFromInternalStorage(
-                this,
-                String.valueOf(accountId) + facultyInfo.facultyId + ".jpeg");
+        Bitmap profileImage = Util.getImageFromInternalStorage(this, String.valueOf(accountId) + facultyInfo.facultyId + ".jpeg");
         if (profileImage != null) facultyInfoProfileImage.setImageBitmap(profileImage);
         else facultyInfoProfileImage.setImageResource(R.drawable.default_profile);
 

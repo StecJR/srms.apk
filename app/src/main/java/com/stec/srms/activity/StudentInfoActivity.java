@@ -56,8 +56,7 @@ public class StudentInfoActivity extends AppCompatActivity {
 
         // Handle invalid student session
         StudentSession studentSession = sessionManager.getStudentSession();
-        if (studentSession == null ||
-                !studentDBHandler.isValidStudent(this, studentSession.deptId, studentSession.studentId)) {
+        if (studentSession == null || !studentDBHandler.isValidStudent(this, studentSession.deptId, studentSession.studentId)) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
             return;
@@ -82,9 +81,7 @@ public class StudentInfoActivity extends AppCompatActivity {
         studentInfoAddress = findViewById(R.id.studentInfoAddress);
 
         int accountId = studentDBHandler.getAccountType("student").accountId;
-        Bitmap profileImage = Util.getImageFromInternalStorage(
-                this,
-                String.valueOf(accountId) + studentInfo.studentId + ".jpeg");
+        Bitmap profileImage = Util.getImageFromInternalStorage(this, String.valueOf(accountId) + studentInfo.studentId + ".jpeg");
         if (profileImage != null) studentInfoProfileImage.setImageBitmap(profileImage);
         else studentInfoProfileImage.setImageResource(R.drawable.default_profile);
 

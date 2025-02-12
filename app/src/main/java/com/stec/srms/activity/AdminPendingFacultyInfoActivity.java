@@ -51,10 +51,7 @@ public class AdminPendingFacultyInfoActivity extends AppCompatActivity {
         facultyInfoDeleteButton = findViewById(R.id.facultyInfoDeleteButton);
         facultyInfoVerifyButton = findViewById(R.id.facultyInfoVerifyButton);
 
-        Bitmap profileImage = Util.getImageFromInternalStorage(
-                this,
-                String.valueOf(accountId) + pendingFaculty.userId + ".jpeg"
-        );
+        Bitmap profileImage = Util.getImageFromInternalStorage(this, String.valueOf(accountId) + pendingFaculty.userId + ".jpeg");
         if (profileImage != null) facultyInfoProfileImage.setImageBitmap(profileImage);
         else facultyInfoProfileImage.setImageResource(R.drawable.default_profile);
 
@@ -97,11 +94,7 @@ public class AdminPendingFacultyInfoActivity extends AppCompatActivity {
                 finish();
             });
 
-            int returnCode = Util.renameImageFromInternalStorage(
-                    this,
-                    String.valueOf(accountId) + pendingFaculty.userId + ".jpeg",
-                    String.valueOf(newAccountId) + newFacultyId + ".jpeg"
-            );
+            int returnCode = Util.renameImageFromInternalStorage(this, String.valueOf(accountId) + pendingFaculty.userId + ".jpeg", String.valueOf(newAccountId) + newFacultyId + ".jpeg");
             if (returnCode == 1) {
                 Util.deleteImageFromInternalStorage(this, String.valueOf(accountId) + pendingFaculty.userId + ".jpeg");
                 Toast.generalWarning(this, "Profile image already exists");
