@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import com.stec.srms.BuildConfig;
 import com.stec.srms.interfaces.OnEmailSentListener;
 
 import java.io.InputStream;
@@ -37,21 +38,20 @@ public class EmailHandler {
     }
 
     private static boolean sendMail(Context context, String receiver, String subject, String body) {
-        EnvVariable.loadEnvVariable(context);
         try {
             Properties properties = new Properties();
-            properties.put("mail.smtp.host", EnvVariable.get("SMTP_HOST"));
-            properties.put("mail.smtp.port", EnvVariable.get("SMTP_PORT"));
+            properties.put("mail.smtp.host", BuildConfig.APP_SMTP_HOST);
+            properties.put("mail.smtp.port", "587");
             properties.put("mail.smtp.auth", "true");
             properties.put("mail.smtp.starttls.enable", "true");
             properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
-            properties.put("mail.smtp.ssl.trust", EnvVariable.get("SMTP_HOST"));
+            properties.put("mail.smtp.ssl.trust", BuildConfig.APP_SMTP_HOST);
 
-            String SENDER_EMAIL = EnvVariable.get("SMTP_EMAIL_SENDER");
+            String SENDER_EMAIL = BuildConfig.APP_SMTP_EMAIL_SENDER;
             Session session = Session.getInstance(properties, new Authenticator() {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(SENDER_EMAIL, EnvVariable.get("SMTP_EMAIL_PASSWORD"));
+                    return new PasswordAuthentication(SENDER_EMAIL, BuildConfig.APP_SMTP_EMAIL_PASSWORD);
                 }
             });
             Message message = new MimeMessage(session);

@@ -10,11 +10,9 @@ import com.stec.srms.util.Toast;
 
 public class GuardianDBHandler extends Database {
     private static GuardianDBHandler guardianDBHandlerInstance;
-    Context context;
 
     public GuardianDBHandler(Context context) {
         super(context);
-        this.context = context;
     }
 
     public static synchronized GuardianDBHandler getInstance(Context context) {
@@ -63,7 +61,7 @@ public class GuardianDBHandler extends Database {
         }
     }
 
-    public int addPendingGuardian(PendingGuardian guardianInfo) {
+    public int addPendingGuardian(Context context, PendingGuardian guardianInfo) {
         int accountId = getAccountType("pendingGuardian").accountId;
         SQLiteDatabase db = null;
         try {

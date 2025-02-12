@@ -17,10 +17,8 @@ import java.util.Date;
 public class SessionManager {
     private static SharedPreferences sharedPreference;
     private static SessionManager sessionManager;
-    Context context;
 
     private SessionManager(Context context) {
-        this.context = context;
         if (sharedPreference == null) {
             try {
                 sharedPreference = EncryptedSharedPreferences.create(
@@ -109,7 +107,7 @@ public class SessionManager {
         return accountType;
     }
 
-    public int getAccountId() {
+    public int getAccountId(Context context) {
         String type = getAccountType();
         if (type == null) return -1;
         AccountType accType = Database.getInstance(context).getAccountType(type);

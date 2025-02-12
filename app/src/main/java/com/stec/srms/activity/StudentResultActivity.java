@@ -21,7 +21,7 @@ import com.stec.srms.util.SessionManager;
 import java.util.ArrayList;
 
 public class StudentResultActivity extends AppCompatActivity {
-    ContextThemeWrapper tableRowStyle, tableRowTextStyle;
+    private ContextThemeWrapper tableRowStyle, tableRowTextStyle;
 
     private void createTableRow(TableLayout tableLayout, int semesterId, String semesterDesc, double gpa) {
         TableRow tableRow;

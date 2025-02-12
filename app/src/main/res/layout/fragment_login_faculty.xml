@@ -33,7 +33,8 @@
             android:id="@+id/loginFacultyIdInput"
             style="@style/CustomStyle.Input.Text"
             android:autofillHints="name"
-            android:hint="@string/faculty_id" />
+            android:hint="@string/faculty_id"
+            android:maxLength="8" />
 
         <EditText
             android:id="@+id/loginFacultyPwInput"

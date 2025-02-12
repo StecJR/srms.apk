@@ -16,11 +16,9 @@ import java.util.ArrayList;
 
 public class StudentDBHandler extends Database {
     private static StudentDBHandler studentDBHandlerInstance;
-    Context context;
 
     public StudentDBHandler(Context context) {
         super(context);
-        this.context = context;
     }
 
     public static synchronized StudentDBHandler getInstance(Context context) {
@@ -243,7 +241,7 @@ public class StudentDBHandler extends Database {
 
     }
 
-    public int addPendingStudent(PendingStudent studentInfo) {
+    public int addPendingStudent(Context context, PendingStudent studentInfo) {
         int accountId = getAccountType("pendingStudent").accountId;
         SQLiteDatabase db = null;
         try {

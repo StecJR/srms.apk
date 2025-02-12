@@ -37,7 +37,7 @@ public class GuardianSignupActivity extends AppCompatActivity {
 
     private void showOtpBottomSheet(int otp) {
         OtpVerification otpVerification = new OtpVerification(String.valueOf(otp), () -> {
-            int userId = database.addPendingGuardian(new PendingGuardian(-1, name, relation, contact, email, studentId, deptId, password1));
+            int userId = database.addPendingGuardian(this, new PendingGuardian(-1, name, relation, contact, email, studentId, deptId, password1));
             if (userId != -1) {
                 Util.saveImageToInternalStorage(
                         this,
@@ -98,10 +98,7 @@ public class GuardianSignupActivity extends AppCompatActivity {
         guardianSignupImageSelectorButton.setOnClickListener(v -> {
             if (!PermissionHandler.checkReadStoragePermission(this)) {
                 PermissionHandler.requestReadStoragePermission(this);
-                if (!PermissionHandler.checkReadStoragePermission(this)) {
-                    Toast.generalError(this, "Storage permission is required to select image");
-                    return;
-                }
+                if (!PermissionHandler.checkReadStoragePermission(this)) return;
             }
             Util.openImagePicker(this);
         });

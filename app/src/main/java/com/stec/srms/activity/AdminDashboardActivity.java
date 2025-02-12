@@ -21,7 +21,9 @@ public class AdminDashboardActivity extends AppCompatActivity {
         // Verify or goto login page
         String accountType = sessionManager.validSession();
         if (accountType == null) {
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("activeMenuIndex", 3);
+            startActivity(intent);
             finish();
             return;
         } else if (!accountType.equals("admin")) {
@@ -36,7 +38,9 @@ public class AdminDashboardActivity extends AppCompatActivity {
                     startActivity(new Intent(this, GuardianInfoActivity.class));
                     break;
                 default:
-                    startActivity(new Intent(this, LoginActivity.class));
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.putExtra("activeMenuIndex", 3);
+                    startActivity(intent);
             }
             finish();
             return;
@@ -48,8 +52,9 @@ public class AdminDashboardActivity extends AppCompatActivity {
         adminVerifyUserButton = findViewById(R.id.adminVerifyUserButton);
 
         adminLogoutButton.setOnClickListener(v -> {
-            sessionManager.deleteAdminSession();
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("activeMenuIndex", 3);
+            startActivity(intent);
             finish();
         });
         adminVerifyUserButton.setOnClickListener(v -> startActivity(new Intent(this, AdminVerifyUserActivity.class)));

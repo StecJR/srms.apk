@@ -1,4 +1,0 @@
-SMTP_EMAIL_SENDER=api.jrmail@gmail.com
-SMTP_EMAIL_PASSWORD=lzfxlgtfsqlkzrbm
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587

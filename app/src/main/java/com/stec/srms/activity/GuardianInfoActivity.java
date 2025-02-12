@@ -30,7 +30,9 @@ public class GuardianInfoActivity extends AppCompatActivity {
         // Verify or goto login page
         String accountType = sessionManager.validSession();
         if (accountType == null) {
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("activeMenuIndex", 2);
+            startActivity(intent);
             finish();
             return;
         } else if (!accountType.equals("guardian")) {
@@ -45,7 +47,9 @@ public class GuardianInfoActivity extends AppCompatActivity {
                     startActivity(new Intent(this, AdminDashboardActivity.class));
                     break;
                 default:
-                    startActivity(new Intent(this, LoginActivity.class));
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.putExtra("activeMenuIndex", 2);
+                    startActivity(intent);
             }
             finish();
             return;
@@ -55,7 +59,9 @@ public class GuardianInfoActivity extends AppCompatActivity {
         GuardianSession guardianSession = sessionManager.getGuardianSession();
         if (guardianSession == null ||
                 !guardianDBHandler.isValidGuardian(guardianSession.guardianId)) {
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("activeMenuIndex", 2);
+            startActivity(intent);
             finish();
             return;
         }
@@ -94,7 +100,9 @@ public class GuardianInfoActivity extends AppCompatActivity {
         guardianInfoEmail.setText(guardianInfo.email);
 
         guardianInfoLogoutButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("activeMenuIndex", 2);
+            startActivity(intent);
             finish();
         });
         guardianStudentInfoButton.setOnClickListener(v -> {

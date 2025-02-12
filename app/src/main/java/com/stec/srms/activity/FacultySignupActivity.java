@@ -40,7 +40,7 @@ public class FacultySignupActivity extends AppCompatActivity {
     private void showOtpBottomSheet(int otp) {
         OtpVerification otpVerification = new OtpVerification(String.valueOf(otp), () -> {
             String gender = genderId == 1 ? "Male" : "Female";
-            int userId = database.addPendingFaculty(new PendingFaculty(-1, name, gender, deptId, contact, email, address, password1));
+            int userId = database.addPendingFaculty(this, new PendingFaculty(-1, name, gender, deptId, contact, email, address, password1));
             if (userId != -1) {
                 Util.saveImageToInternalStorage(
                         this,
@@ -109,10 +109,7 @@ public class FacultySignupActivity extends AppCompatActivity {
         facultySignupImageSelectorButton.setOnClickListener(v -> {
             if (!PermissionHandler.checkReadStoragePermission(this)) {
                 PermissionHandler.requestReadStoragePermission(this);
-                if (!PermissionHandler.checkReadStoragePermission(this)) {
-                    Toast.generalError(this, "Storage permission is required to select image");
-                    return;
-                }
+                if (!PermissionHandler.checkReadStoragePermission(this)) return;
             }
             Util.openImagePicker(this);
         });

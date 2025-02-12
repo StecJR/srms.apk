@@ -9,7 +9,7 @@ import com.stec.srms.model.PendingFaculty;
 import com.stec.srms.model.PendingGuardian;
 import com.stec.srms.model.PendingStudent;
 import com.stec.srms.model.PendingUserInfo;
-import com.stec.srms.util.Toast;
+import com.stec.srms.util.Sha256;
 
 import java.util.ArrayList;
 
@@ -24,24 +24,6 @@ public class AdminDBHandler extends Database {
         if (adminDBHandlerInstance == null)
             adminDBHandlerInstance = new AdminDBHandler(context.getApplicationContext());
         return adminDBHandlerInstance;
-    }
-
-    public boolean isValidAdmin(Context context, String adminName, String adminPw) {
-        boolean isValid = false;
-        SQLiteDatabase db = null;
-        Cursor cursor = null;
-        try {
-            String query = "SELECT * FROM admin_info WHERE adminName = '" + adminName + "' AND adminPw = '" + adminPw + "' LIMIT 1";
-            db = this.getReadableDatabase();
-            cursor = db.rawQuery(query, null);
-            isValid = cursor.moveToFirst();
-        } catch (Exception e) {
-            Toast.databaseError(context, e.getMessage());
-        } finally {
-            if (cursor != null) cursor.close();
-            if (db != null) db.close();
-        }
-        return isValid;
     }
 
     public ArrayList<PendingUserInfo> getPendingStudents() {
@@ -304,7 +286,12 @@ public class AdminDBHandler extends Database {
             values.put("email", studentInfo.email);
             values.put("address", studentInfo.address);
             values.put("password", studentInfo.password);
-            return (int) db.insert("students_" + studentInfo.deptId, null, values);
+            int id = (int) db.insert("students_" + studentInfo.deptId, null, values);
+
+            values = new ContentValues();
+            values.put("password", Sha256.hash(studentInfo.password, String.valueOf(id)));
+            db.update("students_" + studentInfo.deptId, values, "studentId = ?", new String[]{String.valueOf(id)});
+            return id;
         } catch (Exception e) {
             return -1;
         }
@@ -320,7 +307,12 @@ public class AdminDBHandler extends Database {
             values.put("email", facultyInfo.email);
             values.put("address", facultyInfo.address);
             values.put("password", facultyInfo.password);
-            return (int) db.insert("faculties", null, values);
+            int id = (int) db.insert("faculties", null, values);
+
+            values = new ContentValues();
+            values.put("password", Sha256.hash(facultyInfo.password, String.valueOf(id)));
+            db.update("faculties", values, "facultyId = ?", new String[]{String.valueOf(id)});
+            return id;
         } catch (Exception e) {
             return -1;
         }
@@ -338,6 +330,10 @@ public class AdminDBHandler extends Database {
             values.put("deptId", guardianInfo.deptId);
             values.put("password", guardianInfo.password);
             guardianId = (int) db.insert("guardians", null, values);
+
+            values = new ContentValues();
+            values.put("password", Sha256.hash(guardianInfo.password, String.valueOf(guardianId)));
+            db.update("guardians", values, "guardianId = ?", new String[]{String.valueOf(guardianId)});
         } catch (Exception e) {
             return -1;
         }

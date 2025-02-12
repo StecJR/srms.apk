@@ -39,10 +39,14 @@ import com.stec.srms.util.Util;
 import java.util.ArrayList;
 
 public class FacultyResultActivity extends AppCompatActivity {
-    ContextThemeWrapper tableRowStyle, tableRowTextStyle;
-    Spinner departmentSpinner, sessionSpinner, semesterSpinner, courseSpinner;
-    CourseSelectorAdapter courseSelectorAdapter;
-    BottomSheetDialog bottomSheetDialog;
+    private ContextThemeWrapper tableRowStyle, tableRowTextStyle;
+    private Spinner departmentSpinner, sessionSpinner, semesterSpinner, courseSpinner;
+    private CourseSelectorAdapter courseSelectorAdapter;
+    private BottomSheetDialog bottomSheetDialog;
+
+    private void clearTable(TableLayout tableLayout) {
+        for (int i = tableLayout.getChildCount() - 1; i > 0; i--) tableLayout.removeViewAt(i);
+    }
 
     public void setCoursesWithHint(ArrayList<CourseInfo> courses) {
         ArrayList<CourseInfo> newCourses = new ArrayList<>(courses);
@@ -56,8 +60,7 @@ public class FacultyResultActivity extends AppCompatActivity {
 
     private void openMarkEditor(Results result, TableRow tableRow) {
         bottomSheetDialog = new BottomSheetDialog(this);
-        @SuppressLint("InflateParams")
-        View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_edit_mark, null);
+        @SuppressLint("InflateParams") View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_edit_mark, null);
         bottomSheetDialog.setContentView(bottomSheetView);
 
         EditText bottomSheetEditMarkInput;
@@ -72,6 +75,10 @@ public class FacultyResultActivity extends AppCompatActivity {
         bottomSheetEditMarkSaveButton.setOnClickListener(view -> {
             try {
                 int mark = Integer.parseInt(bottomSheetEditMarkInput.getText().toString());
+                if (mark < 0 || mark > 100) {
+                    Toast.generalError(this, "Invalid mark");
+                    return;
+                }
                 if (mark != result.mark) {
                     result.mark = mark;
                     result.gpa = Util.getGpa(mark);
@@ -139,11 +146,14 @@ public class FacultyResultActivity extends AppCompatActivity {
         FacultyDBHandler facultyDBHandler = FacultyDBHandler.getInstance(this);
         SessionManager sessionManager = SessionManager.getInstance(this);
         AppCompatButton facultyResultSearchButton;
+        TableLayout table;
 
         // Verify or goto login page
         String accountType = sessionManager.validSession();
         if (accountType == null) {
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("activeMenuIndex", 1);
+            startActivity(intent);
             finish();
             return;
         } else if (!accountType.equals("faculty")) {
@@ -158,7 +168,9 @@ public class FacultyResultActivity extends AppCompatActivity {
                     startActivity(new Intent(this, AdminInfo.class));
                     break;
                 default:
-                    startActivity(new Intent(this, LoginActivity.class));
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.putExtra("activeMenuIndex", 1);
+                    startActivity(intent);
             }
             finish();
             return;
@@ -167,7 +179,9 @@ public class FacultyResultActivity extends AppCompatActivity {
         // Handle invalid student session
         FacultySession facultySession = sessionManager.getFacultySession();
         if (facultySession == null || !facultyDBHandler.isValidFaculty(facultySession.facultyId)) {
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("activeMenuIndex", 1);
+            startActivity(intent);
             finish();
             return;
         }
@@ -177,6 +191,7 @@ public class FacultyResultActivity extends AppCompatActivity {
         semesterSpinner = findViewById(R.id.semesterSpinner);
         courseSpinner = findViewById(R.id.courseSpinner);
         facultyResultSearchButton = findViewById(R.id.facultyResultSearchButton);
+        table = findViewById(R.id.facultyResultResultTable);
 
         ArrayList<DeptInfo> departments = new ArrayList<>(facultyDBHandler.getDepartments());
         if (departments.get(0).deptId != -1) {
@@ -211,6 +226,17 @@ public class FacultyResultActivity extends AppCompatActivity {
                 } else if (id != 0) {
                     setCoursesWithHint(facultyDBHandler.getDepartmentCourses((int) id));
                 }
+                clearTable(table);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        sessionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                clearTable(table);
             }
 
             @Override
@@ -225,6 +251,17 @@ public class FacultyResultActivity extends AppCompatActivity {
                 } else if (id != 0) {
                     setCoursesWithHint(facultyDBHandler.getSemesterCourses((int) id));
                 }
+                clearTable(table);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        courseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                clearTable(table);
             }
 
             @Override
@@ -255,10 +292,7 @@ public class FacultyResultActivity extends AppCompatActivity {
                 return;
             }
 
-            TableLayout table = findViewById(R.id.facultyResultResultTable);
-            for (int i = table.getChildCount() - 1; i > 0; i--) {
-                table.removeViewAt(i);
-            }
+            clearTable(table);
 
             if (!facultyDBHandler.tableExists("results_" + sessionId + "_" + deptId)) {
                 Context context = this;
@@ -271,13 +305,13 @@ public class FacultyResultActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         Toast.databaseInfo(context, "No student record found");
                     }
-                    createTableRows(table, facultyDBHandler.getCourseResult(sessionId, deptId, courseCode));
+                    createTableRows(table, facultyDBHandler.getCourseResult(this, sessionId, deptId, courseCode));
                 });
                 builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
                 AlertDialog dialog = builder.create();
                 dialog.show();
             } else {
-                ArrayList<Results> results = facultyDBHandler.getCourseResult(sessionId, deptId, courseCode);
+                ArrayList<Results> results = facultyDBHandler.getCourseResult(this, sessionId, deptId, courseCode);
                 if (results == null || results.isEmpty()) {
                     Context context = this;
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -288,7 +322,7 @@ public class FacultyResultActivity extends AppCompatActivity {
                         if (!facultyDBHandler.hasSemesterInResultSummary(sessionId, deptId, semesterId)) {
                             facultyDBHandler.addNewCourseResultSummary(context, sessionId, deptId, semesterId);
                         }
-                        createTableRows(table, facultyDBHandler.getCourseResult(sessionId, deptId, courseCode));
+                        createTableRows(table, facultyDBHandler.getCourseResult(this, sessionId, deptId, courseCode));
                     });
                     builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
                     AlertDialog dialog = builder.create();

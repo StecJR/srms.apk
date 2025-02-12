@@ -41,7 +41,8 @@
             style="@style/CustomStyle.Input.Text"
             android:layout_marginTop="30dp"
             android:autofillHints="name"
-            android:hint="@string/student_id" />
+            android:hint="@string/student_id"
+            android:maxLength="8" />
 
         <EditText
             android:id="@+id/loginStudentPwInput"

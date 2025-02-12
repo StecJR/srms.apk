@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class StudentMarkSheetActivity extends AppCompatActivity {
-    ContextThemeWrapper tableRowStyle, tableRowTextStyle;
+    private ContextThemeWrapper tableRowStyle, tableRowTextStyle;
 
     private void createMarkSheetTable(TableLayout tableLayout, ArrayList<MarkSheetData> markSheet) {
         TableRow tableRow;

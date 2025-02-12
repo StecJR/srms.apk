@@ -33,7 +33,8 @@
             android:id="@+id/loginGuardianIdInput"
             style="@style/CustomStyle.Input.Text"
             android:autofillHints="name"
-            android:hint="@string/guardian_id" />
+            android:hint="@string/guardian_id"
+            android:maxLength="8" />
 
         <EditText
             android:id="@+id/loginGuardianPwInput"

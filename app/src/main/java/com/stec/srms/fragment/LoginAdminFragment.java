@@ -39,7 +39,7 @@ public class LoginAdminFragment extends Fragment {
             String adminPw = loginAdminPwInput.getText().toString().trim();
             boolean isValid = !adminName.isBlank() &&
                     !adminPw.isBlank() &&
-                    adminDBHandler.isValidAdmin(context, adminName, adminPw);
+                    adminDBHandler.isValidAdmin(adminName, adminPw);
             if (!isValid) {
                 Toast.credentialError(context);
                 return;

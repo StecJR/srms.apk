@@ -14,6 +14,19 @@ android {
         versionName = "1.0.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "APP_SMTP_HOST", "\"${System.getenv("APP_SMTP_HOST") ?: ""}\"")
+        buildConfigField(
+            "String",
+            "APP_SMTP_EMAIL_SENDER",
+            "\"${System.getenv("APP_SMTP_EMAIL_SENDER") ?: ""}\""
+        )
+        buildConfigField(
+            "String",
+            "APP_SMTP_EMAIL_PASSWORD",
+            "\"${System.getenv("APP_SMTP_EMAIL_PASSWORD") ?: ""}\""
+        )
+
         packagingOptions {
             exclude("license/*")
             exclude("META-INF/*")
@@ -37,6 +50,7 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         viewBinding = true
     }
 

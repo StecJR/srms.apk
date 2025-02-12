@@ -20,11 +20,9 @@ import java.util.Map;
 
 public class FacultyDBHandler extends Database {
     private static FacultyDBHandler facultyDBHandlerInstance;
-    Context context;
 
     public FacultyDBHandler(Context context) {
         super(context);
-        this.context = context;
     }
 
     public static synchronized FacultyDBHandler getInstance(Context context) {
@@ -177,7 +175,7 @@ public class FacultyDBHandler extends Database {
         return info;
     }
 
-    public ArrayList<Results> getCourseResult(int sessionId, int deptId, int courseCode) {
+    public ArrayList<Results> getCourseResult(Context context, int sessionId, int deptId, int courseCode) {
         ArrayList<Results> results = null;
         SQLiteDatabase db = null;
         Cursor cursor = null;
@@ -264,7 +262,7 @@ public class FacultyDBHandler extends Database {
         }
     }
 
-    public int addPendingFaculty(PendingFaculty facultyInfo) {
+    public int addPendingFaculty(Context context, PendingFaculty facultyInfo) {
         int accountId = getAccountType("pendingFaculty").accountId;
         SQLiteDatabase db = null;
         try {

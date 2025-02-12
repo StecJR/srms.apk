@@ -30,7 +30,9 @@ public class FacultyInfoActivity extends AppCompatActivity {
         // Verify or goto login page
         String accountType = sessionManager.validSession();
         if (accountType == null) {
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("activeMenuIndex", 1);
+            startActivity(intent);
             finish();
             return;
         } else if (!accountType.equals("faculty")) {
@@ -45,7 +47,9 @@ public class FacultyInfoActivity extends AppCompatActivity {
                     startActivity(new Intent(this, AdminDashboardActivity.class));
                     break;
                 default:
-                    startActivity(new Intent(this, LoginActivity.class));
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.putExtra("activeMenuIndex", 1);
+                    startActivity(intent);
             }
             finish();
             return;
@@ -55,7 +59,9 @@ public class FacultyInfoActivity extends AppCompatActivity {
         FacultySession facultySession = sessionManager.getFacultySession();
         if (facultySession == null ||
                 !facultyDBHandler.isValidFaculty(facultySession.facultyId)) {
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("activeMenuIndex", 1);
+            startActivity(intent);
             finish();
             return;
         }
@@ -93,8 +99,9 @@ public class FacultyInfoActivity extends AppCompatActivity {
 
         facultyInfoResultButton.setOnClickListener(v -> startActivity(new Intent(this, FacultyResultActivity.class)));
         facultyInfoLogoutButton.setOnClickListener(v -> {
-            sessionManager.deleteFacultySession();
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("activeMenuIndex", 1);
+            startActivity(intent);
             finish();
         });
     }

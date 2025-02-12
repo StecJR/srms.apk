@@ -17,9 +17,9 @@ import com.stec.srms.model.PendingUserInfo;
 import java.util.ArrayList;
 
 public class AdminPendingStudentActivity extends AppCompatActivity {
-    AdminDBHandler adminDBHandler;
-    TableLayout adminPendingStudentTable;
-    ContextThemeWrapper tableRowStyle, tableRowTextStyle;
+    private AdminDBHandler adminDBHandler;
+    private TableLayout adminPendingStudentTable;
+    private ContextThemeWrapper tableRowStyle, tableRowTextStyle;
 
     private void createTableRows() {
         ArrayList<PendingUserInfo> pendingUsers = adminDBHandler.getPendingStudents();

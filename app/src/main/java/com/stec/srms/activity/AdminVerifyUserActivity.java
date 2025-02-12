@@ -24,7 +24,9 @@ public class AdminVerifyUserActivity extends AppCompatActivity {
         // Verify or goto login page
         String accountType = sessionManager.validSession();
         if (accountType == null) {
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("activeMenuIndex", 3);
+            startActivity(intent);
             finish();
             return;
         } else if (!accountType.equals("admin")) {
@@ -39,7 +41,9 @@ public class AdminVerifyUserActivity extends AppCompatActivity {
                     startActivity(new Intent(this, GuardianInfoActivity.class));
                     break;
                 default:
-                    startActivity(new Intent(this, LoginActivity.class));
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.putExtra("activeMenuIndex", 3);
+                    startActivity(intent);
             }
             finish();
             return;

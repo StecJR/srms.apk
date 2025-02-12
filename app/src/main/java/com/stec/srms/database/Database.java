@@ -22,6 +22,7 @@ import com.stec.srms.model.ResultsSummary;
 import com.stec.srms.model.SemesterInfo;
 import com.stec.srms.model.SessionInfo;
 import com.stec.srms.model.StudentInfo;
+import com.stec.srms.util.Sha256;
 import com.stec.srms.util.Toast;
 
 import java.util.ArrayList;
@@ -572,12 +573,14 @@ public class Database extends SQLiteOpenHelper {
 
     public boolean isValidStudent(Context context, int deptId, int studentId, String studentPw) {
         if (studentId == -1) return false;
+        String password = Sha256.hash(studentPw, String.valueOf(studentId));
+        if (password == null) return false;
         boolean isValid;
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
             db = this.getReadableDatabase();
-            String query = "SELECT * FROM students_" + deptId + " WHERE studentId = " + studentId + " AND password = '" + studentPw + "' LIMIT 1;";
+            String query = "SELECT * FROM students_" + deptId + " WHERE studentId = " + studentId + " AND password = '" + password + "' LIMIT 1;";
             cursor = db.rawQuery(query, null);
             isValid = cursor.moveToFirst();
         } catch (Exception e) {
@@ -611,12 +614,14 @@ public class Database extends SQLiteOpenHelper {
 
     public boolean isValidGuardian(int guardianId, String guardianPw) {
         if (guardianId == -1) return false;
+        String password = Sha256.hash(guardianPw, String.valueOf(guardianId));
+        if (password == null) return false;
         boolean isValid = false;
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
             db = this.getReadableDatabase();
-            String query = "SELECT * FROM guardians WHERE guardianId = " + guardianId + " AND password = '" + guardianPw + "' LIMIT 1;";
+            String query = "SELECT * FROM guardians WHERE guardianId = " + guardianId + " AND password = '" + password + "' LIMIT 1;";
             cursor = db.rawQuery(query, null);
             isValid = cursor.moveToFirst();
         } catch (Exception e) {
@@ -649,16 +654,38 @@ public class Database extends SQLiteOpenHelper {
 
     public boolean isValidFaculty(int facultyId, String facultyPw) {
         if (facultyId == -1) return false;
+        String password = Sha256.hash(facultyPw, String.valueOf(facultyId));
+        if (password == null) return false;
         boolean isValid = false;
         SQLiteDatabase db = null;
         Cursor cursor = null;
         try {
             db = this.getReadableDatabase();
-            String query = "SELECT * FROM faculties WHERE facultyId = " + facultyId + " AND password = '" + facultyPw + "' LIMIT 1;";
+            String query = "SELECT * FROM faculties WHERE facultyId = " + facultyId + " AND password = '" + password + "' LIMIT 1;";
             cursor = db.rawQuery(query, null);
             isValid = cursor.moveToFirst();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
+        return isValid;
+    }
+
+    public boolean isValidAdmin(String adminName, String adminPw) {
+        String password = Sha256.hash(adminName, String.valueOf(adminPw));
+        if (password == null) return false;
+        boolean isValid;
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            String query = "SELECT * FROM admin_info WHERE adminName = '" + adminName + "' AND adminPw = '" + password + "' LIMIT 1";
+            db = this.getReadableDatabase();
+            cursor = db.rawQuery(query, null);
+            isValid = cursor.moveToFirst();
+        } catch (Exception e) {
+            return false;
         } finally {
             if (cursor != null) cursor.close();
             if (db != null) db.close();
@@ -787,7 +814,7 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(query.toString());
         // Admin info table
         query = new StringBuilder("INSERT INTO admin_info VALUES")
-                .append(" ('admin', 'admin');");
+                .append(" ('admin', 'ck2PpMHWo2icRUJbKRP2oz0ng8JO7zT0wSPgpYHS9MI=');");
         db.execSQL(query.toString());
     }
 
@@ -795,25 +822,25 @@ public class Database extends SQLiteOpenHelper {
         StringBuilder query;
         // CSE student table
         query = new StringBuilder("INSERT INTO students_1 VALUES")
-                .append(" (10000001, 'Jakir Hossain', '9 February 2004', 'Male', 1, 22, '01836123456', 'api.jrmail@gmail.com', 'Dhaka, Bangladesh', 10000001, '1234'),")
-                .append(" (10000002, 'Anik Kumara', '9 March 2004', 'Male', 1, 22, '01836123457', 'api2.jrmail@gmail.com', 'Dhaka, Bangladesh', -1, '1234');");
+                .append(" (10000001, 'Jakir Hossain', '9 February 2004', 'Male', 1, 22, '01836123456', 'api.jrmail@gmail.com', 'Dhaka, Bangladesh', 10000001, 'XHWGQojnqSltrCRbjgecTHe7eaU90iqXvDTy01ck4+A='),")
+                .append(" (10000002, 'Anik Kumara', '9 March 2004', 'Male', 1, 22, '01836123457', 'api2.jrmail@gmail.com', 'Dhaka, Bangladesh', -1, 'aJlhNuTQC1+blbeGsOx7Co/uiqpkSPJVi7hQdU5/IZE=');");
         db.execSQL(query.toString());
         // EEE student table
         query = new StringBuilder("INSERT INTO students_2 VALUES")
-                .append(" (20000001, 'Jakir Hossain', '9 February 2004', 'Male', 2, 22, '01836123456', 'api.jrmail@gmail.com', 'Dhaka, Bangladesh', -1, '1234'),")
-                .append(" (20000002, 'Anik Kumara', '9 March 2004', 'Male', 2, 22, '01836123457', 'api2.jrmail@gmail.com', 'Dhaka, Bangladesh', 10000002, '1234');");
+                .append(" (20000001, 'Jakir Hossain', '9 February 2004', 'Male', 2, 22, '01836123456', 'api.jrmail@gmail.com', 'Dhaka, Bangladesh', -1, 'MMHci8z90USoKvsjbnlGIbbSvHB6NhfAJF5/INgNhDk='),")
+                .append(" (20000002, 'Anik Kumara', '9 March 2004', 'Male', 2, 22, '01836123457', 'api2.jrmail@gmail.com', 'Dhaka, Bangladesh', 10000002, 'N0QvAAtYswRomY4D/114QJt/K3rI5oDwjBhkIGv/9xk=');");
         db.execSQL(query.toString());
         // Faculty table
         query = new StringBuilder("INSERT INTO faculties VALUES")
-                .append(" (10000001, 'Jakir Hossain', 'Male', 1, '01836123456', 'api.jrmail@gmail.com', 'Dhaka, Bangladesh', '1234'),")
-                .append(" (10000002, 'Anik Kumara', 'Male', 1, '01836123457', 'api2.jrmail@gmail.com', 'Dhaka, Bangladesh', '1234'),")
-                .append(" (10000003, 'Jakir Hossain', 'Male', 2, '01836123456', 'api3.jrmail@gmail.com', 'Dhaka, Bangladesh', '1234'),")
-                .append(" (10000004, 'Anik Kumara', 'Male', 2, '01836123457', 'api4.jrmail@gmail.com', 'Dhaka, Bangladesh', '1234');");
+                .append(" (10000001, 'Jakir Hossain', 'Male', 1, '01836123456', 'api.jrmail@gmail.com', 'Dhaka, Bangladesh', 'XHWGQojnqSltrCRbjgecTHe7eaU90iqXvDTy01ck4+A='),")
+                .append(" (10000002, 'Anik Kumara', 'Male', 1, '01836123457', 'api2.jrmail@gmail.com', 'Dhaka, Bangladesh', 'aJlhNuTQC1+blbeGsOx7Co/uiqpkSPJVi7hQdU5/IZE='),")
+                .append(" (10000003, 'Jakir Hossain', 'Male', 2, '01836123456', 'api3.jrmail@gmail.com', 'Dhaka, Bangladesh', 'XTobab/qGSrWMZmGCUuN0VU0uvkxThiNjf9CQyrzBLA='),")
+                .append(" (10000004, 'Anik Kumara', 'Male', 2, '01836123457', 'api4.jrmail@gmail.com', 'Dhaka, Bangladesh', 'He9erkHdhgkBNUqIwXgodudnX4+HR17fYHnnpJ0SNkk=');");
         db.execSQL(query.toString());
         // Guardians table
         query = new StringBuilder("INSERT INTO guardians VALUES")
-                .append(" (10000001, 'Jakir Hossain', 'Brother', '01836123456', 'api.jrmail@gmail.com', 10000001, 1, '1234'),")
-                .append(" (10000002, 'Anik Kumara', 'Father', '01836123457', 'api2.jrmail@gmail.com', 20000002, 2, '1234');");
+                .append(" (10000001, 'Jakir Hossain', 'Brother', '01836123456', 'api.jrmail@gmail.com', 10000001, 1, 'XHWGQojnqSltrCRbjgecTHe7eaU90iqXvDTy01ck4+A='),")
+                .append(" (10000002, 'Anik Kumara', 'Father', '01836123457', 'api2.jrmail@gmail.com', 20000002, 2, 'aJlhNuTQC1+blbeGsOx7Co/uiqpkSPJVi7hQdU5/IZE=');");
         db.execSQL(query.toString());
     }
 

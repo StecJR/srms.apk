@@ -134,7 +134,6 @@ public class StudentInfoActivity extends AppCompatActivity {
 
         studentInfoResultButton.setOnClickListener(v -> startActivity(new Intent(this, StudentResultActivity.class)));
         studentInfoLogoutButton.setOnClickListener(v -> {
-            sessionManager.deleteStudentSession();
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
