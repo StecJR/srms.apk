@@ -49,7 +49,8 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/button"
             android:paddingHorizontal="10dp"
-            android:text="@string/onboardingExitButton" />
+            android:text="@string/onboardingExitButton"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 

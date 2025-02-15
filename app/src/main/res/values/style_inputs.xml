@@ -13,6 +13,12 @@
         <item name="android:inputType">text</item>
     </style>
 
+    <style name="CustomStyle.Input.DatePicker.Base" parent="CustomStyle.Input.Base">
+        <item name="android:drawableEnd">@drawable/calendar</item>
+        <item name="android:focusable">false</item>
+        <item name="android:inputType">date</item>
+    </style>
+
     <style name="CustomStyle.Input.Password.Base" parent="CustomStyle.Input.Base">
         <item name="android:inputType">textPassword</item>
         <item name="android:drawableEnd">@drawable/eye_password_hide</item>

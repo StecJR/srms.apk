@@ -5,6 +5,9 @@
     <color name="white">#ffffff</color>
     <color name="wheat">#f8eddd</color>
     <color name="wheat_gray">#a6a699</color>
+    <color name="red_lite">#f04040</color>
+    <color name="red_dark">#391326</color>
+    <color name="red_darker">#000000</color>
     <color name="blue_lite">#00aaff</color>
     <color name="blue_dark">#006699</color>
     <color name="blue_darker">#002747</color>

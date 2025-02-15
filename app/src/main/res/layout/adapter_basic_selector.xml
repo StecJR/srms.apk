@@ -12,6 +12,5 @@
         android:paddingVertical="12dp"
         android:text="@string/department"
         android:textAlignment="center"
-        android:textColor="@color/white"
         android:textSize="@dimen/text_18" />
 </LinearLayout>

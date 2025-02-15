@@ -62,4 +62,5 @@
     <string name="delete">Delete</string>
     <string name="pending_faculties">Pending Faculties</string>
     <string name="pending_guardians">Pending Guardians</string>
+    <string name="student_results">Student Results</string>
 </resources>

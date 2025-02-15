@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:background="@drawable/rounded_shape"
+            android:background="@drawable/rounded_shape_30"
             android:padding="10dp">
 
             <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">

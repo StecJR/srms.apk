@@ -16,6 +16,18 @@
 
     <style name="Theme.SRMS" parent="Base.Theme.SRMS" />
 
+    <style name="CustomStyle.Specific.BlackBg" parent="Theme.AppCompat">
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <!-- Button:Red:Alert -->
+    <style name="CustomStyle.TextBox.Red" parent="Widget.AppCompat.TextView">
+        <item name="android:padding">15dp</item>
+        <item name="android:background">@drawable/rounded_shape_20</item>
+        <item name="android:backgroundTint">@color/red_dark</item>
+        <item name="android:textColor">@color/red_lite</item>
+    </style>
+
     <!-- Button:Blue style -->
     <style name="CustomStyle.Button.Blue" parent="CustomStyle.Button.Blue.Base">
         <item name="android:background">@drawable/button_night</item>
@@ -28,23 +40,35 @@
         <item name="android:backgroundTint">@color/black_grey</item>
     </style>
 
+    <style name="CustomStyle.Button.Square" parent="CustomStyle.Button.Square.Base">
+        <item name="android:backgroundTint">@color/black_grey</item>
+    </style>
+
     <!-- Input:Text style -->
     <style name="CustomStyle.Input.Text" parent="CustomStyle.Input.Text.Base">
         <item name="android:background">@drawable/input_field_night</item>
-        <item name="android:textColor">@color/wheat</item>
-        <item name="android:textColorHint">@color/wheat</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+    <!-- Input:Text style -->
+    <style name="CustomStyle.Input.DatePicker" parent="CustomStyle.Input.DatePicker.Base">
+        <item name="android:background">@drawable/input_field_night</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:drawableTint">@color/yellow_lite</item>
     </style>
     <!-- Input:Password style -->
     <style name="CustomStyle.Input.Password" parent="CustomStyle.Input.Password.Base">
         <item name="android:background">@drawable/input_field_night</item>
-        <item name="android:textColor">@color/wheat</item>
-        <item name="android:textColorHint">@color/wheat</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
         <item name="android:drawableTint">@color/yellow_lite</item>
     </style>
     <!-- Input:Spinner style -->
     <style name="CustomStyle.Input.Spinner" parent="CustomStyle.Input.Spinner.Base">
+        <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/input_field_night</item>
-        <item name="android:popupBackground">@color/blue_darker</item>
+        <item name="android:popupBackground">@drawable/spinner_night</item>
     </style>
 
     <!-- Bottom navigation style -->

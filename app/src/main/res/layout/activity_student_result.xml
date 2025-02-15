@@ -11,16 +11,27 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/studentMarkSheetTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/student_results"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_28" />
+
         <TableLayout
             android:id="@+id/studentResultTable"
             style="@style/CustomStyle.Table.Simple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/rounded_shape"
-            android:padding="10dp">
+            android:background="@drawable/rounded_shape_30"
+            android:padding="5dp">
 
             <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
 

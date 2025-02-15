@@ -33,15 +33,12 @@
             android:textSize="@dimen/text_28" />
 
         <TextView
+            style="@style/CustomStyle.TextBox.Red"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/rounded_shape"
-            android:backgroundTint="#331323"
-            android:padding="15dp"
             android:text="@string/signup_fill_up_notice"
-            android:textColor="#e74747"
             android:textSize="@dimen/text_16"
             android:textStyle="bold" />
 
@@ -53,14 +50,11 @@
 
         <EditText
             android:id="@+id/studentSignupDOBInput"
-            style="@style/CustomStyle.Input.Text"
+            style="@style/CustomStyle.Input.DatePicker"
             android:layout_marginTop="30dp"
-            android:drawableEnd="@drawable/calendar"
-            android:drawableTint="@color/yellow_lite"
-            android:focusable="false"
             android:gravity="center"
             android:hint="@string/date_of_birth"
-            android:inputType="date" />
+            android:importantForAutofill="no" />
 
         <Spinner
             android:id="@+id/studentSignupGenderSpinner"
@@ -129,15 +123,11 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/studentSignupImageSelectorButton"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            style="@style/CustomStyle.Button.Square"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="@drawable/rounded_shape"
-            android:backgroundTint="@color/black_grey"
             android:padding="3dp"
-            android:text="@string/upload_image_description"
-            android:textAllCaps="false" />
+            android:text="@string/upload_image_description" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/studentSignupImagePreviewer"
@@ -147,7 +137,8 @@
             android:layout_marginTop="30dp"
             android:clickable="true"
             android:scaleType="centerCrop"
-            app:shapeAppearanceOverlay="@style/CircleImageShape" />
+            app:shapeAppearanceOverlay="@style/CircleImageShape"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/studentSignupSignupButton"

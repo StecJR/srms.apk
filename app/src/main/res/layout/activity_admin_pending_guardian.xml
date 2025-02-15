@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="30dp"
-        android:background="@drawable/rounded_shape"
+        android:background="@drawable/rounded_shape_30"
         android:paddingVertical="10dp"
         android:scrollbars="none">
 

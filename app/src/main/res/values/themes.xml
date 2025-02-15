@@ -33,6 +33,12 @@
         <item name="android:textColor">@color/wheat</item>
         <item name="android:textColorHint">@color/wheat</item>
     </style>
+    <!-- Input:Date picker style -->
+    <style name="CustomStyle.Input.DatePicker" parent="CustomStyle.Input.Text.Base">
+        <item name="android:background">@drawable/input_field_night</item>
+        <item name="android:textColor">@color/wheat</item>
+        <item name="android:textColorHint">@color/wheat</item>
+    </style>
     <!-- Input:Password style -->
     <style name="CustomStyle.Input.Password" parent="CustomStyle.Input.Password.Base">
         <item name="android:background">@drawable/input_field_night</item>
@@ -43,7 +49,7 @@
     <!-- Input:Spinner style -->
     <style name="CustomStyle.Input.Spinner" parent="CustomStyle.Input.Spinner.Base">
         <item name="android:background">@color/black_grey</item>
-        <item name="android:popupBackground">@color/blue_darker</item>
+        <item name="android:popupBackground">@drawable/spinner_night</item>
     </style>
 
 
