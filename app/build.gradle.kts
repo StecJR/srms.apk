@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "com.stec.srms"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.stec.srms"
         minSdk = 28
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
         vectorDrawables.useSupportLibrary = true

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.stec.srms.model.Notice;
 import com.stec.srms.model.PendingFaculty;
 import com.stec.srms.model.PendingGuardian;
 import com.stec.srms.model.PendingStudent;
@@ -207,6 +208,27 @@ public class AdminDBHandler extends Database {
             if (db != null) db.close();
         }
     }
+
+    public void addNotice(Notice notice) {
+        SQLiteDatabase db = null;
+        try {
+            db = this.getWritableDatabase();
+            db.beginTransaction();
+            ContentValues values = new ContentValues();
+            values.put("targetUserId", notice.targetUserId);
+            values.put("title", notice.title);
+            values.put("description", notice.description);
+            db.insert("notice_board", null, values);
+            db.setTransactionSuccessful();
+        } finally {
+            if (db != null) {
+                db.endTransaction();
+                db.close();
+            }
+        }
+    }
+
+    // TODO: Add a function to delete a notice. e.g. deleteNotice(int noticeId)
 
     public boolean deletePendingStudent(int userId) {
         int accountId = getAccountType("pendingStudent").accountId;

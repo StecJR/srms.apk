@@ -46,9 +46,10 @@ public class AdminDashboardActivity extends AppCompatActivity {
             return;
         }
 
-        AppCompatButton adminLogoutButton, adminVerifyUserButton;
+        AppCompatButton adminLogoutButton, adminNoticeBoardButton, adminVerifyUserButton;
 
         adminLogoutButton = findViewById(R.id.adminLogoutButton);
+        adminNoticeBoardButton = findViewById(R.id.adminNoticeBoardButton);
         adminVerifyUserButton = findViewById(R.id.adminVerifyUserButton);
 
         adminLogoutButton.setOnClickListener(v -> {
@@ -57,6 +58,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        adminNoticeBoardButton.setOnClickListener(v -> startActivity(new Intent(this, UserNoticeBoardActivity.class)));
         adminVerifyUserButton.setOnClickListener(v -> startActivity(new Intent(this, AdminVerifyUserActivity.class)));
     }
 }

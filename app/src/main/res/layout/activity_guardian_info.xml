@@ -19,6 +19,12 @@
             android:paddingHorizontal="20dp"
             android:paddingVertical="30dp">
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/guardianInfoNoticeButton"
+                style="@style/CustomStyle.Button.Blue"
+                android:text="@string/notice"
+                android:textAllCaps="false" />
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"

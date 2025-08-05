@@ -68,7 +68,8 @@ public class GuardianInfoActivity extends AppCompatActivity {
         ShapeableImageView guardianInfoProfileImage;
         TextView guardianInfoStudentName, guardianInfoStudentDept, guardianInfoName,
                 guardianInfoRelation, guardianInfoContact, guardianInfoEmail;
-        AppCompatButton guardianInfoLogoutButton, guardianStudentInfoButton, guardianStudentResultButton;
+        AppCompatButton guardianInfoNoticeButton, guardianInfoLogoutButton, guardianStudentInfoButton,
+                guardianStudentResultButton;
         StudentInfo studentInfo = guardianDBHandler.getStudentinfo(guardianSession.deptId, guardianSession.studentId);
         GuardianInfo guardianInfo = guardianDBHandler.getGuardianinfo(guardianSession.guardianId);
 
@@ -79,6 +80,7 @@ public class GuardianInfoActivity extends AppCompatActivity {
         guardianInfoRelation = findViewById(R.id.guardianInfoRelation);
         guardianInfoContact = findViewById(R.id.guardianInfoContact);
         guardianInfoEmail = findViewById(R.id.guardianInfoEmail);
+        guardianInfoNoticeButton = findViewById(R.id.guardianInfoNoticeButton);
         guardianInfoLogoutButton = findViewById(R.id.guardianInfoLogoutButton);
         guardianStudentInfoButton = findViewById(R.id.GuardianStudentInfoButton);
         guardianStudentResultButton = findViewById(R.id.GuardianStudentResultButton);
@@ -96,6 +98,7 @@ public class GuardianInfoActivity extends AppCompatActivity {
         guardianInfoContact.setText(guardianInfo.contact);
         guardianInfoEmail.setText(guardianInfo.email);
 
+        guardianInfoNoticeButton.setOnClickListener(v -> startActivity(new Intent(this, UserNoticeBoardActivity.class)));
         guardianInfoLogoutButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, LoginActivity.class);
             intent.putExtra("activeMenuIndex", 2);

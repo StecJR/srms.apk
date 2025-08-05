@@ -63,4 +63,12 @@
     <string name="pending_faculties">Pending Faculties</string>
     <string name="pending_guardians">Pending Guardians</string>
     <string name="student_results">Student Results</string>
+    <string name="toast_image">Toast image</string>
+    <string name="notice_board">Notice Board</string>
+    <string name="date">Date</string>
+    <string name="title">Title</string>
+    <string name="notice">Notice</string>
+    <string name="body">Body</string>
+    <string name="add_notice">Add Notice</string>
+    <string name="delete_notice">Delete Notice</string>
 </resources>

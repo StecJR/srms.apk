@@ -67,7 +67,7 @@ public class FacultyInfoActivity extends AppCompatActivity {
 
         ShapeableImageView facultyInfoProfileImage;
         TextView facultyInfoFacultyId, facultyInfoName, facultyInfoGender, facultyInfoDept, facultyInfoContact, facultyInfoEmail;
-        AppCompatButton facultyInfoResultButton, facultyInfoLogoutButton;
+        AppCompatButton facultyInfoResultButton, facultyInfoNoticeButton, facultyInfoLogoutButton;
         FacultyInfo facultyInfo = facultyDBHandler.getFacultyInfo(facultySession.facultyId);
         DeptInfo deptInfo = facultyDBHandler.getDepartment(facultyInfo.deptId);
 
@@ -79,6 +79,7 @@ public class FacultyInfoActivity extends AppCompatActivity {
         facultyInfoContact = findViewById(R.id.facultyInfoContact);
         facultyInfoEmail = findViewById(R.id.facultyInfoEmail);
         facultyInfoResultButton = findViewById(R.id.facultyInfoResultButton);
+        facultyInfoNoticeButton = findViewById(R.id.facultyInfoNoticeButton);
         facultyInfoLogoutButton = findViewById(R.id.facultyInfoLogoutButton);
 
         int accountId = facultyDBHandler.getAccountType("faculty").accountId;
@@ -94,6 +95,7 @@ public class FacultyInfoActivity extends AppCompatActivity {
         facultyInfoEmail.setText(facultyInfo.email);
 
         facultyInfoResultButton.setOnClickListener(v -> startActivity(new Intent(this, FacultyResultActivity.class)));
+        facultyInfoNoticeButton.setOnClickListener(v -> startActivity(new Intent(this, UserNoticeBoardActivity.class)));
         facultyInfoLogoutButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, LoginActivity.class);
             intent.putExtra("activeMenuIndex", 1);

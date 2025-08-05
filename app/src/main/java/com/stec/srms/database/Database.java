@@ -13,6 +13,7 @@ import com.stec.srms.model.CourseInfo;
 import com.stec.srms.model.DeptInfo;
 import com.stec.srms.model.FacultyInfo;
 import com.stec.srms.model.GuardianInfo;
+import com.stec.srms.model.Notice;
 import com.stec.srms.model.PendingFaculty;
 import com.stec.srms.model.PendingGuardian;
 import com.stec.srms.model.PendingStudent;
@@ -24,12 +25,13 @@ import com.stec.srms.model.SessionInfo;
 import com.stec.srms.model.StudentInfo;
 import com.stec.srms.util.Sha256;
 import com.stec.srms.util.Toast;
+import com.stec.srms.util.Util;
 
 import java.util.ArrayList;
 
 public class Database extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SRMS";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static Database databaseInstance;
     private static ArrayList<AccountType> accountTypes = null;
     private static ArrayList<DeptInfo> departments = null;
@@ -126,6 +128,11 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(PendingGuardian.getQuery());
     }
 
+    public void createNoticeBoardTable(SQLiteDatabase db) {
+        if (db == null) db = this.getWritableDatabase();
+        db.execSQL(Notice.getQuery());
+    }
+
     // Get: static table data
     public AccountType getAccountType(int id) {
         if (accountTypes != null) {
@@ -175,32 +182,6 @@ public class Database extends SQLiteOpenHelper {
             if (db != null) db.close();
         }
         return accountType;
-    }
-
-    public ArrayList<AccountType> getAccountTypes() {
-        if (accountTypes != null) return accountTypes;
-        ArrayList<AccountType> dbAccountTypes = null;
-        SQLiteDatabase db = null;
-        Cursor cursor = null;
-        try {
-            db = this.getReadableDatabase();
-            String query = "SELECT * FROM account_types;";
-            cursor = db.rawQuery(query, null);
-            if (cursor.moveToFirst()) {
-                dbAccountTypes = new ArrayList<>();
-                do {
-                    AccountType accountType = new AccountType();
-                    accountType.accountId = cursor.getInt(cursor.getColumnIndexOrThrow("accountId"));
-                    accountType.accountType = cursor.getString(cursor.getColumnIndexOrThrow("accountType"));
-                    dbAccountTypes.add(accountType);
-                } while (cursor.moveToNext());
-            }
-        } finally {
-            if (cursor != null) cursor.close();
-            if (db != null) db.close();
-        }
-        accountTypes = dbAccountTypes;
-        return accountTypes;
     }
 
     public DeptInfo getDepartment(int deptId) {
@@ -548,6 +529,39 @@ public class Database extends SQLiteOpenHelper {
         }
         semesters = dbSemesters;
         return semesters;
+    }
+
+    public ArrayList<Notice> getNotices(int page, int pageSize, String condition) {
+        ArrayList<Notice> notices = null;
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            int offset = (page - 1) * pageSize;
+            String query = "SELECT * FROM notice_board " +
+                    "WHERE " + condition + " " +
+                    "ORDER BY noticeId DESC " +
+                    "LIMIT " + pageSize + " OFFSET " + offset + ";";
+            db = this.getReadableDatabase();
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                notices = new ArrayList<>();
+                do {
+                    Notice notice = new Notice();
+                    notice.noticeId = cursor.getInt(cursor.getColumnIndexOrThrow("noticeId"));
+                    notice.targetUserId = cursor.getInt(cursor.getColumnIndexOrThrow("targetUserId"));
+                    notice.title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+                    notice.description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+                    notice.createdAt = Util.getFormatedStringDate(cursor.getString(cursor.getColumnIndexOrThrow("createdAt")));
+                    notices.add(notice);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            return null;
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
+        return notices;
     }
 
     // Verify: users
@@ -961,9 +975,13 @@ public class Database extends SQLiteOpenHelper {
         this.createPendingStudentsTable(db);
         this.createPendingFacultiesTable(db);
         this.createPendingGuardiansTable(db);
+        this.createNoticeBoardTable(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (newVersion > 1) {
+            this.createNoticeBoardTable(db);
+        }
     }
 }

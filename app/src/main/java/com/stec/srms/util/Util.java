@@ -47,10 +47,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
+import java.util.Date;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -86,7 +90,8 @@ class FooterEvent extends PdfPageEventHelper {
 }
 
 public class Util {
-    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.US);
+    private static final DateTimeFormatter dateTimeInputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter dateTimeOutputFormat = DateTimeFormatter.ofPattern("dd MMMM yyyy");
     private static final Pattern validPhonePattern = Pattern.compile("^(01\\d{9}|\\+8801\\d{9})$");
     private static final Pattern validEmailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
     private static final SecureRandom random = new SecureRandom();
@@ -129,6 +134,30 @@ public class Util {
 
     public static int dpToPx(Context context, int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
+    }
+
+    public static LocalDateTime getFormatedDate(String date) {
+        try {
+            return LocalDateTime.parse(date, dateTimeInputFormat);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
+
+    public static String getFormatedDate(Date date) {
+        try {
+            return dateTimeOutputFormat.format(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        } catch (DateTimeException e) {
+            return null;
+        }
+    }
+
+    public static String getFormatedStringDate(String date) {
+        try {
+            return LocalDateTime.parse(date, dateTimeInputFormat).format(dateTimeOutputFormat);
+        } catch (DateTimeException e) {
+            return null;
+        }
     }
 
     public static int getOTP() {
@@ -281,7 +310,7 @@ public class Util {
 
     // Date picker
     private static void updateUI(Calendar calendar, EditText view) {
-        view.setText(simpleDateFormat.format(calendar.getTime()));
+        view.setText(getFormatedDate(calendar.getTime()));
     }
 
     public static void pickDate(Context context, Calendar calendar, EditText view) {

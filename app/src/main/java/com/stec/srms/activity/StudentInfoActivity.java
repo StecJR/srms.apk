@@ -95,9 +95,10 @@ public class StudentInfoActivity extends AppCompatActivity {
         studentInfoEmail.setText(studentInfo.email);
         studentInfoAddress.setText(studentInfo.address);
 
-        AppCompatButton studentInfoResultButton, studentInfoLogoutButton;
+        AppCompatButton studentInfoResultButton, studentInfoNoticeButton, studentInfoLogoutButton;
         studentInfoResultButton = findViewById(R.id.studentInfoResultButton);
-        studentInfoLogoutButton = findViewById(R.id.guardianInfoLogoutButton);
+        studentInfoNoticeButton = findViewById(R.id.studentInfoNoticeButton);
+        studentInfoLogoutButton = findViewById(R.id.studentInfoLogoutButton);
 
         if (hideTopButtons) {
             TextView studentInfoGuardianInfoTitle = findViewById(R.id.studentInfoGuardianInfoTitle);
@@ -105,6 +106,7 @@ public class StudentInfoActivity extends AppCompatActivity {
             studentInfoGuardianInfoTitle.setVisibility(View.GONE);
             studentInfoGuardianInfoTable.setVisibility(View.GONE);
             studentInfoResultButton.setVisibility(View.INVISIBLE);
+            studentInfoNoticeButton.setVisibility(View.INVISIBLE);
             studentInfoLogoutButton.setVisibility(View.INVISIBLE);
             return;
         }
@@ -130,6 +132,7 @@ public class StudentInfoActivity extends AppCompatActivity {
         }
 
         studentInfoResultButton.setOnClickListener(v -> startActivity(new Intent(this, StudentResultActivity.class)));
+        studentInfoNoticeButton.setOnClickListener(v -> startActivity(new Intent(this, UserNoticeBoardActivity.class)));
         studentInfoLogoutButton.setOnClickListener(v -> {
             startActivity(new Intent(this, LoginActivity.class));
             finish();

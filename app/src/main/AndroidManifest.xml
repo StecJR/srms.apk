@@ -30,6 +30,12 @@
         <activity
             android:name=".activity.LoginActivity"
             android:exported="false" />
+        <activity
+            android:name=".activity.UserNoticeBoardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UserShowNoticeActivity"
+            android:exported="false" />
 
         <!-- Student related activities -->
         <activity
@@ -68,6 +74,12 @@
         <activity
             android:name=".activity.AdminDashboardActivity"
             android:exported="true" />
+        <activity
+            android:name=".activity.AdminAddNoticeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminDeleteNoticeActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.AdminVerifyUserActivity"
             android:exported="true" />

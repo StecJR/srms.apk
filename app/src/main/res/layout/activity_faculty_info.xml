@@ -31,6 +31,17 @@
                 android:layout_weight="1" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/facultyInfoNoticeButton"
+                style="@style/CustomStyle.Button.Blue"
+                android:text="@string/notice"
+                android:textAllCaps="false" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/facultyInfoLogoutButton"
                 style="@style/CustomStyle.Button.Blue"
                 android:text="@string/logout"
