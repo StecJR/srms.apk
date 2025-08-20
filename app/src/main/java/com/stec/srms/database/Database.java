@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -27,7 +28,10 @@ import com.stec.srms.util.Sha256;
 import com.stec.srms.util.Toast;
 import com.stec.srms.util.Util;
 
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Database extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SRMS";
@@ -562,6 +566,42 @@ public class Database extends SQLiteOpenHelper {
             if (db != null) db.close();
         }
         return notices;
+    }
+
+    public void deleteLastNotice() {
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        try {
+            db = this.getWritableDatabase();
+            String sql = "SELECT noticeId FROM notice_board " +
+                    "ORDER BY noticeId DESC LIMIT 1";
+            cursor = db.rawQuery(sql, null);
+            if (cursor.moveToFirst()) {
+                int lastId = cursor.getInt(cursor.getColumnIndexOrThrow("noticeId"));
+                db.delete("notice_board", "noticeId = " + lastId, null);
+            }
+        } catch (Exception e) {
+            Log.e("Database", "deleteLastNotice: error", e);
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
+        }
+    }
+
+    public void deleteNoticeOlderThan(int month) {
+        SQLiteDatabase db = null;
+        try {
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.MONTH, -month);
+            DateTimeFormatter dateTimeInputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String threshold = dateTimeInputFormat.format(calendar.getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            db = this.getWritableDatabase();
+            db.execSQL("DELETE FROM notice_board WHERE createdAt < date('" + threshold + "');");
+        } catch (Exception e) {
+            Log.e("Database", "deleteNoticeOlderThan: Error", e);
+        } finally {
+            if (db != null) db.close();
+        }
     }
 
     // Verify: users

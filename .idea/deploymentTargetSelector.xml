@@ -7,10 +7,10 @@
       </SelectionState>
       <SelectionState runConfigName="SRMS">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-01-23T15:25:09.659638800Z">
+        <DropdownSelection timestamp="2025-08-05T14:32:57.240515400Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="Default" identifier="serial=i85BD221006005792;connection=0e9037e7" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=RZCY41M7P5E" />
             </handle>
           </Target>
         </DropdownSelection>
