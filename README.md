@@ -7,7 +7,7 @@ with an effective system. In addition, we want to bring parents, instructors,
 and students together in one location.
 
 ## 📑 Changelog
-See full change log from [here](https://github.com/StecJR/srms.apk/blob/main/CHANGELOG.md).
+See full change log from [here](https://github.com/ItsMe-JR/srms.apk/blob/main/CHANGELOG.md).
 
 ## 📜 License
-This repo is licensed under the [BSD 3-Clause](https://github.com/StecJR/srms.apk/blob/main/LICENSE) © 2025 · [Jakir Hossain](https://github.com/StecJR)
+This repo is licensed under the [BSD 3-Clause](https://github.com/ItsMe-JR/srms.apk/blob/main/LICENSE) © 2025 · [Jakir Hossain](https://github.com/ItsMe-JR)
