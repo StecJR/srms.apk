@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
     <title>SRMS: Here Is Your User Id</title>
     <style>
         body, html {
@@ -84,6 +86,62 @@
                 font-size: 12px;
             }
         }
+
+        /* Dark Mode Styles */
+        @media (prefers-color-scheme: dark) {
+            body, html {
+                background-color: #121212;
+            }
+            .email-container {
+                background-color: #1e1e1e;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            }
+            .header {
+                background-color: #0056b3;
+                color: #e0e0e0;
+            }
+            .content {
+                color: #e0e0e0;
+            }
+            .user-id {
+                background-color: #333333;
+                color: #ffffff;
+            }
+            .footer {
+                background-color: #333333;
+                color: #bbbbbb;
+            }
+            .footer a {
+                color: #4da3ff;
+            }
+        }
+
+        /* Outlook Android Dark Mode Duplication */
+        [data-ogsc] body, [data-ogsc] html {
+            background-color: #121212 !important;
+        }
+        [data-ogsc] .email-container {
+            background-color: #1e1e1e !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important;
+        }
+        [data-ogsc] .header {
+            background-color: #0056b3 !important;
+            color: #e0e0e0 !important;
+        }
+        [data-ogsc] .content {
+            color: #e0e0e0 !important;
+        }
+        [data-ogsc] .user-id {
+            background-color: #333333 !important;
+            color: #ffffff !important;
+        }
+        [data-ogsc] .footer {
+            background-color: #333333 !important;
+            color: #bbbbbb !important;
+        }
+        [data-ogsc] .footer a {
+            color: #4da3ff !important;
+        }
     </style>
 </head>
 <body>
@@ -106,7 +164,7 @@
     </div>
 
     <div class="footer">
-        <p>&copy; 2025 Jakir Hossain ∙ All rights reserved.</p>
+        <p>&copy; 2025 ∙ Jakir Hossain.</p>
     </div>
 </div>
 </body>

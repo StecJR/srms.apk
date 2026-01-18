@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="CustomStyle.Table.Simple.SimpleRow">
+    <style name="CustomStyle.Table.SimpleRow" parent="android:ThemeOverlay.Material">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingHorizontal">5dp</item>
         <item name="android:paddingVertical">8dp</item>
+        <item name="android:backgroundTint">@color/surfaceContainer</item>
     </style>
 
-    <style name="CustomStyle.Table.Simple.SimpleRowText">
+    <style name="CustomStyle.Table.SimpleRowText" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">5dp</item>
+        <item name="android:backgroundTint">@color/surfaceContainer</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="android:textSize">@dimen/text_16</item>
     </style>

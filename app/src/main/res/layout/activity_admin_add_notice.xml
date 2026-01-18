@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginVertical="30dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/add_notice"
         android:textAlignment="center"
@@ -21,46 +23,54 @@
         style="@style/CustomStyle.Input.Spinner"
         android:layout_width="match_parent"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_weight="0"
-        android:padding="5dp" />
+        android:padding="5dp"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="@string/title">
+        android:layout_marginBottom="20dp"
+        android:hint="@string/title"
+        android:textColorHint="@color/onTertiaryContainer"
+        app:hintTextColor="@color/onTertiaryContainer">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/noticeTitleInput"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/black_grey"
+            android:background="@drawable/input_field"
             android:fontFamily="@font/montserrat_bold"
             android:lineSpacingExtra="8sp"
+            android:textColor="@color/onTertiaryContainer"
             android:textSize="@dimen/text_18" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_weight="1"
-        android:hint="@string/body">
+        android:hint="@string/description"
+        android:textColorHint="@color/onTertiaryContainer"
+        app:hintTextColor="@color/onTertiaryContainer">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/noticeBodyInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black_grey" />
+            android:background="@drawable/input_field"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine|textCapSentences"
+            android:textColor="@color/onTertiaryContainer" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/noticeSaveButton"
-        style="@style/CustomStyle.Button.Blue"
+        style="@style/CustomStyle.Button.Primary"
         android:layout_gravity="center"
-        android:layout_marginVertical="20dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/save"
         android:textAllCaps="false" />
-
 </LinearLayout>

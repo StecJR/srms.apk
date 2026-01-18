@@ -4,24 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="20dp"
     android:scrollbars="none"
     tools:context=".activity.StudentInfoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/studentInfoTopButtonLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="30dp">
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/studentInfoResultButton"
-                style="@style/CustomStyle.Button.Blue"
+                style="@style/CustomStyle.Button.Secondary"
                 android:text="@string/result"
                 android:textAllCaps="false" />
 
@@ -32,7 +34,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/studentInfoNoticeButton"
-                style="@style/CustomStyle.Button.Blue"
+                style="@style/CustomStyle.Button.Secondary"
                 android:text="@string/notice"
                 android:textAllCaps="false" />
 
@@ -43,7 +45,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/studentInfoLogoutButton"
-                style="@style/CustomStyle.Button.Blue"
+                style="@style/CustomStyle.Button.Error"
                 android:text="@string/logout"
                 android:textAllCaps="false" />
         </LinearLayout>
@@ -53,6 +55,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/CircleImageShape" />
 
@@ -60,153 +63,180 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/student_info"
             android:textSize="@dimen/text_28" />
 
         <TableLayout
-            style="@style/CustomStyle.Table.Simple"
+            android:id="@+id/studentInfoTable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:background="@drawable/rounded_shape_30"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/rounded_30"
+            android:backgroundTint="@color/surfaceContainerLow"
             android:padding="10dp">
 
             <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                style="@style/CustomStyle.Table.SimpleRow"
+                android:backgroundTint="@color/surfaceContainerLow"
                 android:paddingVertical="3dp">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:backgroundTint="@color/surfaceContainerLow"
                     android:text="@string/student_id" />
 
                 <TextView
                     android:id="@+id/studentInfoStudentId"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_marginStart="20dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/surfaceContainerLow" />
             </TableRow>
 
             <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                style="@style/CustomStyle.Table.SimpleRow"
+                android:backgroundTint="@color/surfaceContainerLow"
                 android:paddingVertical="3dp">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:backgroundTint="@color/surfaceContainerLow"
                     android:text="@string/name" />
 
                 <TextView
                     android:id="@+id/studentInfoName"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_marginStart="20dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/surfaceContainerLow" />
             </TableRow>
 
             <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                style="@style/CustomStyle.Table.SimpleRow"
+                android:backgroundTint="@color/surfaceContainerLow"
                 android:paddingVertical="3dp">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:backgroundTint="@color/surfaceContainerLow"
                     android:text="@string/date_of_birth" />
 
                 <TextView
                     android:id="@+id/studentInfoBirthDate"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_marginStart="20dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/surfaceContainerLow" />
             </TableRow>
 
             <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                style="@style/CustomStyle.Table.SimpleRow"
+                android:backgroundTint="@color/surfaceContainerLow"
                 android:paddingVertical="3dp">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:backgroundTint="@color/surfaceContainerLow"
                     android:text="@string/gender" />
 
                 <TextView
                     android:id="@+id/studentInfoGender"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_marginStart="20dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/surfaceContainerLow" />
             </TableRow>
 
             <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                style="@style/CustomStyle.Table.SimpleRow"
+                android:backgroundTint="@color/surfaceContainerLow"
                 android:paddingVertical="3dp">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:backgroundTint="@color/surfaceContainerLow"
                     android:text="@string/program" />
 
                 <TextView
                     android:id="@+id/studentInfoDept"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_marginStart="20dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/surfaceContainerLow" />
             </TableRow>
 
             <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                style="@style/CustomStyle.Table.SimpleRow"
+                android:backgroundTint="@color/surfaceContainerLow"
                 android:paddingVertical="3dp">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:backgroundTint="@color/surfaceContainerLow"
                     android:text="@string/session" />
 
                 <TextView
                     android:id="@+id/studentInfoSession"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_marginStart="20dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/surfaceContainerLow" />
             </TableRow>
 
             <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                style="@style/CustomStyle.Table.SimpleRow"
+                android:backgroundTint="@color/surfaceContainerLow"
                 android:paddingVertical="3dp">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:backgroundTint="@color/surfaceContainerLow"
                     android:text="@string/contact" />
 
                 <TextView
                     android:id="@+id/studentInfoContact"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_marginStart="20dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/surfaceContainerLow" />
             </TableRow>
 
             <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                style="@style/CustomStyle.Table.SimpleRow"
+                android:backgroundTint="@color/surfaceContainerLow"
                 android:paddingVertical="3dp">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:backgroundTint="@color/surfaceContainerLow"
                     android:text="@string/email" />
 
                 <TextView
                     android:id="@+id/studentInfoEmail"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_marginStart="20dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/surfaceContainerLow" />
             </TableRow>
 
             <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                style="@style/CustomStyle.Table.SimpleRow"
+                android:backgroundTint="@color/surfaceContainerLow"
                 android:paddingVertical="3dp">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:backgroundTint="@color/surfaceContainerLow"
                     android:text="@string/address" />
 
                 <TextView
                     android:id="@+id/studentInfoAddress"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_marginStart="20dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/surfaceContainerLow" />
             </TableRow>
         </TableLayout>
 
@@ -215,7 +245,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/guardian_info"
@@ -223,72 +252,83 @@
 
         <TableLayout
             android:id="@+id/studentInfoGuardianInfoTable"
-            style="@style/CustomStyle.Table.Simple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/rounded_shape_30"
+            android:layout_marginBottom="70dp"
+            android:background="@drawable/rounded_30"
+            android:backgroundTint="@color/surfaceContainerLow"
             android:padding="10dp">
 
             <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                style="@style/CustomStyle.Table.SimpleRow"
+                android:backgroundTint="@color/surfaceContainerLow"
                 android:paddingVertical="3dp">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:backgroundTint="@color/surfaceContainerLow"
                     android:text="@string/name" />
 
                 <TextView
                     android:id="@+id/studentInfoGuardianName"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_marginStart="50dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/surfaceContainerLow" />
             </TableRow>
 
             <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                style="@style/CustomStyle.Table.SimpleRow"
+                android:backgroundTint="@color/surfaceContainerLow"
                 android:paddingVertical="3dp">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:backgroundTint="@color/surfaceContainerLow"
                     android:text="@string/relation" />
 
                 <TextView
                     android:id="@+id/studentInfoGuardianRelation"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_marginStart="50dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/surfaceContainerLow" />
             </TableRow>
 
             <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                style="@style/CustomStyle.Table.SimpleRow"
+                android:backgroundTint="@color/surfaceContainerLow"
                 android:paddingVertical="3dp">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:backgroundTint="@color/surfaceContainerLow"
                     android:text="@string/contact" />
 
                 <TextView
                     android:id="@+id/studentInfoGuardianContact"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_marginStart="50dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/surfaceContainerLow" />
             </TableRow>
 
             <TableRow
-                style="@style/CustomStyle.Table.Simple.SimpleRow"
+                style="@style/CustomStyle.Table.SimpleRow"
+                android:backgroundTint="@color/surfaceContainerLow"
                 android:paddingVertical="3dp">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:backgroundTint="@color/surfaceContainerLow"
                     android:text="@string/email" />
 
                 <TextView
                     android:id="@+id/studentInfoGuardianEmail"
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_marginStart="50dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/surfaceContainerLow" />
             </TableRow>
         </TableLayout>
     </LinearLayout>

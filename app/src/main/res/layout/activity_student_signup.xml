@@ -2,23 +2,23 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/studentSignupScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     android:scrollbars="none"
     tools:context=".activity.StudentSignupActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="30dp">
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:contentDescription="@string/app_logo"
             android:src="@drawable/srms_logo" />
 
@@ -26,7 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/student_signup"
@@ -36,7 +35,6 @@
             style="@style/CustomStyle.TextBox.Red"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
             android:layout_marginBottom="30dp"
             android:text="@string/signup_fill_up_notice"
             android:textSize="@dimen/text_16"
@@ -45,13 +43,14 @@
         <EditText
             android:id="@+id/studentSignupNameInput"
             style="@style/CustomStyle.Input.Text"
+            android:layout_marginBottom="20dp"
             android:hint="@string/name"
             android:importantForAutofill="noExcludeDescendants" />
 
         <EditText
             android:id="@+id/studentSignupDOBInput"
             style="@style/CustomStyle.Input.DatePicker"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:hint="@string/date_of_birth"
             android:importantForAutofill="no" />
@@ -59,31 +58,34 @@
         <Spinner
             android:id="@+id/studentSignupGenderSpinner"
             style="@style/CustomStyle.Input.Spinner"
-            android:layout_width="280dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:padding="5dp" />
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="20dp"
+            android:padding="5dp"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Spinner
             android:id="@+id/studentSignupDeptSpinner"
             style="@style/CustomStyle.Input.Spinner"
-            android:layout_width="280dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:padding="5dp" />
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="20dp"
+            android:padding="5dp"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Spinner
             android:id="@+id/studentSignupSessionSpinner"
             style="@style/CustomStyle.Input.Spinner"
-            android:layout_width="280dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:padding="5dp" />
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="20dp"
+            android:padding="5dp"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/studentSignupContactInput"
             style="@style/CustomStyle.Input.Text"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
             android:digits="0123456789+"
             android:hint="@string/contact"
             android:importantForAutofill="noExcludeDescendants"
@@ -93,7 +95,7 @@
         <EditText
             android:id="@+id/studentSignupEmailInput"
             style="@style/CustomStyle.Input.Text"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
             android:hint="@string/email"
             android:importantForAutofill="noExcludeDescendants"
             android:inputType="textEmailAddress" />
@@ -101,14 +103,14 @@
         <EditText
             android:id="@+id/studentSignupAddressInput"
             style="@style/CustomStyle.Input.Text"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
             android:hint="@string/address"
             android:importantForAutofill="noExcludeDescendants" />
 
         <EditText
             android:id="@+id/studentSignupPwInput"
             style="@style/CustomStyle.Input.Password"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
             android:autofillHints="password"
             android:hint="@string/password"
             android:importantForAutofill="noExcludeDescendants" />
@@ -116,7 +118,7 @@
         <EditText
             android:id="@+id/studentSignupRetypePwInput"
             style="@style/CustomStyle.Input.Password"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
             android:autofillHints="password"
             android:hint="@string/retype_password"
             android:importantForAutofill="noExcludeDescendants" />
@@ -125,7 +127,7 @@
             android:id="@+id/studentSignupImageSelectorButton"
             style="@style/CustomStyle.Button.Square"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:padding="3dp"
             android:text="@string/upload_image_description" />
 
@@ -134,7 +136,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:clickable="true"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/CircleImageShape"
@@ -142,11 +144,10 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/studentSignupSignupButton"
-            style="@style/CustomStyle.Button.Blue"
+            style="@style/CustomStyle.Button.Primary"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="70dp"
             android:text="@string/sign_up"
             android:textAllCaps="false" />
-
     </LinearLayout>
 </ScrollView>

@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="CustomStyle.BottomNav.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:width">52dp</item>
+        <item name="android:height">36dp</item>
+        <item name="android:color">@color/surfaceContainerHighVariant</item>
+    </style>
 
-    <style name="CustomStyle.BottomNav.Base" parent="Widget.Material3.BottomNavigationView">
+    <style name="CustomStyle.BottomNav" parent="Widget.Material3.BottomNavigationView">
         <item name="android:layout_marginHorizontal">10dp</item>
+        <item name="android:paddingHorizontal">30dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingHorizontal">30dp</item>
         <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:background">@drawable/bottom_nav</item>
+        <item name="itemActiveIndicatorStyle">@style/CustomStyle.BottomNav.ActiveIndicator</item>
+        <item name="itemPaddingTop">20dp</item>
+        <item name="itemPaddingBottom">20dp</item>
+        <item name="itemTextColor">@color/onSurfaceContainerHigh</item>
+        <item name="itemIconTint">@color/onSurfaceContainerHighVariant</item>
     </style>
 </resources>

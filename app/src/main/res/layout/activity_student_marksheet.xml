@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     android:scrollbars="none"
     tools:context=".activity.StudentMarkSheetActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
         <TextView
@@ -16,31 +18,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="30dp"
+            android:layout_marginBottom="30dp"
             android:fontFamily="@font/montserrat_bold"
             android:textAlignment="center"
             android:textSize="@dimen/text_28" />
 
         <TableLayout
             android:id="@+id/studentMarkSheetTable"
-            style="@style/CustomStyle.Table.Simple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:background="@drawable/rounded_shape_30"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_30"
+            android:backgroundTint="@color/surfaceContainer"
             android:padding="10dp">
 
-            <TableRow style="@style/CustomStyle.Table.Simple.SimpleRow">
+            <TableRow style="@style/CustomStyle.Table.SimpleRow">
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/code"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_18" />
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/course"
@@ -48,7 +50,7 @@
                     android:textSize="@dimen/text_18" />
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
+                    style="@style/CustomStyle.Table.SimpleRowText"
                     android:layout_width="60dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/gpa"
@@ -56,20 +58,21 @@
                     android:textSize="@dimen/text_18" />
 
                 <TextView
-                    style="@style/CustomStyle.Table.Simple.SimpleRowText"
-                    android:layout_width="60dp"
+                    style="@style/CustomStyle.Table.SimpleRowText"
+                    android:layout_width="70dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/grade"
                     android:textAlignment="center"
-                    android:textSize="@dimen/text_18" />
+                    android:textSize="@dimen/text_18"
+                    tools:ignore="TextSizeCheck" />
             </TableRow>
         </TableLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/studentMarkSheetPrintButton"
-            style="@style/CustomStyle.Button.Blue"
+            style="@style/CustomStyle.Button.Primary"
             android:layout_gravity="center"
-            android:layout_marginVertical="30dp"
+            android:layout_marginBottom="70dp"
             android:text="@string/save"
             android:textAllCaps="false" />
     </LinearLayout>

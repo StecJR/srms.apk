@@ -8,8 +8,8 @@
 <full-backup-content>
     <include
         domain="file"
-        path="/data/data/com.stec.srms/databases/" />
+        path="/data/data/com.stecjr.srms/databases/" />
     <include
         domain="file"
-        path="/data/data/com.stec.srms/files/" />
+        path="/data/data/com.stecjr.srms/files/" />
 </full-backup-content>

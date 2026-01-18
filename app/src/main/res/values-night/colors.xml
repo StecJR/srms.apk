@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="logoBackground">#090023</color>
+
+    <color name="background">#090023</color>
+    <color name="onBackground">#efefef</color>
+    <color name="backgroundVariant">#2c2723</color>
+    <color name="onBackgroundVariant">#efefef</color>
+    <color name="primary">#2b8eee</color>
+    <color name="onPrimary">#efefef</color>
+    <color name="secondary">#0000b3</color>
+    <color name="onSecondary">#efefef</color>
+    <color name="onSecondaryVariant">#9999ff</color>
+    <color name="tertiary">#c34323</color>
+    <color name="tertiaryContainer">#0c0c73</color>
+    <color name="onTertiaryContainer">#efefef</color>
+    <color name="tertiaryContainerVariant">#1f1f7c</color>
+    <color name="onTertiaryContainerVariant">#ffc377</color>
+    <color name="surfaceContainer">#363c63</color>
+    <color name="surfaceContainerLow">#3c4773</color>
+    <color name="surfaceContainerHigh">#080837</color>
+    <color name="onSurfaceContainerHigh">#efefef</color>
+    <color name="surfaceContainerHighVariant">#776666cc</color>
+    <color name="onSurfaceContainerHighVariant">#ffc377</color>
+    <color name="surfaceContainerHighest">#344c93</color>
+    <color name="outline">#977350</color>
+    <color name="error">#b91333</color>
+    <color name="onError">#ff9999</color>
+    <color name="errorContainer">#730e13</color>
+    <color name="onErrorContainer">#ff9999</color>
+    <color name="warningContainer">#000000</color>
+    <color name="onWarningContainer">#ffffff</color>
+    <color name="infoContainer">#000000</color>
+    <color name="onInfoContainer">#ffffff</color>
+    <color name="successContainer">#000000</color>
+    <color name="onSuccessContainer">#ffffff</color>
+</resources>

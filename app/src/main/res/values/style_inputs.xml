@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="CustomStyle.Input.Base" parent="Widget.AppCompat.EditText">
-        <item name="android:layout_width">280dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginHorizontal">30dp</item>
         <item name="android:paddingHorizontal">15dp</item>
         <item name="android:paddingVertical">18dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:background">@drawable/input_field</item>
+        <item name="android:textColor">@color/onTertiaryContainer</item>
+        <item name="android:textColorHint">@color/onTertiaryContainer</item>
     </style>
 
-    <style name="CustomStyle.Input.Text.Base" parent="CustomStyle.Input.Base">
+    <style name="CustomStyle.Input.Text" parent="CustomStyle.Input.Base">
         <item name="android:inputType">text</item>
     </style>
 
-    <style name="CustomStyle.Input.DatePicker.Base" parent="CustomStyle.Input.Base">
+    <style name="CustomStyle.Input.DatePicker" parent="CustomStyle.Input.Base">
+        <item name="android:inputType">date</item>
         <item name="android:drawableEnd">@drawable/calendar</item>
         <item name="android:focusable">false</item>
-        <item name="android:inputType">date</item>
     </style>
 
-    <style name="CustomStyle.Input.Password.Base" parent="CustomStyle.Input.Base">
+    <style name="CustomStyle.Input.Password" parent="CustomStyle.Input.Base">
         <item name="android:inputType">textPassword</item>
-        <item name="android:drawableEnd">@drawable/eye_password_hide</item>
+        <item name="android:drawableEnd">@drawable/eye_hide</item>
+
     </style>
 
-    <style name="CustomStyle.Input.Spinner.Base" parent="Widget.AppCompat.Spinner.DropDown">
+    <style name="CustomStyle.Input.Spinner" parent="Widget.AppCompat.Spinner.DropDown">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:spinnerMode">dropdown</item>
+        <item name="android:background">@drawable/input_field</item>
+        <item name="android:popupBackground">@drawable/spinner</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:spinnerMode">dropdown</item>
         <item name="android:fadeScrollbars">true</item>
     </style>
 </resources>

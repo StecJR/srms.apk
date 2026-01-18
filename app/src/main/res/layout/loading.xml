@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_shape_20"
-    android:backgroundTint="@color/black_grey"
+    android:background="@drawable/rounded_20"
+    android:backgroundTint="@color/tertiaryContainerVariant"
     android:elevation="10dp"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp">
 
     <ProgressBar
-        android:id="@+id/loadingScreenProgressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

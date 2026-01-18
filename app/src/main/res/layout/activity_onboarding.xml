@@ -18,8 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/top_rounded_shape"
-        android:backgroundTint="@color/yellow_darker"
+        android:background="@drawable/top_rounded_40"
+        android:backgroundTint="@color/surfaceContainerHighest"
         android:orientation="vertical"
         android:padding="30dp">
 
@@ -29,7 +29,6 @@
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/app_name"
-            android:textColor="@color/black"
             android:textSize="@dimen/text_32" />
 
         <TextView
@@ -38,20 +37,15 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
             android:text="@string/app_desc"
-            android:textAlignment="center"
-            android:textColor="@color/black" />
+            android:textAlignment="center" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/onboardingExitButton"
-            style="@style/CustomStyle.Button.Blue"
+            style="@style/CustomStyle.Button.Secondary"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/button"
             android:paddingHorizontal="10dp"
-            android:text="@string/onboardingExitButton"
-            android:textColor="@color/black" />
-
+            android:text="@string/onboardingExitButton" />
     </LinearLayout>
-
 </RelativeLayout>

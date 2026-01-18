@@ -2,3 +2,5 @@
 plugins {
     alias(libs.plugins.android.application) apply false
 }
+val defaultApplicationId by extra("github.stecjr.srms")
+val defaultApplicationId1 by extra(defaultApplicationId)
